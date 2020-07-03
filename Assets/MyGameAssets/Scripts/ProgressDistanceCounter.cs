@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 前進した距離をカウントしておくクラス
 /// </summary>
+/// FIXME : orimoto MonoBehaviourを継承しない形に修正予定
 public class ProgressDistanceCounter : MonoBehaviour
 {
-    float distanceCounter;
+    float distanceCounter;      //進んだ距離をカウントする
 
     /// <summary>
     /// 最初に行う処理
@@ -25,6 +24,4 @@ public class ProgressDistanceCounter : MonoBehaviour
     {
         distanceCounter += progressDistance;
     }
-
-    
 }

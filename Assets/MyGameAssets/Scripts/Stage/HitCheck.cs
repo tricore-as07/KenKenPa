@@ -1,18 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 入力された場所が当たりか外れかの判定
 /// </summary>
 public class HitCheck : MonoBehaviour
 {
-    int checkNum = 0;
-    GameObject rightObject;
-    GameObject centerObject;
-    GameObject leftObject;
-    HitObjectsCounter hitObjectsCounter;
-    bool changedCheckObject;
+    int checkNum = 0;                       //判定するオブジェクトの番号（要素数）
+    GameObject rightObject;                 //右側のオブジェクト
+    GameObject centerObject;                //中央のオブジェクト
+    GameObject leftObject;                  //左側のオブジェクト
+    HitObjectsCounter hitObjectsCounter;    //当たりがいくつありか確認するためのクラス
+    bool changedCheckObject;                //判定するオブジェクトを変更したかどうか
 
     /// <summary>
     /// 最初に行う処理
@@ -27,8 +25,10 @@ public class HitCheck : MonoBehaviour
     /// </summary>
     void CheckObjectUpdate()
     {
+        //判定するオブジェクトの要素数が子オブジェクトに登録されている数より少なければ
         if(transform.childCount > checkNum)
         {
+            //判定するオブジェクトの更新
             rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).gameObject;
             centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).gameObject;
             leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).gameObject;
@@ -41,10 +41,12 @@ public class HitCheck : MonoBehaviour
     /// </summary>
     void AllHitProcess()
     {
+        //判定が終わったオブジェクトを非アクティブにする
         transform.GetChild(checkNum).gameObject.SetActive(false);
+        //判定するオブジェクトを次のオブジェクトにする
         checkNum++;
-        CheckObjectUpdate();
         changedCheckObject = true;
+        CheckObjectUpdate();
     }
 
     /// <summary>
@@ -62,6 +64,7 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
@@ -80,6 +83,7 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
@@ -98,6 +102,7 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
@@ -107,7 +112,8 @@ public class HitCheck : MonoBehaviour
     /// <returns>必要な時 : true,必要ない時 : false</returns>
     public bool NeedsNextObjectsGroup()
     {
-        return (checkNum >= 10);
+        //子オブジェクトの数より判定するオブジェクトの要素数以上なら
+        return (checkNum >= transform.childCount);
     }
 
     /// <summary>
@@ -118,10 +124,10 @@ public class HitCheck : MonoBehaviour
     {
         if(changedCheckObject)
         {
+            //変更履歴をリセット
             changedCheckObject = false;
             return true;
         }
         return false;
     }
-
 }
