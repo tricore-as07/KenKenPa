@@ -7,6 +7,8 @@ TagManager:
   - HitObject
   - OutObject
   - ObjectsGroup
+  - ProgressDistanceCounter
+  - ComboCounter
   layers:
   - Default
   - TransparentFX
