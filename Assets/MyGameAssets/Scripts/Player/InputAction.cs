@@ -15,7 +15,9 @@ public class InputAction : MonoBehaviour
     ProgressDistanceCounter counter;
     ComboCounter comboCounter;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         ObjectsGroupList.AddRange(GameObject.FindGameObjectsWithTag("ObjectsGroup"));
@@ -32,6 +34,9 @@ public class InputAction : MonoBehaviour
         comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
     }
 
+    /// <summary>
+    /// 毎フレーム行う処理
+    /// </summary>
     void Update()
     {
         if(!canInput)

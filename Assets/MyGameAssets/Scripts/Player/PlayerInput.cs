@@ -13,13 +13,17 @@ public class PlayerInput : MonoBehaviour
 
     InputAction inputAction;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         inputAction = GetComponent<InputAction>();
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// 毎フレーム行う処理
+    /// </summary>
     void Update()
     {
         UpdateInput();

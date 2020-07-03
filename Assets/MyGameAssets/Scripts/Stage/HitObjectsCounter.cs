@@ -14,7 +14,9 @@ public class HitObjectsCounter : MonoBehaviour
     bool centerHit;
     bool leftHit;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         CountHitObjectsNum();

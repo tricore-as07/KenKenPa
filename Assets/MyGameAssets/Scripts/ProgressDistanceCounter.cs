@@ -8,7 +8,10 @@ using UnityEngine;
 public class ProgressDistanceCounter : MonoBehaviour
 {
     float distanceCounter;
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         distanceCounter = 0;

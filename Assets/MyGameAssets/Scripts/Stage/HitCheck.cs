@@ -14,7 +14,9 @@ public class HitCheck : MonoBehaviour
     HitObjectsCounter hitObjectsCounter;
     bool changedCheckObject;
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         CheckObjectUpdate();
@@ -48,7 +50,7 @@ public class HitCheck : MonoBehaviour
     /// <summary>
     /// 右が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsRightHit()
     {
         if(rightObject.tag == "HitObject")
@@ -66,7 +68,7 @@ public class HitCheck : MonoBehaviour
     /// <summary>
     /// 中央が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsCenterHit()
     {
         if (centerObject.transform.tag == "HitObject")
@@ -84,7 +86,7 @@ public class HitCheck : MonoBehaviour
     /// <summary>
     /// 左が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsLeftHit()
     {
         if (leftObject.tag == "HitObject")
@@ -111,7 +113,7 @@ public class HitCheck : MonoBehaviour
     /// <summary>
     /// 判定するオブジェクトを変えたかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>変えてた時 : true , 変えてない時 : false</returns>
     public bool IsChangedCheckObject()
     {
         if(changedCheckObject)

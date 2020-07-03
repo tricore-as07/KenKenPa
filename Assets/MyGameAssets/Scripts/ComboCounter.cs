@@ -9,7 +9,10 @@ public class ComboCounter : MonoBehaviour
 {
     int comboCount;
 
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         comboCount = 0;

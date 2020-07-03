@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// ステージに関する定数を宣言するクラス
 /// </summary>
 public static class StageConstants
 {
