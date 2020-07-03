@@ -22,8 +22,8 @@ public class InputAction : MonoBehaviour
         ObjectsGroupList.AddRange(GameObject.FindGameObjectsWithTag("ObjectsGroup"));
         // オブジェクトグループを近い順にソート
         ObjectsGroupList.Sort((a,b) => (int)(
-            (Vector3.Distance(a.transform.position,transform.position)) -
-            (Vector3.Distance(a.transform.position, transform.position))
+            (Vector3.SqrMagnitude(a.transform.position - transform.position)) -
+            (Vector3.SqrMagnitude(b.transform.position - transform.position))
             ) );
         //一番近いオブジェクトグループのHitCheckクラスを代入
         hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
