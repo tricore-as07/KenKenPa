@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// 入力があった際の動作をするクラス
 /// </summary>
@@ -14,6 +13,7 @@ public class InputAction : MonoBehaviour
     HitCheck hitCheck;                  //入力された場所が当たりか外れかを判定するクラス
     List<GameObject> ObjectsGroupList = new List<GameObject>();
     ProgressDistanceCounter counter;
+    ComboCounter comboCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,9 @@ public class InputAction : MonoBehaviour
         hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
         canInput = true;
         inputIntervalCounter = 0.0f;
+
         counter = GameObject.FindGameObjectWithTag("ProgressDistanceCounter").GetComponent<ProgressDistanceCounter>();
+        comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
     }
 
     void Update()
@@ -49,10 +51,13 @@ public class InputAction : MonoBehaviour
     {
         if(canInput)
         {
-            var isHit = hitCheck.IsRightHit();
-            if(isHit)
+            if(hitCheck.IsRightHit())
             {
                 HitProcess();
+            }
+            else
+            {
+                comboCounter.MissCombo();
             }
         }
     }
@@ -64,10 +69,13 @@ public class InputAction : MonoBehaviour
     {
         if (canInput)
         {
-            var isHit = hitCheck.IsCenterHit();
-            if (isHit)
+            if (hitCheck.IsCenterHit())
             {
                 HitProcess();
+            }
+            else
+            {
+                comboCounter.MissCombo();
             }
         }
     }
@@ -79,10 +87,13 @@ public class InputAction : MonoBehaviour
     {
         if (canInput)
         {
-            var isHit = hitCheck.IsLeftHit();
-            if (isHit)
+            if (hitCheck.IsLeftHit())
             {
                 HitProcess();
+            }
+            else
+            {
+                comboCounter.MissCombo();
             }
         }
     }
@@ -113,5 +124,6 @@ public class InputAction : MonoBehaviour
         counter.ProgressPlayer(3.0f);
         canInput = false;
         inputIntervalCounter = 0.0f;
+        comboCounter.SuccessCombo();
     }
 }

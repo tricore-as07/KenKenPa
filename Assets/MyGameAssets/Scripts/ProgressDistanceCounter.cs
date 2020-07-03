@@ -21,9 +21,6 @@ public class ProgressDistanceCounter : MonoBehaviour
     public void ProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
-#if DEBUG
-        Debug.Log(distanceCounter);
-#endif
     }
 
     
