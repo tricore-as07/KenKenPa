@@ -13,6 +13,7 @@ public class InputAction : MonoBehaviour
     float inputIntervalCounter;         //次の入力が出来るようになるまでのカウンター
     HitCheck hitCheck;                  //入力された場所が当たりか外れかを判定するクラス
     List<GameObject> ObjectsGroupList = new List<GameObject>();
+    ProgressDistanceCounter counter;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class InputAction : MonoBehaviour
         hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
         canInput = true;
         inputIntervalCounter = 0.0f;
+        counter = GameObject.FindGameObjectWithTag("ProgressDistanceCounter").GetComponent<ProgressDistanceCounter>();
     }
 
     void Update()
@@ -104,9 +106,11 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 当たりを全て選んだ時にプレイヤーがやる処理
     /// </summary>
+    /// FIXME orimoto モック版作成時のためマジックナンバー使用（本実装時に修正予定）
     void AllHitPlayerAction()
     {
-        transform.position += new Vector3(0.0f, 0.0f, 3.0f); ;
+        transform.position += new Vector3(0.0f, 0.0f, 3.0f);
+        counter.ProgressPlayer(3.0f);
         canInput = false;
         inputIntervalCounter = 0.0f;
     }
