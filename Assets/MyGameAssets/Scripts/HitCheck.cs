@@ -7,22 +7,42 @@ using UnityEngine;
 /// </summary>
 public class HitCheck : MonoBehaviour
 {
-    
-    private static const int rightNum = 0;
-    private static const int centerNum = 1;
-    private static const int leftNum = 2;
-
     int checkNum = 0;
     GameObject rightObject;
     GameObject centerObject;
     GameObject leftObject;
+    HitObjectsCounter hitObjectsCounter;
+    bool changedCheckObject;
 
     // Start is called before the first frame update
-    private void Start()
+    void Start()
     {
-        rightObject = transform.GetChild(checkNum).GetChild(rightNum).GetChild(0).gameObject;
-        centerObject = transform.GetChild(checkNum).GetChild(centerNum).GetChild(0).gameObject;
-        leftObject = transform.GetChild(checkNum).GetChild(leftNum).GetChild(0).gameObject;
+        CheckObjectUpdate();
+    }
+
+    /// <summary>
+    /// 判定をするオブジェクトのデータを更新する
+    /// </summary>
+    void CheckObjectUpdate()
+    {
+        if(transform.childCount > checkNum)
+        {
+            rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).gameObject;
+            centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).gameObject;
+            leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).gameObject;
+            hitObjectsCounter = transform.GetChild(checkNum).GetComponent<HitObjectsCounter>();
+        }
+    }
+
+    /// <summary>
+    /// 当たりを全て選んだときにやる処理
+    /// </summary>
+    void AllHitProcess()
+    {
+        transform.GetChild(checkNum).gameObject.SetActive(false);
+        checkNum++;
+        CheckObjectUpdate();
+        changedCheckObject = true;
     }
 
     /// <summary>
@@ -33,6 +53,11 @@ public class HitCheck : MonoBehaviour
     {
         if(rightObject.tag == "HitObject")
         {
+            hitObjectsCounter.RightHit();
+            if(hitObjectsCounter.IsAllHit())
+            {
+                AllHitProcess();
+            }
             return true;
         }
         return false;
@@ -46,6 +71,11 @@ public class HitCheck : MonoBehaviour
     {
         if (centerObject.transform.tag == "HitObject")
         {
+            hitObjectsCounter.CenterHit();
+            if (hitObjectsCounter.IsAllHit())
+            {
+                AllHitProcess();
+            }
             return true;
         }
         return false;
@@ -59,17 +89,37 @@ public class HitCheck : MonoBehaviour
     {
         if (leftObject.tag == "HitObject")
         {
+            hitObjectsCounter.LeftHit();
+            if (hitObjectsCounter.IsAllHit())
+            {
+                AllHitProcess();
+            }
             return true;
         }
         return false;
     }
 
     /// <summary>
-    /// 当たりを全て当てたかどうか
+    /// 判定するオブジェクトグループを次のオブジェクトグループにする必要があるか
+    /// </summary>
+    /// <returns>必要な時 : true,必要ない時 : false</returns>
+    public bool NeedsNextObjectsGroup()
+    {
+        return (checkNum >= 10);
+    }
+
+    /// <summary>
+    /// 判定するオブジェクトを変えたかどうか
     /// </summary>
     /// <returns></returns>
-    public bool IsAllHit()
+    public bool IsChangedCheckObject()
     {
+        if(changedCheckObject)
+        {
+            changedCheckObject = false;
+            return true;
+        }
         return false;
     }
+
 }

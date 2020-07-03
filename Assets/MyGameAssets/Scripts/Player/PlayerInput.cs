@@ -46,10 +46,10 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void UpdateInput()
     {
-        rightInput = Input.GetKey(KeyCode.D);
+        rightInput = Input.GetKeyDown(KeyCode.D);
 
-        centerInput = Input.GetKey(KeyCode.S);
+        centerInput = Input.GetKeyDown(KeyCode.S);
 
-        leftInput = Input.GetKey(KeyCode.A);
+        leftInput = Input.GetKeyDown(KeyCode.A);
     }
 }

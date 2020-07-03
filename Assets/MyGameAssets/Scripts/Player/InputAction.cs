@@ -9,8 +9,9 @@ using UnityEngine;
 public class InputAction : MonoBehaviour
 {
 
-    bool canInput;
-    HitCheck hitCheck;
+    bool canInput;                      //入力が出来るか
+    float inputIntervalCounter;         //次の入力が出来るようになるまでのカウンター
+    HitCheck hitCheck;                  //入力された場所が当たりか外れかを判定するクラス
     List<GameObject> ObjectsGroupList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -24,6 +25,19 @@ public class InputAction : MonoBehaviour
             ) );
         hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
         canInput = true;
+        inputIntervalCounter = 0.0f;
+    }
+
+    void Update()
+    {
+        if(!canInput)
+        {
+            inputIntervalCounter += Time.deltaTime;
+            if(inputIntervalCounter > 0.5)
+            {
+                canInput = true;
+            }
+        }
     }
 
     /// <summary>
@@ -36,7 +50,7 @@ public class InputAction : MonoBehaviour
             var isHit = hitCheck.IsRightHit();
             if(isHit)
             {
-                hitCheck.
+                HitProcess();
             }
         }
     }
@@ -51,7 +65,7 @@ public class InputAction : MonoBehaviour
             var isHit = hitCheck.IsCenterHit();
             if (isHit)
             {
-
+                HitProcess();
             }
         }
     }
@@ -66,9 +80,34 @@ public class InputAction : MonoBehaviour
             var isHit = hitCheck.IsLeftHit();
             if (isHit)
             {
-
+                HitProcess();
             }
         }
     }
 
+    /// <summary>
+    /// 当たりを選んだ時の処理
+    /// </summary>
+    void HitProcess()
+    {
+        if (hitCheck.IsChangedCheckObject())
+        {
+            AllHitPlayerAction();
+        }
+        if (hitCheck.NeedsNextObjectsGroup())
+        {
+            ObjectsGroupList.RemoveAt(0);
+            hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
+        }
+    }
+
+    /// <summary>
+    /// 当たりを全て選んだ時にプレイヤーがやる処理
+    /// </summary>
+    void AllHitPlayerAction()
+    {
+        transform.position += new Vector3(0.0f, 0.0f, 3.0f); ;
+        canInput = false;
+        inputIntervalCounter = 0.0f;
+    }
 }

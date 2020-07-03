@@ -2,17 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageConstants : MonoBehaviour
+public static class StageConstants
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public const int rightNum = 0;
+    public const int centerNum = 1;
+    public const int leftNum = 2;
 }
