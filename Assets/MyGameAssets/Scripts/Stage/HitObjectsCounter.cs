@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 当たりのオブジェクトがいくつあるか把握する
 /// </summary>
 public class HitObjectsCounter : MonoBehaviour
 {
-    
-    int hitObjectsNum;
+    int hitObjectsNum;      //当たりのオブジェクトの数
+    /// <summary>
+    /// 当たりのオブジェクトが二つの時などに同じ場所を2回押しても成功になるのを防ぐためのものです。
+    /// </summary>
+    bool rightHit;          //右が当たりの時に右に対応する入力をした際にtrueになる
+    bool centerHit;         //中央が当たりの時に中央に対応する入力をした際にtrueになる
+    bool leftHit;           //左が当たりの時に左に対応する入力をした際にtrueになる
 
-    bool rightHit;
-    bool centerHit;
-    bool leftHit;
-
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         CountHitObjectsNum();
@@ -25,6 +26,7 @@ public class HitObjectsCounter : MonoBehaviour
     /// </summary>
     void CountHitObjectsNum()
     {
+        //当たりのオブジェクトの数をリセット
         hitObjectsNum = 0;
         if (transform.GetChild(StageConstants.rightNum).tag == "HitObject")
         {
@@ -80,6 +82,14 @@ public class HitObjectsCounter : MonoBehaviour
         }
         leftHit = true;
         hitObjectsNum--;
+    }
+
+    /// <summary>
+    /// 間違ったものを選んだ時に呼ばれる
+    /// </summary>
+    public void MissSelected()
+    {
+        CountHitObjectsNum();
     }
 
     /// <summary>

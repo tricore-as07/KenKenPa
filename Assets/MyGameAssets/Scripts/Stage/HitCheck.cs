@@ -1,20 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// 入力された場所が当たりか外れかの判定
 /// </summary>
 public class HitCheck : MonoBehaviour
 {
-    int checkNum = 0;
-    GameObject rightObject;
-    GameObject centerObject;
-    GameObject leftObject;
-    HitObjectsCounter hitObjectsCounter;
-    bool changedCheckObject;
+    int checkNum = 0;                       //判定するオブジェクトの番号（要素数）
+    GameObject rightObject;                 //右側のオブジェクト
+    GameObject centerObject;                //中央のオブジェクト
+    GameObject leftObject;                  //左側のオブジェクト
+    HitObjectsCounter hitObjectsCounter;    //当たりがいくつありか確認するためのクラス
+    bool changedCheckObject;                //判定するオブジェクトを変更したかどうか
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         CheckObjectUpdate();
@@ -25,8 +25,10 @@ public class HitCheck : MonoBehaviour
     /// </summary>
     void CheckObjectUpdate()
     {
+        //判定するオブジェクトの要素数が子オブジェクトに登録されている数より少なければ
         if(transform.childCount > checkNum)
         {
+            //判定するオブジェクトの更新
             rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).gameObject;
             centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).gameObject;
             leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).gameObject;
@@ -39,16 +41,18 @@ public class HitCheck : MonoBehaviour
     /// </summary>
     void AllHitProcess()
     {
+        //判定が終わったオブジェクトを非アクティブにする
         transform.GetChild(checkNum).gameObject.SetActive(false);
+        //判定するオブジェクトを次のオブジェクトにする
         checkNum++;
-        CheckObjectUpdate();
         changedCheckObject = true;
+        CheckObjectUpdate();
     }
 
     /// <summary>
     /// 右が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsRightHit()
     {
         if(rightObject.tag == "HitObject")
@@ -60,13 +64,14 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
     /// <summary>
     /// 中央が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsCenterHit()
     {
         if (centerObject.transform.tag == "HitObject")
@@ -78,13 +83,14 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
     /// <summary>
     /// 左が当たりかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>当たり : true , 外れ : false</returns>
     public bool IsLeftHit()
     {
         if (leftObject.tag == "HitObject")
@@ -96,6 +102,7 @@ public class HitCheck : MonoBehaviour
             }
             return true;
         }
+        hitObjectsCounter.MissSelected();
         return false;
     }
 
@@ -105,21 +112,22 @@ public class HitCheck : MonoBehaviour
     /// <returns>必要な時 : true,必要ない時 : false</returns>
     public bool NeedsNextObjectsGroup()
     {
-        return (checkNum >= 10);
+        //子オブジェクトの数より判定するオブジェクトの要素数以上なら
+        return (checkNum >= transform.childCount);
     }
 
     /// <summary>
     /// 判定するオブジェクトを変えたかどうか
     /// </summary>
-    /// <returns></returns>
+    /// <returns>変えてた時 : true , 変えてない時 : false</returns>
     public bool IsChangedCheckObject()
     {
         if(changedCheckObject)
         {
+            //変更履歴をリセット
             changedCheckObject = false;
             return true;
         }
         return false;
     }
-
 }

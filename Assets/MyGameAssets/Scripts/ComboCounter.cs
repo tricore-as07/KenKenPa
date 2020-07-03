@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// コンボをカウントするクラス
 /// </summary>
+/// FIXME : orimoto MonoBehaviourを継承しない形に修正予定
 public class ComboCounter : MonoBehaviour
 {
-    int comboCount;
+    int comboCount;     //コンボをカウントする
 
-    // Start is called before the first frame update
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
     void Start()
     {
         comboCount = 0;
@@ -30,5 +31,4 @@ public class ComboCounter : MonoBehaviour
     {
         comboCount = 0;
     }
-
 }
