@@ -6,12 +6,11 @@ using UnityEngine;
 /// </summary>
 public class InputAction : MonoBehaviour
 {
-    bool canInput;                                                  //入力が出来るか
-    float inputIntervalCounter;                                     //次の入力が出来るようになるまでのカウンター
     HitCheck hitCheck;                                              //入力された場所が当たりか外れかを判定するクラス
     List<GameObject> ObjectsGroupList = new List<GameObject>();     //オブジェクトグループのリスト
     ProgressDistanceCounter progressDistanceCounter;                //進んだ距離をカウントするクラス
     ComboCounter comboCounter;                                      //コンボをカウントするクラス
+    InputIntervalManager inputIntervalManager;
 
     /// <summary>
     /// 最初に行う処理
@@ -27,31 +26,10 @@ public class InputAction : MonoBehaviour
             ) );
         //一番近いオブジェクトグループのHitCheckクラスを代入
         hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
-        //入力を可能にする
-        canInput = true;
-        //カウンターのリセット
-        inputIntervalCounter = 0.0f;
         
         progressDistanceCounter = GameObject.FindGameObjectWithTag("ProgressDistanceCounter").GetComponent<ProgressDistanceCounter>();
         comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
-    }
-
-    /// <summary>
-    /// 毎フレーム行う処理
-    /// </summary>
-    void Update()
-    {
-        //入力を受け付けてない時
-        if(!canInput)
-        {
-            //入力が出来るまでのカウンターを進める
-            inputIntervalCounter += Time.deltaTime;
-            if(inputIntervalCounter > 0.5)
-            {
-                //入力を可能にする
-                canInput = true;
-            }
-        }
+        inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
     }
 
     /// <summary>
@@ -59,7 +37,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsRightInputted()
     {
-        if(canInput)
+        if(inputIntervalManager.CanInput())
         {
             if(hitCheck.IsRightHit())
             {
@@ -77,7 +55,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsCenterInputted()
     {
-        if (canInput)
+        if (inputIntervalManager.CanInput())
         {
             if (hitCheck.IsCenterHit())
             {
@@ -95,7 +73,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsLeftInputted()
     {
-        if (canInput)
+        if (inputIntervalManager.CanInput())
         {
             if (hitCheck.IsLeftHit())
             {
@@ -133,8 +111,7 @@ public class InputAction : MonoBehaviour
     {
         transform.position += new Vector3(0.0f, 0.0f, 3.0f);
         progressDistanceCounter.ProgressPlayer(3.0f);
-        canInput = false;
-        inputIntervalCounter = 0.0f;
+        inputIntervalManager.Inputed();
         comboCounter.SuccessCombo();
     }
 }

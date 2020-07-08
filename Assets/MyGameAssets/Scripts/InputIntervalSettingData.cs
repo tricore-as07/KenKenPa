@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 
+/// 入力間の受付時間をコンボ数で管理するための設定データ
 /// </summary>
 [CreateAssetMenu]
 public class InputIntervalSettingData : ScriptableObject
@@ -26,7 +26,8 @@ public class InputIntervalSettingData : ScriptableObject
 [System.Serializable]
 public class InputIntervalSetting
 {
-    public int ComboNum { get { return ComboNum; } }                //制限を加えるコンボ数
-    public float intervalTime { get { return intervalTime; } }      //入力可能になるまでの時間
-
+    [SerializeField]int comboNum = 0;                //制限を加えるコンボ数
+    public int ComboNum { get { return comboNum; } }
+    [SerializeField]float intervalTime = 0.0f;          //入力可能になるまでの時間
+    public float IntervalTime { get { return intervalTime; } }
 }
