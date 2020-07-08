@@ -3,7 +3,7 @@
 /// <summary>
 /// 入力された場所が当たりか外れかの判定
 /// </summary>
-public class HitCheck : MonoBehaviour
+public class CorrectCheck : MonoBehaviour
 {
     int checkNum = 0;                       //判定するオブジェクトの番号（要素数）
     GameObject rightObject;                 //右側のオブジェクト
@@ -39,7 +39,7 @@ public class HitCheck : MonoBehaviour
     /// <summary>
     /// 当たりを全て選んだときにやる処理
     /// </summary>
-    void AllHitProcess()
+    void OnAllCorrectProcess()
     {
         //判定が終わったオブジェクトを非アクティブにする
         transform.GetChild(checkNum).gameObject.SetActive(false);
@@ -57,14 +57,14 @@ public class HitCheck : MonoBehaviour
     {
         if(rightObject.tag == "HitObject")
         {
-            hitObjectsCounter.RightHit();
-            if(hitObjectsCounter.IsAllHit())
+            hitObjectsCounter.OnCorrectSelectRight();
+            if(hitObjectsCounter.IsAllCorrectSelect())
             {
-                AllHitProcess();
+                OnAllCorrectProcess();
             }
             return true;
         }
-        hitObjectsCounter.MissSelected();
+        hitObjectsCounter.OnMistakeSelect();
         return false;
     }
 
@@ -76,14 +76,14 @@ public class HitCheck : MonoBehaviour
     {
         if (centerObject.transform.tag == "HitObject")
         {
-            hitObjectsCounter.CenterHit();
-            if (hitObjectsCounter.IsAllHit())
+            hitObjectsCounter.OnCorrectSelectCenter();
+            if (hitObjectsCounter.IsAllCorrectSelect())
             {
-                AllHitProcess();
+                OnAllCorrectProcess();
             }
             return true;
         }
-        hitObjectsCounter.MissSelected();
+        hitObjectsCounter.OnMistakeSelect();
         return false;
     }
 
@@ -95,14 +95,14 @@ public class HitCheck : MonoBehaviour
     {
         if (leftObject.tag == "HitObject")
         {
-            hitObjectsCounter.LeftHit();
-            if (hitObjectsCounter.IsAllHit())
+            hitObjectsCounter.OnCorrectSelectLeft();
+            if (hitObjectsCounter.IsAllCorrectSelect())
             {
-                AllHitProcess();
+                OnAllCorrectProcess();
             }
             return true;
         }
-        hitObjectsCounter.MissSelected();
+        hitObjectsCounter.OnMistakeSelect();
         return false;
     }
 

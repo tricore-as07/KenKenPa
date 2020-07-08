@@ -6,29 +6,29 @@
 /// FIXME : orimoto MonoBehaviourを継承しない形に修正予定
 public class ComboCounter : MonoBehaviour
 {
-    int comboCount;     //コンボをカウントする
+    public int ComboCount { get; private set; }     //コンボをカウントする
 
     /// <summary>
     /// 最初に行う処理
     /// </summary>
     void Start()
     {
-        comboCount = 0;
+        ComboCount = 0;
     }
 
     /// <summary>
     /// コンボを成功させた時に呼ぶ
     /// </summary>
-    public void SuccessCombo()
+    public void OnSuccessCombo()
     {
-        comboCount++;
+        ComboCount++;
     }
 
     /// <summary>
     /// コンボを失敗した時に呼ぶ
     /// </summary>
-    public void MissCombo()
+    public void OnMissCombo()
     {
-        comboCount = 0;
+        ComboCount = 0;
     }
 }

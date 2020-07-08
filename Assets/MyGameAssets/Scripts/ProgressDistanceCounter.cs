@@ -20,7 +20,7 @@ public class ProgressDistanceCounter : MonoBehaviour
     /// プレイヤーが前進した時に呼ばれる
     /// </summary>
     /// <param name="progressDistance">前進した距離</param>
-    public void ProgressPlayer(float progressDistance)
+    public void OnProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
     }
