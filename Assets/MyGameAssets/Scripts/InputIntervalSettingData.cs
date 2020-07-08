@@ -18,7 +18,7 @@ public class InputIntervalSettingData : ScriptableObject
 public class InputIntervalSetting
 {
     [SerializeField]int comboNum = 0;                               //制限を加えるコンボ数
-    public int ComboNum { get { return comboNum; } }                //外部に公開するためのプロパティ
+    public int ComboNum => comboNum;                                //外部に公開するためのプロパティ
     [SerializeField]float intervalTime = 0.0f;                      //入力可能になるまでの時間
-    public float IntervalTime { get { return intervalTime; } }      //外部に公開するためのプロパティ
+    public float IntervalTime => intervalTime;                      //外部に公開するためのプロパティ
 }
