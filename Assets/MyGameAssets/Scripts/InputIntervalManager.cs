@@ -6,7 +6,7 @@
 public class InputIntervalManager : MonoBehaviour
 {
     [SerializeField] InputIntervalSettingData inputIntervalSettingData = null;  //入力間の受付時間をコンボ数で管理するための設定データ
-    bool canInput;                                                              //入力可能かどうか
+    public bool isAbleInput { get; private set; }                               //入力可能かどうか
     float inputIntervalCounter;                                                 //入力間の時間を数えるカウンター
     float intervalTime = 0f;                                                    //入力から次の入力を受け付けるまでの時間
     ComboCounter comboCounter;                                                  //コンボをカウントするクラス
@@ -25,14 +25,14 @@ public class InputIntervalManager : MonoBehaviour
     void Update()
     {
         //入力を受け付けてない時
-        if (!canInput)
+        if (!isAbleInput)
         {
             //入力が出来るまでのカウンターを進める
             inputIntervalCounter += Time.deltaTime;
             if (inputIntervalCounter > intervalTime)
             {
                 //入力を可能にする
-                canInput = true;
+                isAbleInput = true;
                 UpdateIntervalTime();
             }
         }
@@ -56,20 +56,11 @@ public class InputIntervalManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 入力できるかどうか
-    /// </summary>
-    /// <returns>入力可 : true,入力不可 : false</returns>
-    public bool CanInput()
-    {
-        return canInput;
-    }
-
-    /// <summary>
     /// 入力した時に呼ぶ
     /// </summary>
     public void Inputed()
     {
-        canInput = false;
+        isAbleInput = false;
         inputIntervalCounter = 0f;
     }
 }

@@ -37,7 +37,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsRightInputted()
     {
-        if(inputIntervalManager.CanInput())
+        if(inputIntervalManager.isAbleInput)
         {
             if(hitCheck.IsRightHit())
             {
@@ -55,7 +55,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsCenterInputted()
     {
-        if (inputIntervalManager.CanInput())
+        if (inputIntervalManager.isAbleInput)
         {
             if (hitCheck.IsCenterHit())
             {
@@ -73,7 +73,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     public void IsLeftInputted()
     {
-        if (inputIntervalManager.CanInput())
+        if (inputIntervalManager.isAbleInput)
         {
             if (hitCheck.IsLeftHit())
             {
