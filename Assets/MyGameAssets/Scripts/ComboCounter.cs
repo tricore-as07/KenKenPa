@@ -6,7 +6,7 @@
 /// FIXME : orimoto MonoBehaviourを継承しない形に修正予定
 public class ComboCounter : MonoBehaviour
 {
-    public int comboCount {get{ return comboCount; } private set { comboCount = value; } }     //コンボをカウントする
+    int comboCount;     //コンボをカウントする
 
     /// <summary>
     /// 最初に行う処理

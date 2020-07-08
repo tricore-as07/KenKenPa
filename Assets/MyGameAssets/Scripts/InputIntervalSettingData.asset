@@ -12,14 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faffa52b85af7478d84b65a27c3deca9, type: 3}
   m_Name: InputIntervalSettingData
   m_EditorClassIdentifier: 
-  inputIntervalSettings:
-  - comboNum: 5
-    intervalTime: 0.5
-  - comboNum: 10
-    intervalTime: 0.4
-  - comboNum: 15
-    intervalTime: 0.3
-  - comboNum: 20
-    intervalTime: 0.2
-  - comboNum: 25
-    intervalTime: 0.1
+  inputIntervalSettings: []
