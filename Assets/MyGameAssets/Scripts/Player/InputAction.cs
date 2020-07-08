@@ -109,7 +109,7 @@ public class InputAction : MonoBehaviour
     /// FIXME orimoto モック版作成時のためマジックナンバー使用（本実装時に修正予定）
     void OnAllCorrectSelectPlayerAction()
     {
-        float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
+        const float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
         transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
         progressDistanceCounter.OnProgressPlayer(ObjectDistance);
         inputIntervalManager.OnInput();
