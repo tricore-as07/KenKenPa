@@ -8,15 +8,6 @@ using UnityEngine;
 public class InputIntervalSettingData : ScriptableObject
 {
     public List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>(); ///入力間の受付可能になるまでの時間の設定のリスト
-
-    /// <summary>
-    /// スクリプト開始時に行う処理
-    /// </summary>
-    private void Awake()
-    {
-        //設定されているリストをコンボ数を基準に昇順ソート
-        inputIntervalSettings.Sort((a,b) => (a.ComboNum - b.ComboNum));
-    }
 }
 
 /// <summary>
@@ -26,8 +17,8 @@ public class InputIntervalSettingData : ScriptableObject
 [System.Serializable]
 public class InputIntervalSetting
 {
-    [SerializeField]int comboNum = 0;                //制限を加えるコンボ数
-    public int ComboNum { get { return comboNum; } }
-    [SerializeField]float intervalTime = 0.0f;          //入力可能になるまでの時間
-    public float IntervalTime { get { return intervalTime; } }
+    [SerializeField]int comboNum = 0;                               //制限を加えるコンボ数
+    public int ComboNum { get { return comboNum; } }                //外部に公開するためのプロパティ
+    [SerializeField]float intervalTime = 0.0f;                      //入力可能になるまでの時間
+    public float IntervalTime { get { return intervalTime; } }      //外部に公開するためのプロパティ
 }

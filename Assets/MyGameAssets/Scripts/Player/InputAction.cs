@@ -10,7 +10,7 @@ public class InputAction : MonoBehaviour
     List<GameObject> ObjectsGroupList = new List<GameObject>();     //オブジェクトグループのリスト
     ProgressDistanceCounter progressDistanceCounter;                //進んだ距離をカウントするクラス
     ComboCounter comboCounter;                                      //コンボをカウントするクラス
-    InputIntervalManager inputIntervalManager;
+    InputIntervalManager inputIntervalManager;                      //入力から次の入力を受け付けるまでの時間を管理するクラス
 
     /// <summary>
     /// 最初に行う処理
