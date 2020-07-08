@@ -26,15 +26,15 @@ public class PlayerInput : MonoBehaviour
         UpdateInput();
         if(rightInput)
         {
-            inputAction.IsRightInputted();
+            inputAction.OnRightInput();
         }
         if(centerInput)
         {
-            inputAction.IsCenterInputted();
+            inputAction.OnCenterInput();
         }
         if (leftInput)
         {
-            inputAction.IsLeftInputted();
+            inputAction.OnLeftInput();
         }
     }
 

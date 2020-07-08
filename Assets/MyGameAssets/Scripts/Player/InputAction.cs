@@ -6,7 +6,7 @@ using UnityEngine;
 /// </summary>
 public class InputAction : MonoBehaviour
 {
-    HitCheck hitCheck;                                              //入力された場所が当たりか外れかを判定するクラス
+    CorrectCheck correctCheck;                                      //入力された場所が当たりか外れかを判定するクラス
     List<GameObject> ObjectsGroupList = new List<GameObject>();     //オブジェクトグループのリスト
     ProgressDistanceCounter progressDistanceCounter;                //進んだ距離をカウントするクラス
     ComboCounter comboCounter;                                      //コンボをカウントするクラス
@@ -25,7 +25,7 @@ public class InputAction : MonoBehaviour
             (Vector3.SqrMagnitude(b.transform.position - transform.position))
             ) );
         //一番近いオブジェクトグループのHitCheckクラスを代入
-        hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
+        correctCheck = ObjectsGroupList[0].GetComponent<CorrectCheck>();
         
         progressDistanceCounter = GameObject.FindGameObjectWithTag("ProgressDistanceCounter").GetComponent<ProgressDistanceCounter>();
         comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
@@ -35,17 +35,17 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 右が入力された時
     /// </summary>
-    public void IsRightInputted()
+    public void OnRightInput()
     {
         if(inputIntervalManager.isAbleInput)
         {
-            if(hitCheck.IsRightHit())
+            if(correctCheck.IsRightHit())
             {
-                HitProcess();
+                OnCorrectSelectProcess();
             }
             else
             {
-                comboCounter.MissCombo();
+                comboCounter.OnMissCombo();
             }
         }
     }
@@ -53,17 +53,17 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 中央が入力された時
     /// </summary>
-    public void IsCenterInputted()
+    public void OnCenterInput()
     {
         if (inputIntervalManager.isAbleInput)
         {
-            if (hitCheck.IsCenterHit())
+            if (correctCheck.IsCenterHit())
             {
-                HitProcess();
+                OnCorrectSelectProcess();
             }
             else
             {
-                comboCounter.MissCombo();
+                comboCounter.OnMissCombo();
             }
         }
     }
@@ -71,17 +71,17 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 左が入力された時
     /// </summary>
-    public void IsLeftInputted()
+    public void OnLeftInput()
     {
         if (inputIntervalManager.isAbleInput)
         {
-            if (hitCheck.IsLeftHit())
+            if (correctCheck.IsLeftHit())
             {
-                HitProcess();
+                OnCorrectSelectProcess();
             }
             else
             {
-                comboCounter.MissCombo();
+                comboCounter.OnMissCombo();
             }
         }
     }
@@ -89,17 +89,17 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 当たりを選んだ時の処理
     /// </summary>
-    void HitProcess()
+    void OnCorrectSelectProcess()
     {
         //判定するオブジェクトが次に進んだかどうか
-        if (hitCheck.IsChangedCheckObject())
+        if (correctCheck.IsChangedCheckObject())
         {
-            AllHitPlayerAction();
+            OnAllCorrectSelectPlayerAction();
         }
-        if (hitCheck.NeedsNextObjectsGroup())
+        if (correctCheck.NeedsNextObjectsGroup())
         {
             ObjectsGroupList.RemoveAt(0);
-            hitCheck = ObjectsGroupList[0].GetComponent<HitCheck>();
+            correctCheck = ObjectsGroupList[0].GetComponent<CorrectCheck>();
         }
     }
 
@@ -107,11 +107,12 @@ public class InputAction : MonoBehaviour
     /// 当たりを全て選んだ時にプレイヤーがやる処理
     /// </summary>
     /// FIXME orimoto モック版作成時のためマジックナンバー使用（本実装時に修正予定）
-    void AllHitPlayerAction()
+    void OnAllCorrectSelectPlayerAction()
     {
-        transform.position += new Vector3(0.0f, 0.0f, 3.0f);
-        progressDistanceCounter.ProgressPlayer(3.0f);
-        inputIntervalManager.Inputed();
-        comboCounter.SuccessCombo();
+        float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
+        transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
+        progressDistanceCounter.OnProgressPlayer(ObjectDistance);
+        inputIntervalManager.OnInput();
+        comboCounter.OnSuccessCombo();
     }
 }

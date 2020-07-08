@@ -9,9 +9,9 @@ public class HitObjectsCounter : MonoBehaviour
     /// <summary>
     /// 当たりのオブジェクトが二つの時などに同じ場所を2回押しても成功になるのを防ぐためのものです。
     /// </summary>
-    bool rightHit;          //右が当たりの時に右に対応する入力をした際にtrueになる
-    bool centerHit;         //中央が当たりの時に中央に対応する入力をした際にtrueになる
-    bool leftHit;           //左が当たりの時に左に対応する入力をした際にtrueになる
+    bool isRightCorrect;          //右が当たりの時に右に対応する入力をした際にtrueになる
+    bool isCenterCorrect;         //中央が当たりの時に中央に対応する入力をした際にtrueになる
+    bool isLeftCorrect;           //左が当たりの時に左に対応する入力をした際にtrueになる
 
     /// <summary>
     /// 最初に行う処理
@@ -40,54 +40,54 @@ public class HitObjectsCounter : MonoBehaviour
         {
             hitObjectsNum++;
         }
-        rightHit = false;
-        centerHit = false;
-        leftHit = false;
+        isRightCorrect = false;
+        isCenterCorrect = false;
+        isLeftCorrect = false;
     }
 
     /// <summary>
     /// 右が当たりで選んだ時に呼ばれる
     /// </summary>
-    public void RightHit()
+    public void OnCorrectSelectRight()
     {
-        if(rightHit)
+        if(isRightCorrect)
         {
             return;
         }
-        rightHit = true;
+        isRightCorrect = true;
         hitObjectsNum--;
     }
 
     /// <summary>
     /// 中央が当たりで選んだ時に呼ばれる
     /// </summary>
-    public void CenterHit()
+    public void OnCorrectSelectCenter()
     {
-        if (centerHit)
+        if (isCenterCorrect)
         {
             return;
         }
-        centerHit = true;
+        isCenterCorrect = true;
         hitObjectsNum--;
     }
 
     /// <summary>
     /// 左が当たりで選んだ時に呼ばれる
     /// </summary>
-    public void LeftHit()
+    public void OnCorrectSelectLeft()
     {
-        if (leftHit)
+        if (isLeftCorrect)
         {
             return;
         }
-        leftHit = true;
+        isLeftCorrect = true;
         hitObjectsNum--;
     }
 
     /// <summary>
     /// 間違ったものを選んだ時に呼ばれる
     /// </summary>
-    public void MissSelected()
+    public void OnMistakeSelect()
     {
         CountHitObjectsNum();
     }
@@ -96,7 +96,7 @@ public class HitObjectsCounter : MonoBehaviour
     /// 当たりを全て選んだか
     /// </summary>
     /// <returns>Yes : true , No , false</returns>
-    public bool IsAllHit()
+    public bool IsAllCorrectSelect()
     {
         return (hitObjectsNum == 0);
     }

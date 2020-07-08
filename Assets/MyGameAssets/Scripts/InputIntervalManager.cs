@@ -47,7 +47,7 @@ public class InputIntervalManager : MonoBehaviour
         foreach (var inputintervalSetting in inputIntervalSettingData.inputIntervalSettings)
         {
             //現在のコンボ数が設定にあるコンボ数より小さい時
-            if (inputintervalSetting.ComboNum > comboCounter.comboCount)
+            if (inputintervalSetting.ComboNum > comboCounter.ComboCount)
             {
                 intervalTime = inputintervalSetting.IntervalTime;
                 break;
@@ -58,7 +58,7 @@ public class InputIntervalManager : MonoBehaviour
     /// <summary>
     /// 入力した時に呼ぶ
     /// </summary>
-    public void Inputed()
+    public void OnInput()
     {
         isAbleInput = false;
         inputIntervalCounter = 0f;
