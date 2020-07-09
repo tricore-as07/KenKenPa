@@ -28,15 +28,15 @@ public class HitObjectsCounter : MonoBehaviour
     {
         //当たりのオブジェクトの数をリセット
         hitObjectsNum = 0;
-        if (transform.GetChild(StageConstants.rightNum).tag == "HitObject")
+        if (transform.GetChild(StageConstants.rightNum).GetChild(0).tag == "HitObject")
         {
             hitObjectsNum++;
         }
-        if (transform.GetChild(StageConstants.centerNum).tag == "HitObject")
+        if (transform.GetChild(StageConstants.centerNum).GetChild(0).tag == "HitObject")
         {
             hitObjectsNum++;
         }
-        if (transform.GetChild(StageConstants.leftNum).tag == "HitObject")
+        if (transform.GetChild(StageConstants.leftNum).GetChild(0).tag == "HitObject")
         {
             hitObjectsNum++;
         }

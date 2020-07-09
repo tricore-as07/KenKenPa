@@ -29,9 +29,9 @@ public class CorrectCheck : MonoBehaviour
         if(transform.childCount > checkNum)
         {
             //判定するオブジェクトの更新
-            rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).gameObject;
-            centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).gameObject;
-            leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).gameObject;
+            rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).GetChild(0).gameObject;
+            centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).GetChild(0).gameObject;
+            leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).GetChild(0).gameObject;
             hitObjectsCounter = transform.GetChild(checkNum).GetComponent<HitObjectsCounter>();
         }
     }
