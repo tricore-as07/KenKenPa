@@ -666,6 +666,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StageCreater
       objectReference: {fileID: 0}
+    - target: {fileID: 3797614374906647091, guid: 11372167c296e492bb1d8612dfc003de,
+        type: 3}
+      propertyPath: m_TagString
+      value: StageCreater
+      objectReference: {fileID: 0}
     - target: {fileID: 8743379531816133710, guid: 11372167c296e492bb1d8612dfc003de,
         type: 3}
       propertyPath: m_LocalPosition.x

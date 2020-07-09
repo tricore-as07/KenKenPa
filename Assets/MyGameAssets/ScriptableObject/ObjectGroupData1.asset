@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6961def60aa58484596ace2bdfbbfdf9, type: 3}
   m_Name: ObjectGroupData1
   m_EditorClassIdentifier: 
-  generatingFrequency: 100
+  weight: 100
   objectsDatas:
   - rightObjectType: 1
     centerObjectType: 0

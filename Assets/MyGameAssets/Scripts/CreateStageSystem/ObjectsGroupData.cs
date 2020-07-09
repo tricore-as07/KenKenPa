@@ -5,7 +5,7 @@ using UnityEngine;
 /// 指定歩数分のオブジェクトグループのデータ
 /// </summary>
 [CreateAssetMenu]
-public class ObjectGroupData : ScriptableObject, IWeight
+public class ObjectsGroupData : ScriptableObject, IWeight
 {
     [SerializeField] int weight = 0;                                        //生成される確率の重み
     public int Weight => weight;

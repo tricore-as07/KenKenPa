@@ -11,6 +11,7 @@ TagManager:
   - ComboCounter
   - InputIntervalManager
   - Stage
+  - StageCreater
   layers:
   - Default
   - TransparentFX

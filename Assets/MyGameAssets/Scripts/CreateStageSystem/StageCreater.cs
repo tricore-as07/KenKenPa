@@ -19,16 +19,25 @@ public class StageCreater : MonoBehaviour
         stage = GameObject.FindGameObjectWithTag("Stage");
         for (var i = 0; i < stageSettingData.GenerateObjectsGroupNum; i++)
         {
-            var objectsGroupData = RandomWithWeight.Lottery<ObjectGroupData>(stageSettingData.objectsGroupDatas);
+            var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.objectsGroupDatas);
             CreateObjectsGroup(objectsGroupData);
         }
+    }
+
+    /// <summary>
+    /// オブジェクトグループを追加で作成する
+    /// </summary>
+    public void AddObjectsGroup()
+    {
+        var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.objectsGroupDatas);
+        CreateObjectsGroup(objectsGroupData);
     }
 
     /// <summary>
     /// 指定歩数分のオブジェクトグループを作成する
     /// </summary>
     /// <param name="objectsGroupData">生成するオブジェクトグループのデータ</param>
-    void CreateObjectsGroup(ObjectGroupData objectsGroupData)
+    void CreateObjectsGroup(ObjectsGroupData objectsGroupData)
     {
         //オブジェクトグループを１つ作成
         var objectsGroup = Instantiate(objectsGroupPrefab, stage.transform);
