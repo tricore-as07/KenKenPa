@@ -5,12 +5,11 @@ using UnityEngine;
 /// 指定歩数分のオブジェクトグループのデータ
 /// </summary>
 [CreateAssetMenu]
-public class ObjectGroupData : ScriptableObject
+public class ObjectGroupData : ScriptableObject, IWeight
 {
-    [SerializeField] int generatingFrequency = 0;           //このステージデータの生成頻度
-    public int GeneratingFrequency => generatingFrequency;  //外部に公開するためのプロパティ
-    public List<ObjectsData> objectsDatas = new List<ObjectsData>();  //ステージのデータのリスト
-
+    [SerializeField] int weight = 0;                                        //生成される確率の重み
+    public int Weight => weight;
+    public List<ObjectsData> objectsDatas = new List<ObjectsData>();        //ステージのデータのリスト
 }
 
 /// <summary>
