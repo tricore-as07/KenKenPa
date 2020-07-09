@@ -98,7 +98,8 @@ public class InputAction : MonoBehaviour
             //追加でオブジェクトグループを作成
             stageCreater.AddObjectsGroup();
             //チェックする対象を次のオブジェクトグループに変更
-            correctCheck = stage.transform.GetChild(1).GetComponent<CorrectCheck>();
+            const int next = 1;
+            correctCheck = stage.transform.GetChild(next).GetComponent<CorrectCheck>();
         }
     }
 
