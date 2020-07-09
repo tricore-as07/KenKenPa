@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ステージのデータ
+/// 指定歩数分のオブジェクトグループのデータ
 /// </summary>
-[System.Serializable]
 [CreateAssetMenu]
 public class ObjectGroupData : ScriptableObject
 {
@@ -25,7 +23,7 @@ public enum ObjectType
 }
 
 /// <summary>
-/// オブジェクトのまとまりのデータ
+/// １歩分のオブジェクトのデータ
 /// </summary>
 [System.Serializable]
 public class ObjectsData

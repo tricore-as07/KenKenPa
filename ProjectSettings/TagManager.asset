@@ -9,6 +9,8 @@ TagManager:
   - ObjectsGroup
   - ProgressDistanceCounter
   - ComboCounter
+  - InputIntervalManager
+  - Stage
   layers:
   - Default
   - TransparentFX

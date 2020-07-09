@@ -1,23 +1,82 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// ステージの生成をするクラス
+/// </summary>
 public class StageCreater : MonoBehaviour
 {
-    [SerializeField]StageSettingData stageSettingData;
+    [SerializeField] StageSettingData stageSettingData = null;      //ステージの設定データ
+    [SerializeField] GameObject objectsGroupPrefab = null;          //ObjectsGroupのプレハブ
+    [SerializeField] GameObject objectsPrefab = null;               //１歩分のオブジェクトのプレハブ
+    GameObject stage = null;                                        //ステージ関連のオブジェクトの親に設定するためのもの
+    Vector3 DepthPosition;                                          //ステージ生成時の奥行きの位置
+
     /// <summary>
     /// 最初に行う処理
     /// </summary>
     void Start()
     {
-        
+        stage = GameObject.FindGameObjectWithTag("Stage");
+        foreach(var objectsGroupData in stageSettingData.objectsGroupDatas)
+        {
+            CreateObjectsGroup(objectsGroupData);
+        }
     }
 
     /// <summary>
-    /// 毎フレーム行う処理
+    /// 指定歩数分のオブジェクトグループを作成する
     /// </summary>
-    void Update()
+    /// <param name="objectsGroupData">生成するオブジェクトグループのデータ</param>
+    void CreateObjectsGroup(ObjectGroupData objectsGroupData)
     {
-        
+        //オブジェクトグループを１つ作成
+        var objectsGroup = Instantiate(objectsGroupPrefab, stage.transform);
+        objectsGroup.transform.localPosition += DepthPosition;
+        //データの数だけ１歩分のオブジェクトを作成
+        var depth = new Vector3(0f,0f,0f);
+        foreach (var objectsData in objectsGroupData.objectsDatas)
+        {
+            CreateObjects(objectsData, objectsGroup, depth);
+            depth +=  new Vector3(0f,0f,stageSettingData.objectDistance);
+        }
+        DepthPosition += new Vector3(0f,0f, stageSettingData.objectDistance * objectsGroupData.objectsDatas.Count);
+    }
+
+    /// <summary>
+    /// １歩分のオブジェクトを作成する
+    /// </summary>
+    /// <param name="objectsData">１歩分のオブジェクトのデータ</param>
+    /// <param name="parent">親に設定するオブジェクト</param>
+    void CreateObjects(ObjectsData objectsData,GameObject parent, Vector3 depth)
+    {
+        var objects = Instantiate(objectsPrefab, parent.transform);
+        objects.transform.localPosition += depth;
+        CreateObjectOfObjectType(objectsData.rightObjectType, objects.transform.GetChild(StageConstants.rightNum));
+        CreateObjectOfObjectType(objectsData.centerObjectType, objects.transform.GetChild(StageConstants.centerNum));
+        CreateObjectOfObjectType(objectsData.leftObjectType, objects.transform.GetChild(StageConstants.leftNum));
+    }
+
+    /// <summary>
+    /// 指定された種類のオブジェクトを作成する
+    /// </summary>
+    /// <param name="objectType">オブジェクトの種類</param>
+    /// <param name="parent">親に設定するオブジェクト</param>
+    void CreateObjectOfObjectType(ObjectType objectType,Transform parent)
+    {
+        switch(objectType)
+        {
+            //当たりのオブジェクトを生成する
+            case ObjectType.HitObject:
+                {
+                    Instantiate(stageSettingData.hitObjectPrefab, parent);
+                    break;
+                }
+            //外れのオブジェクトを作成する
+            case ObjectType.OutObject:
+                {
+                    Instantiate(stageSettingData.outObjectPrefab, parent);
+                    break;
+                }
+        }
     }
 }
