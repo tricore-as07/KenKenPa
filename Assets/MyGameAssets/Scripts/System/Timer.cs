@@ -5,7 +5,8 @@
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    [SerializeField]float limitTime = 0f;       //制限時間
+    [SerializeField] float limitTime = 0f;       //制限時間
+    public float LimitTime => limitTime;         //外部に公開するためのプロパティ
 
     /// <summary>
     /// 毎フレーム行う処理
@@ -16,7 +17,15 @@ public class Timer : MonoBehaviour
         //制限時間がなくなったら
         if(limitTime <= 0)
         {
-
+            OnTimeLIimit();
         }
+    }
+
+    /// <summary>
+    /// 制限時間が無くなった時によばれる
+    /// </summary>
+    void OnTimeLIimit()
+    {
+
     }
 }
