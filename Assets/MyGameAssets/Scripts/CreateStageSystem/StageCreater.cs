@@ -19,7 +19,7 @@ public class StageCreater : MonoBehaviour
         stage = GameObject.FindGameObjectWithTag("Stage");
         for (var i = 0; i < stageSettingData.GenerateObjectsGroupNum; i++)
         {
-            var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.objectsGroupDatas);
+            var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);
             CreateObjectsGroup(objectsGroupData);
         }
     }
@@ -29,7 +29,7 @@ public class StageCreater : MonoBehaviour
     /// </summary>
     public void AddObjectsGroup()
     {
-        var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.objectsGroupDatas);
+        var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);
         CreateObjectsGroup(objectsGroupData);
     }
 
@@ -44,12 +44,12 @@ public class StageCreater : MonoBehaviour
         objectsGroup.transform.localPosition += DepthPosition;
         //データの数だけ１歩分のオブジェクトを作成
         var depth = new Vector3(0f,0f,0f);
-        foreach (var objectsData in objectsGroupData.objectsDatas)
+        foreach (var objectsData in objectsGroupData.ObjectsDatas)
         {
             CreateObjects(objectsData, objectsGroup, depth);
-            depth += new Vector3(0f,0f,stageSettingData.objectDistance);
+            depth += new Vector3(0f, 0f, stageSettingData.ObjectDistance);
         }
-        DepthPosition += new Vector3(0f,0f, stageSettingData.objectDistance * objectsGroupData.objectsDatas.Count);
+        DepthPosition += new Vector3(0f, 0f, stageSettingData.ObjectDistance * objectsGroupData.ObjectsDatas.Count);
     }
 
     /// <summary>
@@ -78,13 +78,13 @@ public class StageCreater : MonoBehaviour
             //当たりのオブジェクトを生成する
             case ObjectType.HitObject:
                 {
-                    Instantiate(stageSettingData.hitObjectPrefab, parent);
+                    Instantiate(stageSettingData.HitObjectPrefab, parent);
                     break;
                 }
             //外れのオブジェクトを作成する
             case ObjectType.OutObject:
                 {
-                    Instantiate(stageSettingData.outObjectPrefab, parent);
+                    Instantiate(stageSettingData.OutObjectPrefab, parent);
                     break;
                 }
         }
