@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0d32f03bec5744b193eaa14301da1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightObjectTransform: {fileID: 2796626915311180915}
+  centerObjectTransform: {fileID: 1158666816428103880}
+  leftObjectTransform: {fileID: 42730391702176693}
 --- !u!1 &3481349967342591171
 GameObject:
   m_ObjectHideFlags: 0

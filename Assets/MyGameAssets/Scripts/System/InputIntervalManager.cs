@@ -5,11 +5,11 @@
 /// </summary>
 public class InputIntervalManager : MonoBehaviour
 {
-    [SerializeField] InputIntervalSettingData inputIntervalSettingData = null;  //入力間の受付時間をコンボ数で管理するための設定データ
-    public bool isAbleInput { get; private set; }                               //入力可能かどうか
-    float inputIntervalCounter;                                                 //入力間の時間を数えるカウンター
-    float intervalTime = 0f;                                                    //入力から次の入力を受け付けるまでの時間
-    ComboCounter comboCounter;                                                  //コンボをカウントするクラス
+    [SerializeField] InputIntervalSettingData inputIntervalSettingData = default;  //入力間の受付時間をコンボ数で管理するための設定データ
+    public bool isAbleInput { get; private set; }                                   //入力可能かどうか
+    float inputIntervalCounter;                                                     //入力間の時間を数えるカウンター
+    float intervalTime = 0f;                                                        //入力から次の入力を受け付けるまでの時間
+    ComboCounter comboCounter;                                                      //コンボをカウントするクラス
 
     /// <summary>
     /// 最初に行う処理
@@ -44,7 +44,7 @@ public class InputIntervalManager : MonoBehaviour
     void UpdateIntervalTime()
     {
         intervalTime = 0.0f;
-        foreach (var inputintervalSetting in inputIntervalSettingData.inputIntervalSettings)
+        foreach (var inputintervalSetting in inputIntervalSettingData.InputIntervalSettings)
         {
             //現在のコンボ数が設定にあるコンボ数より小さい時
             if (inputintervalSetting.ComboNum > comboCounter.ComboCount)
