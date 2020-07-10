@@ -24,6 +24,7 @@ public class Timer : MonoBehaviour
     /// <summary>
     /// 制限時間が無くなった時によばれる
     /// </summary>
+    /// TODO: orimoto 今後実装予定のスコアをリザルトに呼ぶための処理をまとめるためのものです。
     void OnTimeLIimit()
     {
 
