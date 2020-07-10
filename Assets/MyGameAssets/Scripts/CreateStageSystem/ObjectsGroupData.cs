@@ -7,10 +7,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ObjectsGroupData : ScriptableObject, IWeight
 {
-    [SerializeField] int weight = 0;                                        //生成される確率の重み
-    public int Weight => weight;
-    [SerializeField] List<ObjectsData> objectsDatas = new List<ObjectsData>();        //ステージのデータのリスト
-    public List<ObjectsData> ObjectsDatas => objectsDatas;
+    [SerializeField] int weight = default;                                              //生成される確率の重み
+    public int Weight => weight;                                                        //外部に公開するためのプロパティ
+    [SerializeField] List<ObjectsData> objectsDatas = new List<ObjectsData>();          //ステージのデータのリスト
+    public IReadOnlyList<ObjectsData> ObjectsDatas => objectsDatas;                     //外部に公開するためのプロパティ
 }
 
 /// <summary>
@@ -28,7 +28,10 @@ public enum ObjectType
 [System.Serializable]
 public class ObjectsData
 {
-    public ObjectType rightObjectType;
-    public ObjectType centerObjectType;
-    public ObjectType leftObjectType;
+    [SerializeField] ObjectType rightObjectType = default;
+    public ObjectType RightObjectType => rightObjectType;
+    [SerializeField] ObjectType centerObjectType = default;
+    public ObjectType CenterObjectType => centerObjectType;
+    [SerializeField] ObjectType leftObjectType = default;
+    public ObjectType LeftObjectType => leftObjectType;
 }

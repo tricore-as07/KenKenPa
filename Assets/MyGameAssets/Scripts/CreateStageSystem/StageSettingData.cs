@@ -7,14 +7,14 @@ using UnityEngine;
 [CreateAssetMenu]
 public class StageSettingData : ScriptableObject
 {
-    [SerializeField] int objectDistance = 0;                      //オブジェクト間の距離
-    public int ObjectDistance => objectDistance;                      //オブジェクト間の距離
-    [SerializeField] int generateObjectsGroupNum = 0;             //生成するオブジェクトグループの数
-    public int GenerateObjectsGroupNum => generateObjectsGroupNum;             //生成するオブジェクトグループの数
-    [SerializeField] GameObject hitObjectPrefab = null;           //当たりのオブジェクトのプレハブ
-    public GameObject HitObjectPrefab => hitObjectPrefab;           //当たりのオブジェクトのプレハブ
-    [SerializeField] GameObject outObjectPrefab = null;           //外れのオブジェクトのプレハブ
-    public GameObject OutObjectPrefab => outObjectPrefab;           //外れのオブジェクトのプレハブ
-    [SerializeField] List<ObjectsGroupData> objectsGroupDatas = new List<ObjectsGroupData>();  //オブジェクトグループのデータのリスト
-    public List<ObjectsGroupData> ObjectsGroupDatas => objectsGroupDatas;  //オブジェクトグループのデータのリスト
+    [SerializeField] int objectDistance = default;                                              //オブジェクト間の距離
+    public int ObjectDistance => objectDistance;                                                //外部に公開するためのプロパティ
+    [SerializeField] int generateObjectsGroupNum = default;                                     //生成するオブジェクトグループの数
+    public int GenerateObjectsGroupNum => generateObjectsGroupNum;                              //外部に公開するためのプロパティ
+    [SerializeField] GameObject hitObjectPrefab = default;                                      //当たりのオブジェクトのプレハブ
+    public GameObject HitObjectPrefab => hitObjectPrefab;                                       //外部に公開するためのプロパティ
+    [SerializeField] GameObject outObjectPrefab = default;                                      //外れのオブジェクトのプレハブ
+    public GameObject OutObjectPrefab => outObjectPrefab;                                       //外部に公開するためのプロパティ
+    [SerializeField] List<ObjectsGroupData> objectsGroupDatas = new List<ObjectsGroupData>();   //オブジェクトグループのデータのリスト
+    public IReadOnlyList<ObjectsGroupData> ObjectsGroupDatas => objectsGroupDatas;              //外部に公開するためのプロパティ
 }

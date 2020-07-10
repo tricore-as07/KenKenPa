@@ -5,10 +5,10 @@
 /// </summary>
 public class StageCreater : MonoBehaviour
 {
-    [SerializeField] StageSettingData stageSettingData = null;      //ステージの設定データ
-    [SerializeField] GameObject objectsGroupPrefab = null;          //ObjectsGroupのプレハブ
-    [SerializeField] GameObject objectsPrefab = null;               //１歩分のオブジェクトのプレハブ
-    GameObject stage = null;                                        //ステージ関連のオブジェクトの親に設定するためのもの
+    [SerializeField] StageSettingData stageSettingData = default;   //ステージの設定データ
+    [SerializeField] GameObject objectsGroupPrefab = default;       //ObjectsGroupのプレハブ
+    [SerializeField] GameObject objectsPrefab = default;            //１歩分のオブジェクトのプレハブ
+    GameObject stage = default;                                     //ステージ関連のオブジェクトの親に設定するためのもの
     Vector3 DepthPosition;                                          //ステージ生成時の奥行きの位置
     
     /// <summary>
@@ -61,9 +61,9 @@ public class StageCreater : MonoBehaviour
     {
         var objects = Instantiate(objectsPrefab, parent.transform);
         objects.transform.localPosition += depth;
-        CreateObjectOfObjectType(objectsData.rightObjectType, objects.transform.GetChild(StageConstants.rightNum));
-        CreateObjectOfObjectType(objectsData.centerObjectType, objects.transform.GetChild(StageConstants.centerNum));
-        CreateObjectOfObjectType(objectsData.leftObjectType, objects.transform.GetChild(StageConstants.leftNum));
+        CreateObjectOfObjectType(objectsData.RightObjectType, objects.transform.GetChild(StageConstants.rightNum));
+        CreateObjectOfObjectType(objectsData.CenterObjectType, objects.transform.GetChild(StageConstants.centerNum));
+        CreateObjectOfObjectType(objectsData.LeftObjectType, objects.transform.GetChild(StageConstants.leftNum));
     }
 
     /// <summary>
