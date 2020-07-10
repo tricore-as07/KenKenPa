@@ -9,14 +9,12 @@ public class InputIntervalManager : MonoBehaviour
     public bool isAbleInput { get; private set; }                                   //入力可能かどうか
     float inputIntervalCounter;                                                     //入力間の時間を数えるカウンター
     float intervalTime = 0f;                                                        //入力から次の入力を受け付けるまでの時間
-    ComboCounter comboCounter;                                                      //コンボをカウントするクラス
 
     /// <summary>
     /// 最初に行う処理
     /// </summary>
     void Start()
     {
-        comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
     }
 
     /// <summary>
@@ -47,7 +45,7 @@ public class InputIntervalManager : MonoBehaviour
         foreach (var inputintervalSetting in inputIntervalSettingData.InputIntervalSettings)
         {
             //現在のコンボ数が設定にあるコンボ数より小さい時
-            if (inputintervalSetting.ComboNum > comboCounter.ComboCount)
+            if (inputintervalSetting.ComboNum > ComboCounter.ComboCount)
             {
                 intervalTime = inputintervalSetting.IntervalTime;
                 break;
