@@ -7,7 +7,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class InputIntervalSettingData : ScriptableObject
 {
-    public List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>(); ///入力間の受付可能になるまでの時間の設定のリスト
+    [SerializeField] List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>();   ///入力間の受付可能になるまでの時間の設定のリスト
+    public IReadOnlyList<InputIntervalSetting> InputIntervalSettings => inputIntervalSettings;              //外部に公開するためのプロパティ
 }
 
 /// <summary>
@@ -17,8 +18,8 @@ public class InputIntervalSettingData : ScriptableObject
 [System.Serializable]
 public class InputIntervalSetting
 {
-    [SerializeField]int comboNum = 0;                               //制限を加えるコンボ数
+    [SerializeField]int comboNum = default;                         //制限を加えるコンボ数
     public int ComboNum => comboNum;                                //外部に公開するためのプロパティ
-    [SerializeField]float intervalTime = 0.0f;                      //入力可能になるまでの時間
+    [SerializeField]float intervalTime = default;                   //入力可能になるまでの時間
     public float IntervalTime => intervalTime;                      //外部に公開するためのプロパティ
 }

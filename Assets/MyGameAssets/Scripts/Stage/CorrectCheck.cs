@@ -6,9 +6,6 @@
 public class CorrectCheck : MonoBehaviour
 {
     int checkNum = 0;                       //判定するオブジェクトの番号（要素数）
-    GameObject rightObject;                 //右側のオブジェクト
-    GameObject centerObject;                //中央のオブジェクト
-    GameObject leftObject;                  //左側のオブジェクト
     HitObjectsCounter hitObjectsCounter;    //当たりがいくつありか確認するためのクラス
     bool changedCheckObject;                //判定するオブジェクトを変更したかどうか
 
@@ -28,10 +25,7 @@ public class CorrectCheck : MonoBehaviour
         //判定するオブジェクトの要素数が子オブジェクトに登録されている数より少なければ
         if(transform.childCount > checkNum)
         {
-            //判定するオブジェクトの更新
-            rightObject = transform.GetChild(checkNum).GetChild(StageConstants.rightNum).gameObject;
-            centerObject = transform.GetChild(checkNum).GetChild(StageConstants.centerNum).gameObject;
-            leftObject = transform.GetChild(checkNum).GetChild(StageConstants.leftNum).gameObject;
+            //判定につかうスクリプトの更新
             hitObjectsCounter = transform.GetChild(checkNum).GetComponent<HitObjectsCounter>();
         }
     }
@@ -55,7 +49,7 @@ public class CorrectCheck : MonoBehaviour
     /// <returns>当たり : true , 外れ : false</returns>
     public bool IsRightHit()
     {
-        if(rightObject.tag == "HitObject")
+        if(hitObjectsCounter.isRightHit)
         {
             hitObjectsCounter.OnCorrectSelectRight();
             if(hitObjectsCounter.IsAllCorrectSelect())
@@ -74,7 +68,7 @@ public class CorrectCheck : MonoBehaviour
     /// <returns>当たり : true , 外れ : false</returns>
     public bool IsCenterHit()
     {
-        if (centerObject.transform.tag == "HitObject")
+        if (hitObjectsCounter.isCenterHit)
         {
             hitObjectsCounter.OnCorrectSelectCenter();
             if (hitObjectsCounter.IsAllCorrectSelect())
@@ -93,7 +87,7 @@ public class CorrectCheck : MonoBehaviour
     /// <returns>当たり : true , 外れ : false</returns>
     public bool IsLeftHit()
     {
-        if (leftObject.tag == "HitObject")
+        if (hitObjectsCounter.isLeftHit)
         {
             hitObjectsCounter.OnCorrectSelectLeft();
             if (hitObjectsCounter.IsAllCorrectSelect())
@@ -129,5 +123,13 @@ public class CorrectCheck : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// アタッチされているオブジェクトグループのチェックが必要なくなった(全てクリアした)時に呼ぶ
+    /// </summary>
+    public void OnNecessaryCorrentCheck()
+    {
+        Destroy(gameObject);
     }
 }

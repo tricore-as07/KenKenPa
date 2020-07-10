@@ -5,13 +5,19 @@
 /// </summary>
 public class HitObjectsCounter : MonoBehaviour
 {
-    int hitObjectsNum;      //当たりのオブジェクトの数
+    int hitObjectsNum;                                              //当たりのオブジェクトの数
+    public bool isRightHit { get; private set; }                    //右が当たりかどうか
+    public bool isCenterHit { get; private set; }                   //中央が当たりかどうか
+    public bool isLeftHit { get; private set; }                     //左があたりかどうか
     /// <summary>
     /// 当たりのオブジェクトが二つの時などに同じ場所を2回押しても成功になるのを防ぐためのものです。
     /// </summary>
-    bool isRightCorrect;          //右が当たりの時に右に対応する入力をした際にtrueになる
-    bool isCenterCorrect;         //中央が当たりの時に中央に対応する入力をした際にtrueになる
-    bool isLeftCorrect;           //左が当たりの時に左に対応する入力をした際にtrueになる
+    bool isRightCorrect;                                            //右が当たりの時に右に対応する入力をした際にtrueになる
+    bool isCenterCorrect;                                           //中央が当たりの時に中央に対応する入力をした際にtrueになる
+    bool isLeftCorrect;                                             //左が当たりの時に左に対応する入力をした際にtrueになる
+    [SerializeField] Transform rightObjectTransform = default;      //右のオブジェクトのTransform
+    [SerializeField] Transform centerObjectTransform = default;     //中央のオブジェクトのTransform
+    [SerializeField] Transform leftObjectTransform = default;       //左のオブジェクトのTransform
 
     /// <summary>
     /// 最初に行う処理
@@ -26,17 +32,20 @@ public class HitObjectsCounter : MonoBehaviour
     /// </summary>
     void CountHitObjectsNum()
     {
+        isRightHit = rightObjectTransform.GetChild(0).tag == "HitObject";
+        isCenterHit = centerObjectTransform.GetChild(0).tag == "HitObject";
+        isLeftHit = leftObjectTransform.GetChild(0).tag == "HitObject";
         //当たりのオブジェクトの数をリセット
         hitObjectsNum = 0;
-        if (transform.GetChild(StageConstants.rightNum).tag == "HitObject")
+        if (isRightHit)
         {
             hitObjectsNum++;
         }
-        if (transform.GetChild(StageConstants.centerNum).tag == "HitObject")
+        if (isCenterHit)
         {
             hitObjectsNum++;
         }
-        if (transform.GetChild(StageConstants.leftNum).tag == "HitObject")
+        if (isLeftHit)
         {
             hitObjectsNum++;
         }
