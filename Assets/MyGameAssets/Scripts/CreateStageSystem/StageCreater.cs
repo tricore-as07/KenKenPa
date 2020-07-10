@@ -47,7 +47,7 @@ public class StageCreater : MonoBehaviour
         foreach (var objectsData in objectsGroupData.objectsDatas)
         {
             CreateObjects(objectsData, objectsGroup, depth);
-            depth +=  new Vector3(0f,0f,stageSettingData.objectDistance);
+            depth += new Vector3(0f,0f,stageSettingData.objectDistance);
         }
         DepthPosition += new Vector3(0f,0f, stageSettingData.objectDistance * objectsGroupData.objectsDatas.Count);
     }
