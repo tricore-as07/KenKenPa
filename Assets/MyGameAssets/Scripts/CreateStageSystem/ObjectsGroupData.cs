@@ -9,7 +9,8 @@ public class ObjectsGroupData : ScriptableObject, IWeight
 {
     [SerializeField] int weight = 0;                                        //生成される確率の重み
     public int Weight => weight;
-    public List<ObjectsData> objectsDatas = new List<ObjectsData>();        //ステージのデータのリスト
+    [SerializeField] List<ObjectsData> objectsDatas = new List<ObjectsData>();        //ステージのデータのリスト
+    public List<ObjectsData> ObjectsDatas => objectsDatas;
 }
 
 /// <summary>
