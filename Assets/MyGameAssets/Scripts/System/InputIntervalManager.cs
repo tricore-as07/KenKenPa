@@ -11,13 +11,6 @@ public class InputIntervalManager : MonoBehaviour
     float intervalTime = 0f;                                                        //入力から次の入力を受け付けるまでの時間
 
     /// <summary>
-    /// 最初に行う処理
-    /// </summary>
-    void Start()
-    {
-    }
-
-    /// <summary>
     /// 毎フレーム行う処理
     /// </summary>
     void Update()
@@ -42,12 +35,15 @@ public class InputIntervalManager : MonoBehaviour
     void UpdateIntervalTime()
     {
         intervalTime = 0.0f;
-        foreach (var inputintervalSetting in inputIntervalSettingData.InputIntervalSettings)
+        //設定データのEnumeratorを取得
+        var inputIntervalSetting = inputIntervalSettingData.InputIntervalSettings.GetEnumerator();
+        inputIntervalSetting.Reset();
+        while(inputIntervalSetting.MoveNext())
         {
             //現在のコンボ数が設定にあるコンボ数より小さい時
-            if (inputintervalSetting.ComboNum > ComboCounter.ComboCount)
+            if (inputIntervalSetting.Current.ComboNum > ComboCounter.ComboCount)
             {
-                intervalTime = inputintervalSetting.IntervalTime;
+                intervalTime = inputIntervalSetting.Current.IntervalTime;
                 break;
             }
         }

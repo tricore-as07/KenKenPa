@@ -38,6 +38,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -56,6 +57,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -74,6 +76,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -108,7 +111,6 @@ public class InputAction : MonoBehaviour
         const float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
         transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
-        inputIntervalManager.OnInput();
         ComboCounter.OnSuccessCombo();
     }
 }

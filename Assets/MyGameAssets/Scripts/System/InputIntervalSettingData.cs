@@ -8,7 +8,7 @@ using UnityEngine;
 public class InputIntervalSettingData : ScriptableObject
 {
     [SerializeField] List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>();   ///入力間の受付可能になるまでの時間の設定のリスト
-    public IReadOnlyList<InputIntervalSetting> InputIntervalSettings => inputIntervalSettings;              //外部に公開するためのプロパティ
+    public IEnumerable<InputIntervalSetting> InputIntervalSettings => inputIntervalSettings;              //外部に公開するためのプロパティ
 }
 
 /// <summary>

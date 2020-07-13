@@ -10,7 +10,8 @@ public class ObjectsGroupData : ScriptableObject, IWeight
     [SerializeField] int weight = default;                                              //生成される確率の重み
     public int Weight => weight;                                                        //外部に公開するためのプロパティ
     [SerializeField] List<ObjectsData> objectsDatas = new List<ObjectsData>();          //ステージのデータのリスト
-    public IReadOnlyList<ObjectsData> ObjectsDatas => objectsDatas;                     //外部に公開するためのプロパティ
+    public IEnumerable<ObjectsData> ObjectsDatas => objectsDatas;                       //リストを外部に公開するためのプロパティ
+    public int ObjectsNum => objectsDatas.Count;                                        //外部に公開するためのプロパティ
 }
 
 /// <summary>
