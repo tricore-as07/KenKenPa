@@ -43,8 +43,25 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void UpdateInput()
     {
+#if UNITY_EDITOR
         rightInput = Input.GetKeyDown(KeyCode.D);
         centerInput = Input.GetKeyDown(KeyCode.S);
         leftInput = Input.GetKeyDown(KeyCode.A);
+#endif
+        //タップ入力の数だけループ
+        foreach (Touch touch in Input.touches)
+        {
+            //タップされた時
+            if(touch.phase == TouchPhase.Began)
+            {
+                //下半分の画面で判定する
+                if (touch.position.y <= Screen.height / 2)
+                {
+                    rightInput = touch.position.x >= (Screen.width / 3 * 2);
+                    centerInput = touch.position.x >= (Screen.width / 3) && touch.position.x <= (Screen.width / 3 * 2);
+                    leftInput = touch.position.x <= (Screen.width / 3);
+                }
+            }
+        }
     }
 }
