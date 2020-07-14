@@ -94,7 +94,7 @@ public class InputAction : MonoBehaviour
         //チェックする対象を次のオブジェクトグループに移す必要があるか
         if (correctCheck.NeedsNextObjectsGroup())
         {
-            correctCheck.OnNecessaryCorrentCheck();
+            correctCheck.OnNecessaryCorrectCheck();
             //追加でオブジェクトグループを作成
             stageCreater.AddObjectsGroup();
             //チェックする対象を次のオブジェクトグループに変更
