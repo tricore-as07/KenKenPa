@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Transform rightObj = default;
     [SerializeField] Transform centerObj = default;
     [SerializeField] Transform leftObj = default;
+    [SerializeField] float tapRange = default;
     InputAction inputAction;    //入力があった時に実際の処理をするクラス
 
     /// <summary>
@@ -28,12 +29,11 @@ public class PlayerInput : MonoBehaviour
     {
 #if UNITY_EDITOR
         UpdateInput();
-#endif
-        if(rightInput)
+        if (rightInput)
         {
             inputAction.OnRightInput();
         }
-        if(centerInput)
+        if (centerInput)
         {
             inputAction.OnCenterInput();
         }
@@ -41,6 +41,7 @@ public class PlayerInput : MonoBehaviour
         {
             inputAction.OnLeftInput();
         }
+#endif
     }
 
     /// <summary>
@@ -69,25 +70,32 @@ public class PlayerInput : MonoBehaviour
         IT_Gesture.onMultiTapE -= OnMultiTap;
     }
 
+    /// <summary>
+    /// タップされた時によばれる
+    /// </summary>
+    /// <param name="tap">タップに関する情報</param>
     void OnMultiTap(Tap tap)
     {
-        Ray ray = Camera.main.ScreenPointToRay(tap.pos);
-        RaycastHit hit;
-        if(Physics.Raycast(ray,out hit,Mathf.Infinity))
+        //オブジェクトのカメラ上での位置
+        var pos = RectTransformUtility.WorldToScreenPoint(Camera.main, rightObj.position);
+        //タップした位置がオブジェクトからの一定範囲内なら
+        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
         {
-            if(hit.collider.transform == rightObj)
-            {
-                inputAction.OnRightInput();
-            }
-            if (hit.collider.transform == centerObj)
-            {
-                inputAction.OnCenterInput();
-            }
-            if (hit.collider.transform == leftObj)
-            {
-                inputAction.OnLeftInput();
-            }
+            inputAction.OnRightInput();
+        }
+        //オブジェクトのカメラ上での位置
+        pos = RectTransformUtility.WorldToScreenPoint(Camera.main, centerObj.position);
+        //タップした位置がオブジェクトからの一定範囲内なら
+        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        {
+            inputAction.OnCenterInput();
+        }
+        //オブジェクトのカメラ上での位置
+        pos = RectTransformUtility.WorldToScreenPoint(Camera.main, leftObj.position);
+        //タップした位置がオブジェクトからの一定範囲内なら
+        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        {
+            inputAction.OnLeftInput();
         }
     }
-    
 }
