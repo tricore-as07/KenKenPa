@@ -8,6 +8,9 @@ public class PlayerInput : MonoBehaviour
     bool rightInput;            //右に対応する入力されたかどうか
     bool centerInput;           //中央に対応する入力されたかどうか
     bool leftInput;             //左に対応する入力されたかどうか
+    [SerializeField] Transform rightObj = default;
+    [SerializeField] Transform centerObj = default;
+    [SerializeField] Transform leftObj = default;
     InputAction inputAction;    //入力があった時に実際の処理をするクラス
 
     /// <summary>
@@ -23,7 +26,9 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void Update()
     {
+#if UNITY_EDITOR
         UpdateInput();
+#endif
         if(rightInput)
         {
             inputAction.OnRightInput();
@@ -43,25 +48,46 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void UpdateInput()
     {
-#if UNITY_EDITOR
         rightInput = Input.GetKeyDown(KeyCode.D);
         centerInput = Input.GetKeyDown(KeyCode.S);
         leftInput = Input.GetKeyDown(KeyCode.A);
-#endif
-        //タップ入力の数だけループ
-        foreach (Touch touch in Input.touches)
+    }
+
+    /// <summary>
+    /// オブジェクトがアクティブになった時に呼ばれる
+    /// </summary>
+    void OnEnable()
+    {
+        IT_Gesture.onMultiTapE += OnMultiTap;
+    }
+
+    /// <summary>
+    /// オブジェクトが非アクティブになった時に呼ばれる
+    /// </summary>
+    void OnDisable()
+    {
+        IT_Gesture.onMultiTapE -= OnMultiTap;
+    }
+
+    void OnMultiTap(Tap tap)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(tap.pos);
+        RaycastHit hit;
+        if(Physics.Raycast(ray,out hit,Mathf.Infinity))
         {
-            //タップされた時
-            if(touch.phase == TouchPhase.Began)
+            if(hit.collider.transform == rightObj)
             {
-                //下半分の画面で判定する
-                if (touch.position.y <= Screen.height / 2)
-                {
-                    rightInput = touch.position.x >= (Screen.width / 3 * 2);
-                    centerInput = touch.position.x >= (Screen.width / 3) && touch.position.x <= (Screen.width / 3 * 2);
-                    leftInput = touch.position.x <= (Screen.width / 3);
-                }
+                inputAction.OnRightInput();
+            }
+            if (hit.collider.transform == centerObj)
+            {
+                inputAction.OnCenterInput();
+            }
+            if (hit.collider.transform == leftObj)
+            {
+                inputAction.OnLeftInput();
             }
         }
     }
+    
 }
