@@ -128,7 +128,7 @@ public class CorrectCheck : MonoBehaviour
     /// <summary>
     /// アタッチされているオブジェクトグループのチェックが必要なくなった(全てクリアした)時に呼ぶ
     /// </summary>
-    public void OnNecessaryCorrentCheck()
+    public void OnNecessaryCorrectCheck()
     {
         Destroy(gameObject);
     }
