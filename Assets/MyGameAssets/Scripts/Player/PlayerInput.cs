@@ -76,26 +76,38 @@ public class PlayerInput : MonoBehaviour
     /// <param name="tap">タップに関する情報</param>
     void OnMultiTap(Tap tap)
     {
-        //オブジェクトのカメラ上での位置
-        var pos = RectTransformUtility.WorldToScreenPoint(Camera.main, rightObj.position);
-        //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        //右がタップ入力されているか
+        if (IsTapInput(tap.pos,rightObj.position))
         {
             inputAction.OnRightInput();
         }
-        //オブジェクトのカメラ上での位置
-        pos = RectTransformUtility.WorldToScreenPoint(Camera.main, centerObj.position);
-        //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        //中央がタップ入力されているか
+        if (IsTapInput(tap.pos, centerObj.position))
         {
             inputAction.OnCenterInput();
         }
-        //オブジェクトのカメラ上での位置
-        pos = RectTransformUtility.WorldToScreenPoint(Camera.main, leftObj.position);
-        //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tap.pos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        //左がタップ入力されているか
+        if (IsTapInput(tap.pos, leftObj.position))
         {
             inputAction.OnLeftInput();
         }
+    }
+
+    /// <summary>
+    /// タップ入力されているかどうか
+    /// </summary>
+    /// <param name="tapPos">タップされたポジション</param>
+    /// <param name="objPos">入力を判定するオブジェクトのポジション</param>
+    /// <returns>入力されている : true,入力されていない : false</returns>
+    bool IsTapInput(Vector2 tapPos,Vector3 objPos)
+    {
+        //オブジェクトのカメラ上での位置
+        var pos = RectTransformUtility.WorldToScreenPoint(Camera.main, objPos);
+        //タップした位置がオブジェクトからの一定範囲内なら
+        if ((pos - tapPos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        {
+            return true;
+        }
+        return false;
     }
 }
