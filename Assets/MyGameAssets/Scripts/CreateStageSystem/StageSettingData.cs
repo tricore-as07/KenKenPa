@@ -16,5 +16,5 @@ public class StageSettingData : ScriptableObject
     [SerializeField] GameObject outObjectPrefab = default;                                      //外れのオブジェクトのプレハブ
     public GameObject OutObjectPrefab => outObjectPrefab;                                       //外部に公開するためのプロパティ
     [SerializeField] List<ObjectsGroupData> objectsGroupDatas = new List<ObjectsGroupData>();   //オブジェクトグループのデータのリスト
-    public IReadOnlyList<ObjectsGroupData> ObjectsGroupDatas => objectsGroupDatas;              //外部に公開するためのプロパティ
+    public IEnumerable<ObjectsGroupData> ObjectsGroupDatas => objectsGroupDatas;                //リストを外部に公開するためのプロパティ
 }

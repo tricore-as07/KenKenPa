@@ -7,8 +7,6 @@ public class InputAction : MonoBehaviour
 {
     CorrectCheck correctCheck;                                      //入力された場所が当たりか外れかを判定するクラス
     GameObject stage;                                               //ステージのオブジェクト
-    ProgressDistanceCounter progressDistanceCounter;                //進んだ距離をカウントするクラス
-    ComboCounter comboCounter;                                      //コンボをカウントするクラス
     InputIntervalManager inputIntervalManager;                      //入力から次の入力を受け付けるまでの時間を管理するクラス
     StageCreater stageCreater;                                      //ステージを生成するクラス
 
@@ -21,8 +19,6 @@ public class InputAction : MonoBehaviour
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
         //管理系のクラス
-        progressDistanceCounter = GameObject.FindGameObjectWithTag("ProgressDistanceCounter").GetComponent<ProgressDistanceCounter>();
-        comboCounter = GameObject.FindGameObjectWithTag("ComboCounter").GetComponent<ComboCounter>();
         inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
         stageCreater = GameObject.FindGameObjectWithTag("StageCreater").GetComponent<StageCreater>();
     }
@@ -40,8 +36,9 @@ public class InputAction : MonoBehaviour
             }
             else
             {
-                comboCounter.OnMissCombo();
+                ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -58,8 +55,9 @@ public class InputAction : MonoBehaviour
             }
             else
             {
-                comboCounter.OnMissCombo();
+                ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -76,8 +74,9 @@ public class InputAction : MonoBehaviour
             }
             else
             {
-                comboCounter.OnMissCombo();
+                ComboCounter.OnMissCombo();
             }
+            inputIntervalManager.OnInput();
         }
     }
 
@@ -111,8 +110,7 @@ public class InputAction : MonoBehaviour
     {
         const float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
         transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
-        progressDistanceCounter.OnProgressPlayer(ObjectDistance);
-        inputIntervalManager.OnInput();
-        comboCounter.OnSuccessCombo();
+        ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
+        ComboCounter.OnSuccessCombo();
     }
 }

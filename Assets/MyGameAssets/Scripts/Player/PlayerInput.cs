@@ -43,8 +43,10 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void UpdateInput()
     {
+#if UNITY_EDITOR
         rightInput = Input.GetKeyDown(KeyCode.D);
         centerInput = Input.GetKeyDown(KeyCode.S);
         leftInput = Input.GetKeyDown(KeyCode.A);
+#endif
     }
 }

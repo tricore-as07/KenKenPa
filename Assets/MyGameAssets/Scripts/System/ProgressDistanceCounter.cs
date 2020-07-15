@@ -1,17 +1,14 @@
-﻿using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// 前進した距離をカウントしておくクラス
 /// </summary>
-/// FIXME : orimoto MonoBehaviourを継承しない形に修正予定
-public class ProgressDistanceCounter : MonoBehaviour
+public static class ProgressDistanceCounter
 {
-    float distanceCounter;      //進んだ距離をカウントする
+    static float distanceCounter;      //進んだ距離をカウントする
 
     /// <summary>
-    /// 最初に行う処理
+    /// 初期化処理
     /// </summary>
-    void Start()
+    public static void Initialize()
     {
         distanceCounter = 0;
     }
@@ -20,7 +17,7 @@ public class ProgressDistanceCounter : MonoBehaviour
     /// プレイヤーが前進した時に呼ばれる
     /// </summary>
     /// <param name="progressDistance">前進した距離</param>
-    public void OnProgressPlayer(float progressDistance)
+    public static void OnProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
     }

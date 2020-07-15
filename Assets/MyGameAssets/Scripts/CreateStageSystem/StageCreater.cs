@@ -44,12 +44,16 @@ public class StageCreater : MonoBehaviour
         objectsGroup.transform.localPosition += DepthPosition;
         //データの数だけ１歩分のオブジェクトを作成
         var depth = new Vector3(0f,0f,0f);
-        foreach (var objectsData in objectsGroupData.ObjectsDatas)
+        //オブジェクトデータのEnumeratorを取得
+        var objectData = objectsGroupData.ObjectsDatas.GetEnumerator();
+        objectData.Reset();
+        while(objectData.MoveNext())
         {
-            CreateObjects(objectsData, objectsGroup, depth);
+            CreateObjects(objectData.Current, objectsGroup, depth);
             depth += new Vector3(0f, 0f, stageSettingData.ObjectDistance);
+            
         }
-        DepthPosition += new Vector3(0f, 0f, stageSettingData.ObjectDistance * objectsGroupData.ObjectsDatas.Count);
+        DepthPosition += new Vector3(0f, 0f, stageSettingData.ObjectDistance * objectsGroupData.ObjectsNum);
     }
 
     /// <summary>
