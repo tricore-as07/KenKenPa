@@ -202,7 +202,7 @@ namespace PathologicalGames
         /// </summary>
         /// <param name="poolName">The name to test</param>
         /// <returns>True if sucessful, false if failed.</returns>
-        private bool assertValidPoolName(string poolName)
+        bool assertValidPoolName(string poolName)
         {
             // Cannot request a name with the word "Pool" in it. This would be a 
             //   rundundant naming convention and is a reserved word for GameObject
@@ -300,7 +300,7 @@ namespace PathologicalGames
 
         #region Dict Functionality
         // Internal (wrapped) dictionary
-        private Dictionary<string, SpawnPool> _pools = new Dictionary<string, SpawnPool>();
+        Dictionary<string, SpawnPool> _pools = new Dictionary<string, SpawnPool>();
 
         /// <summary>
         /// Used internally by SpawnPools to add themseleves on Awake().
@@ -467,7 +467,7 @@ namespace PathologicalGames
 
 
         #region ICollection<KeyValuePair<string,SpawnPool>> Members
-        private bool IsReadOnly { get { return true; } }
+        bool IsReadOnly { get { return true; } }
         bool ICollection<KeyValuePair<string, SpawnPool>>.IsReadOnly { get { return true; } }
 
         public void Add(KeyValuePair<string, SpawnPool> item)
@@ -486,7 +486,7 @@ namespace PathologicalGames
 
         }
 
-        private void CopyTo(KeyValuePair<string, SpawnPool>[] array, int arrayIndex)
+        void CopyTo(KeyValuePair<string, SpawnPool>[] array, int arrayIndex)
         {
             string msg = "PoolManager.Pools cannot be copied";
             throw new System.NotImplementedException(msg);

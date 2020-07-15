@@ -14,9 +14,9 @@ public class ReallySimpleAudioSpawner : MonoBehaviour
 
 	public float spawnInterval = 2;
     
-    private SpawnPool pool;
+    SpawnPool pool;
 
-    private void Start()
+    void Start()
     {
         this.pool = this.GetComponent<SpawnPool>();
         this.StartCoroutine(this.Spawner());
@@ -25,7 +25,7 @@ public class ReallySimpleAudioSpawner : MonoBehaviour
 			this.StartCoroutine(this.MusicSpawner());
     }
 
-	private IEnumerator MusicSpawner()
+	IEnumerator MusicSpawner()
 	{
 		AudioSource music;
 
@@ -48,7 +48,7 @@ public class ReallySimpleAudioSpawner : MonoBehaviour
 		yield return new WaitForSeconds(2);
 		music.Stop();	}
 
-	private IEnumerator Spawner()
+	IEnumerator Spawner()
 	{			
 		AudioSource current;
 		while (true)

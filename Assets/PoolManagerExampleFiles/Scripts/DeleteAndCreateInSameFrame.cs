@@ -8,12 +8,12 @@ public class DeleteAndCreateInSameFrame : MonoBehaviour
 {
 	public SpawnPool poolPrefab;
 	
-	private void Start()
+	void Start()
 	{
 		this.StartCoroutine(DoIt());
 	}
 
-	private IEnumerator DoIt()
+	IEnumerator DoIt()
 	{
 		SpawnPool pool;
 		while (true)

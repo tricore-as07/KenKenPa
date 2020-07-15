@@ -5,7 +5,7 @@ public class OnCreatedDelegateExample : MonoBehaviour
 {
 	public string poolName = "Shapes";
 
-	private void Awake() 
+	void Awake() 
 	{
 		PoolManager.Pools.AddOnCreatedDelegate(this.poolName, this.RunMe);
 	}
