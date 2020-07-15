@@ -61,31 +61,31 @@ public class iTween : MonoBehaviour
 	public string _name;
 	/* GFX47 MOD END */
 		
-	//private members:
- 	private float runningTime, percentage;
-	private float delayStarted; //probably not neccesary that this be protected but it shuts Unity's compiler up about this being "never used"
-	private bool kinematic, isLocal, loop, reverse, wasPaused, physics;
-	private Hashtable tweenArguments;
-	private Space space;
-	private delegate float EasingFunction(float start, float end, float Value);
-	private delegate void ApplyTween();
-	private EasingFunction ease;
-	private ApplyTween apply;
-	private AudioSource audioSource;
-	private Vector3[] vector3s;
-	private Vector2[] vector2s;
-	private Color[,] colors;
-	private float[] floats;
-	private Rect[] rects;
-	private CRSpline path;
-	private Vector3 preUpdate;
-	private Vector3 postUpdate;
-	private NamedValueColor namedcolorvalue;
+	//members:
+ 	float runningTime, percentage;
+	float delayStarted; //probably not neccesary that this be protected but it shuts Unity's compiler up about this being "never used"
+	bool kinematic, isLocal, loop, reverse, wasPaused, physics;
+	Hashtable tweenArguments;
+	Space space;
+	delegate float EasingFunction(float start, float end, float Value);
+	delegate void ApplyTween();
+	EasingFunction ease;
+	ApplyTween apply;
+	AudioSource audioSource;
+	Vector3[] vector3s;
+	Vector2[] vector2s;
+	Color[,] colors;
+	float[] floats;
+	Rect[] rects;
+	CRSpline path;
+	Vector3 preUpdate;
+	Vector3 postUpdate;
+	NamedValueColor namedcolorvalue;
 
-    private float lastRealTime; // Added by PressPlay
-    private bool useRealTime; // Added by PressPlay
+    float lastRealTime; // Added by PressPlay
+    bool useRealTime; // Added by PressPlay
 	
-	private Transform thisTransform;
+	Transform thisTransform;
 
 
 	/// <summary>
@@ -6240,7 +6240,7 @@ public class iTween : MonoBehaviour
 
 	#region Component Segments
 	
-	private iTween(Hashtable h) {
+	iTween(Hashtable h) {
 		tweenArguments = h;	
 	}
 	
@@ -6328,7 +6328,7 @@ public class iTween : MonoBehaviour
 	
 	#region Internal Helpers
 	
-	private static void DrawLineHelper(Vector3[] line, Color color, string method){
+	static void DrawLineHelper(Vector3[] line, Color color, string method){
 		Gizmos.color=color;
 		for (int i = 0; i < line.Length-1; i++) {
 			if(method == "gizmos"){
@@ -6340,7 +6340,7 @@ public class iTween : MonoBehaviour
 		}
 	}		
 	
-	private static void DrawPathHelper(Vector3[] path, Color color, string method){
+	static void DrawPathHelper(Vector3[] path, Color color, string method){
 		Vector3[] vector3s = PathControlPointGenerator(path);
 		
 		//Line Draw:
@@ -6360,7 +6360,7 @@ public class iTween : MonoBehaviour
 		}
 	}	
 	
-	private static Vector3[] PathControlPointGenerator(Vector3[] path){
+	static Vector3[] PathControlPointGenerator(Vector3[] path){
 		Vector3[] suppliedPath;
 		Vector3[] vector3s;
 		
@@ -6391,7 +6391,7 @@ public class iTween : MonoBehaviour
 	}
 	
 	//andeeee from the Unity forum's steller Catmull-Rom class ( http://forum.unity3d.com/viewtopic.php?p=218400#218400 ):
-	private static Vector3 Interp(Vector3[] pts, float t){
+	static Vector3 Interp(Vector3[] pts, float t){
 		int numSections = pts.Length - 3;
 		int currPt = Mathf.Min(Mathf.FloorToInt(t * (float) numSections), numSections - 1);
 		float u = t * (float) numSections - (float) currPt;
@@ -6410,7 +6410,7 @@ public class iTween : MonoBehaviour
 	}	
 		
 	//andeeee from the Unity forum's steller Catmull-Rom class ( http://forum.unity3d.com/viewtopic.php?p=218400#218400 ):
-	private class CRSpline {
+	class CRSpline {
 		public Vector3[] pts;
 		
 		public CRSpline(params Vector3[] pts) {
@@ -6837,11 +6837,11 @@ public class iTween : MonoBehaviour
 	
 	#region Easing Curves
 	
-	private float linear(float start, float end, float value){
+	float linear(float start, float end, float value){
 		return Mathf.Lerp(start, end, value);
 	}
 	
-	private float clerp(float start, float end, float value){
+	float clerp(float start, float end, float value){
 		float min = 0.0f;
 		float max = 360.0f;
 		float half = Mathf.Abs((max - min) * 0.5f);
@@ -6857,23 +6857,23 @@ public class iTween : MonoBehaviour
 		return retval;
     }
 
-	private float spring(float start, float end, float value){
+	float spring(float start, float end, float value){
 		value = Mathf.Clamp01(value);
 		value = (Mathf.Sin(value * Mathf.PI * (0.2f + 2.5f * value * value * value)) * Mathf.Pow(1f - value, 2.2f) + value) * (1f + (1.2f * (1f - value)));
 		return start + (end - start) * value;
 	}
 
-	private float easeInQuad(float start, float end, float value){
+	float easeInQuad(float start, float end, float value){
 		end -= start;
 		return end * value * value + start;
 	}
 
-	private float easeOutQuad(float start, float end, float value){
+	float easeOutQuad(float start, float end, float value){
 		end -= start;
 		return -end * value * (value - 2) + start;
 	}
 
-	private float easeInOutQuad(float start, float end, float value){
+	float easeInOutQuad(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return end * 0.5f * value * value + start;
@@ -6881,18 +6881,18 @@ public class iTween : MonoBehaviour
 		return -end * 0.5f * (value * (value - 2) - 1) + start;
 	}
 
-	private float easeInCubic(float start, float end, float value){
+	float easeInCubic(float start, float end, float value){
 		end -= start;
 		return end * value * value * value + start;
 	}
 
-	private float easeOutCubic(float start, float end, float value){
+	float easeOutCubic(float start, float end, float value){
 		value--;
 		end -= start;
 		return end * (value * value * value + 1) + start;
 	}
 
-	private float easeInOutCubic(float start, float end, float value){
+	float easeInOutCubic(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return end * 0.5f * value * value * value + start;
@@ -6900,18 +6900,18 @@ public class iTween : MonoBehaviour
 		return end * 0.5f * (value * value * value + 2) + start;
 	}
 
-	private float easeInQuart(float start, float end, float value){
+	float easeInQuart(float start, float end, float value){
 		end -= start;
 		return end * value * value * value * value + start;
 	}
 
-	private float easeOutQuart(float start, float end, float value){
+	float easeOutQuart(float start, float end, float value){
 		value--;
 		end -= start;
 		return -end * (value * value * value * value - 1) + start;
 	}
 
-	private float easeInOutQuart(float start, float end, float value){
+	float easeInOutQuart(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return end * 0.5f * value * value * value * value + start;
@@ -6919,18 +6919,18 @@ public class iTween : MonoBehaviour
 		return -end * 0.5f * (value * value * value * value - 2) + start;
 	}
 
-	private float easeInQuint(float start, float end, float value){
+	float easeInQuint(float start, float end, float value){
 		end -= start;
 		return end * value * value * value * value * value + start;
 	}
 
-	private float easeOutQuint(float start, float end, float value){
+	float easeOutQuint(float start, float end, float value){
 		value--;
 		end -= start;
 		return end * (value * value * value * value * value + 1) + start;
 	}
 
-	private float easeInOutQuint(float start, float end, float value){
+	float easeInOutQuint(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return end * 0.5f * value * value * value * value * value + start;
@@ -6938,32 +6938,32 @@ public class iTween : MonoBehaviour
 		return end * 0.5f * (value * value * value * value * value + 2) + start;
 	}
 
-	private float easeInSine(float start, float end, float value){
+	float easeInSine(float start, float end, float value){
 		end -= start;
 		return -end * Mathf.Cos(value * (Mathf.PI * 0.5f)) + end + start;
 	}
 
-	private float easeOutSine(float start, float end, float value){
+	float easeOutSine(float start, float end, float value){
 		end -= start;
 		return end * Mathf.Sin(value * (Mathf.PI * 0.5f)) + start;
 	}
 
-	private float easeInOutSine(float start, float end, float value){
+	float easeInOutSine(float start, float end, float value){
 		end -= start;
 		return -end * 0.5f * (Mathf.Cos(Mathf.PI * value) - 1) + start;
 	}
 
-	private float easeInExpo(float start, float end, float value){
+	float easeInExpo(float start, float end, float value){
 		end -= start;
 		return end * Mathf.Pow(2, 10 * (value - 1)) + start;
 	}
 
-	private float easeOutExpo(float start, float end, float value){
+	float easeOutExpo(float start, float end, float value){
 		end -= start;
 		return end * (-Mathf.Pow(2, -10 * value ) + 1) + start;
 	}
 
-	private float easeInOutExpo(float start, float end, float value){
+	float easeInOutExpo(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return end * 0.5f * Mathf.Pow(2, 10 * (value - 1)) + start;
@@ -6971,18 +6971,18 @@ public class iTween : MonoBehaviour
 		return end * 0.5f * (-Mathf.Pow(2, -10 * value) + 2) + start;
 	}
 
-	private float easeInCirc(float start, float end, float value){
+	float easeInCirc(float start, float end, float value){
 		end -= start;
 		return -end * (Mathf.Sqrt(1 - value * value) - 1) + start;
 	}
 
-	private float easeOutCirc(float start, float end, float value){
+	float easeOutCirc(float start, float end, float value){
 		value--;
 		end -= start;
 		return end * Mathf.Sqrt(1 - value * value) + start;
 	}
 
-	private float easeInOutCirc(float start, float end, float value){
+	float easeInOutCirc(float start, float end, float value){
 		value /= .5f;
 		end -= start;
 		if (value < 1) return -end * 0.5f * (Mathf.Sqrt(1 - value * value) - 1) + start;
@@ -6991,7 +6991,7 @@ public class iTween : MonoBehaviour
 	}
 
 	/* GFX47 MOD START */
-	private float easeInBounce(float start, float end, float value){
+	float easeInBounce(float start, float end, float value){
 		end -= start;
 		float d = 1f;
 		return end - easeOutBounce(0, end, d-value) + start;
@@ -6999,8 +6999,8 @@ public class iTween : MonoBehaviour
 	/* GFX47 MOD END */
 
 	/* GFX47 MOD START */
-	//private float bounce(float start, float end, float value){
-	private float easeOutBounce(float start, float end, float value){
+	//float bounce(float start, float end, float value){
+	float easeOutBounce(float start, float end, float value){
 		value /= 1f;
 		end -= start;
 		if (value < (1 / 2.75f)){
@@ -7019,7 +7019,7 @@ public class iTween : MonoBehaviour
 	/* GFX47 MOD END */
 
 	/* GFX47 MOD START */
-	private float easeInOutBounce(float start, float end, float value){
+	float easeInOutBounce(float start, float end, float value){
 		end -= start;
 		float d = 1f;
 		if (value < d* 0.5f) return easeInBounce(0, end, value*2) * 0.5f + start;
@@ -7027,21 +7027,21 @@ public class iTween : MonoBehaviour
 	}
 	/* GFX47 MOD END */
 
-	private float easeInBack(float start, float end, float value){
+	float easeInBack(float start, float end, float value){
 		end -= start;
 		value /= 1;
 		float s = 1.70158f;
 		return end * (value) * value * ((s + 1) * value - s) + start;
 	}
 
-	private float easeOutBack(float start, float end, float value){
+	float easeOutBack(float start, float end, float value){
 		float s = 1.70158f;
 		end -= start;
 		value = (value) - 1;
 		return end * ((value) * value * ((s + 1) * value + s) + 1) + start;
 	}
 
-	private float easeInOutBack(float start, float end, float value){
+	float easeInOutBack(float start, float end, float value){
 		float s = 1.70158f;
 		end -= start;
 		value /= .5f;
@@ -7054,7 +7054,7 @@ public class iTween : MonoBehaviour
 		return end * 0.5f * ((value) * value * (((s) + 1) * value + s) + 2) + start;
 	}
 
-	private float punch(float amplitude, float value){
+	float punch(float amplitude, float value){
 		float s = 9;
 		if (value == 0){
 			return 0;
@@ -7068,7 +7068,7 @@ public class iTween : MonoBehaviour
     }
 	
 	/* GFX47 MOD START */
-	private float easeInElastic(float start, float end, float value){
+	float easeInElastic(float start, float end, float value){
 		end -= start;
 		
 		float d = 1f;
@@ -7092,8 +7092,8 @@ public class iTween : MonoBehaviour
 	/* GFX47 MOD END */
 
 	/* GFX47 MOD START */
-	//private float elastic(float start, float end, float value){
-	private float easeOutElastic(float start, float end, float value){
+	//float elastic(float start, float end, float value){
+	float easeOutElastic(float start, float end, float value){
 	/* GFX47 MOD END */
 		//Thank you to rafael.marteleto for fixing this as a port over from Pedro's UnityTween
 		end -= start;
@@ -7118,7 +7118,7 @@ public class iTween : MonoBehaviour
 	}		
 	
 	/* GFX47 MOD START */
-	private float easeInOutElastic(float start, float end, float value){
+	float easeInOutElastic(float start, float end, float value){
 		end -= start;
 		
 		float d = 1f;

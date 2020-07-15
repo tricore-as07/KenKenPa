@@ -4,14 +4,14 @@ using PathologicalGames;
 
 public class InstanceHandlerDelegateExample : MonoBehaviour 
 {
-	private void Awake() 
+	void Awake() 
 	{
 		// Set Global PoolManager delegates ASAP. These are always available.
 		InstanceHandler.InstantiateDelegates += this.InstantiateDelegate;
 		InstanceHandler.DestroyDelegates += this.DestroyDelegate;
 	}
 
-	private void Start() 
+	void Start() 
 	{
 		// Pools are often created in Awake so for SpawnPool delegates, use Start or later
 		// You can also set an override destroy delegate, but only this one is here for this example.

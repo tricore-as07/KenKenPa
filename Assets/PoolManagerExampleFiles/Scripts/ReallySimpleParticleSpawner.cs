@@ -13,12 +13,12 @@ public class ReallySimpleParticleSpawner : MonoBehaviour
     public ParticleSystem prefab;
     public float spawnInterval = 1;
 
-    private void Start()
+    void Start()
     {
         this.StartCoroutine(ParticleSpawner());
     }
 
-    private IEnumerator ParticleSpawner()
+    IEnumerator ParticleSpawner()
     {
         while (true)
         {

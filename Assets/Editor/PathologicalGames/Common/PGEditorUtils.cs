@@ -921,7 +921,7 @@ public static class PGEditorUtils
     /// <param name="list">Needed to add a new item if count is 0</param>
     /// <param name="expanded"></param>
     /// <param name="lastIndent"></param>
-    private static bool AddFoldOutListHeader<T>(string label, List<T> list, bool expanded, int lastIndent)
+    static bool AddFoldOutListHeader<T>(string label, List<T> list, bool expanded, int lastIndent)
     {
         int buttonSpacer = 6;
 
@@ -958,7 +958,7 @@ public static class PGEditorUtils
     /// Adds the buttons which control a list item
     /// </summary>
     /// <returns>LIST_BUTTONS - The LIST_BUTTONS pressed or LIST_BUTTONS.None</returns>
-    private static LIST_BUTTONS AddFoldOutListItemButtons()
+    static LIST_BUTTONS AddFoldOutListItemButtons()
     {
         #region Layout
         int buttonSpacer = 6;
@@ -1002,7 +1002,7 @@ public static class PGEditorUtils
     /// the order or members of the ist
     /// </summary>
     /// <param name="listButtonPressed"></param>
-    private static void UpdateFoldOutListOnButtonPressed<T>(List<T> list, int currentIndex, LIST_BUTTONS listButtonPressed)
+    static void UpdateFoldOutListOnButtonPressed<T>(List<T> list, int currentIndex, LIST_BUTTONS listButtonPressed)
     {
         // Don't allow 'up' presses for the first list item
         switch (listButtonPressed)

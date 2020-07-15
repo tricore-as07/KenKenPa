@@ -17,12 +17,12 @@ public class CreationExample : MonoBehaviour
     public int spawnAmount = 50;
     public float spawnInterval = 0.25f;
 
-    private SpawnPool pool;
+    SpawnPool pool;
 
     /// <summary>
     /// Setup the PrefabPool. Change to test different settings.
     /// </summary>
-    private void Start()
+    void Start()
 	{
         this.pool = PoolManager.Pools.Create(this.poolName);
 
@@ -63,7 +63,7 @@ public class CreationExample : MonoBehaviour
     /// <summary>
     /// Spawn an instance every this.spawnInterval
     /// </summary>
-    private IEnumerator Spawner()
+    IEnumerator Spawner()
     {
         int count = this.spawnAmount;
         Transform inst;
@@ -86,7 +86,7 @@ public class CreationExample : MonoBehaviour
     /// <summary>
     /// Despawn an instance every this.spawnInterval
     /// </summary>
-    private IEnumerator Despawner()
+    IEnumerator Despawner()
     {
         while (this.pool.Count > 0)
         {

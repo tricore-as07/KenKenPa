@@ -21,7 +21,7 @@ public class SimpleSpawner : MonoBehaviour
     public ParticleSystem particleSystemPrefab;  // <-- ParticleEmitter
 
 
-    private void Start()
+    void Start()
     {
         this.StartCoroutine(Spawner());
 
@@ -33,7 +33,7 @@ public class SimpleSpawner : MonoBehaviour
     /// <summary>
     /// Spawn a particle instance at start, and respawn it to show particle reactivation
     /// </summary>
-    private IEnumerator ParticleSpawner()
+    IEnumerator ParticleSpawner()
     {
         SpawnPool particlesPool = PoolManager.Pools[this.particlesPoolName];
 
@@ -68,7 +68,7 @@ public class SimpleSpawner : MonoBehaviour
     /// <summary>
     /// Spawn an instance every this.spawnInterval
     /// </summary>
-    private IEnumerator Spawner()
+    IEnumerator Spawner()
     {
         int count = this.spawnAmount;
         Transform inst;
@@ -92,7 +92,7 @@ public class SimpleSpawner : MonoBehaviour
     /// <summary>
     /// Despawn an instance every this.spawnInterval
     /// </summary>
-    private IEnumerator Despawner()
+    IEnumerator Despawner()
     {
         SpawnPool shapesPool = PoolManager.Pools[this.poolName];
 		var spawnedCopy = new List<Transform>(shapesPool);

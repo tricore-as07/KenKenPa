@@ -14,7 +14,7 @@ public class ParticleWaitTest : MonoBehaviour
     public string particlesPoolName;
     public ParticleSystem particleSystemPrefab;
 
-    private IEnumerator Start()
+    IEnumerator Start()
     {
         SpawnPool particlesPool = PoolManager.Pools[this.particlesPoolName];
 

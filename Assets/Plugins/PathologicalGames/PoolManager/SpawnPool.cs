@@ -119,7 +119,7 @@ namespace PathologicalGames
         /// The group is an empty game object which will be the parent of all
         /// instances in the pool. This helps keep the scene easy to work with.
         /// </summary>
-        public Transform group { get; private set; }
+        public Transform group { get; set; }
 
         /// <summary>
         /// Returns the prefab of the given name (dictionary key)
@@ -149,14 +149,14 @@ namespace PathologicalGames
 
 
         #region Private Properties
-        private List<PrefabPool> _prefabPools = new List<PrefabPool>();
+        List<PrefabPool> _prefabPools = new List<PrefabPool>();
         internal List<Transform> _spawned = new List<Transform>();
         #endregion Private Properties
 
 
 
         #region Constructor and Init
-        private void Awake()
+        void Awake()
         {
             // Make this GameObject immortal if the user requests it.
             if (this._dontDestroyOnLoad) Object.DontDestroyOnLoad(this.gameObject);
@@ -272,7 +272,7 @@ namespace PathologicalGames
         /// <summary>
         /// Runs when this group GameObject is destroyed and executes clean-up
         /// </summary>
-        private void OnDestroy()
+        void OnDestroy()
         {
             if (this.logMessages)
                 Debug.Log(string.Format("SpawnPool {0}: Destroying...", this.poolName));
@@ -908,7 +908,7 @@ namespace PathologicalGames
         /// the argument useParent is used because a null parent is valid in Unity. It will 
         /// make the scene root the parent
         /// </summary>
-        private IEnumerator DoDespawnAfterSeconds(Transform instance, float seconds, bool useParent, Transform parent)
+        IEnumerator DoDespawnAfterSeconds(Transform instance, float seconds, bool useParent, Transform parent)
         {
             GameObject go = instance.gameObject;
             while (seconds > 0)
@@ -1032,7 +1032,7 @@ namespace PathologicalGames
         }
 
 
-        private IEnumerator ListForAudioStop(AudioSource src)
+        IEnumerator ListForAudioStop(AudioSource src)
         {
             // Safer to wait a frame before testing if playing.
             yield return null;
@@ -1055,7 +1055,7 @@ namespace PathologicalGames
 
 
         // ParticleSystem (Shuriken) Version...
-        private IEnumerator ListenForEmitDespawn(ParticleSystem emitter)
+        IEnumerator ListenForEmitDespawn(ParticleSystem emitter)
         {
             // Wait for the delay time to complete
             // Waiting the extra frame seems to be more stable and means at least one 
@@ -1323,7 +1323,7 @@ namespace PathologicalGames
         }
 
         // Forces logging to be silent regardless of user settings.
-        private bool forceLoggingSilent = false;
+        bool forceLoggingSilent = false;
 
 
         /// <summary>
@@ -1396,7 +1396,7 @@ namespace PathologicalGames
         /// Is set to true when the culling coroutine is started so another one
         /// won't be
         /// </summary>
-        private bool cullingActive = false;
+        bool cullingActive = false;
 
 
         /// <summary>
@@ -1437,11 +1437,11 @@ namespace PathologicalGames
         /// <summary>
         /// Used to make PreloadInstances() a one-time event. Read-only.
         /// </summary>
-        private bool _preloaded = false;
+        bool _preloaded = false;
         internal bool preloaded
         {
             get { return this._preloaded; }
-            private set { this._preloaded = value; }
+            set { this._preloaded = value; }
         }
 
 
@@ -1731,7 +1731,7 @@ namespace PathologicalGames
         /// </summary>
         /// <param name="xform">The transform to process</param>
         /// <param name="layer">The new layer</param>
-        private void SetRecursively(Transform xform, int layer)
+        void SetRecursively(Transform xform, int layer)
         {
             xform.gameObject.layer = layer;
             foreach (Transform child in xform)
@@ -1869,7 +1869,7 @@ namespace PathologicalGames
             }
         }
 
-        private IEnumerator PreloadOverTime()
+        IEnumerator PreloadOverTime()
         {
             yield return new WaitForSeconds(this.preloadDelay);
 
@@ -1956,7 +1956,7 @@ namespace PathologicalGames
         /// name the object BEFORE adding it to the spawn or depsawn lists.
         /// </summary>
         /// <param name="instance"></param>
-        private void nameInstance(Transform instance)
+        void nameInstance(Transform instance)
         {
             // Rename by appending a number to make debugging easier
             //   ToString() used to pad the number to 3 digits. Hopefully
@@ -2009,7 +2009,7 @@ namespace PathologicalGames
 
         #region Dict Functionality
         // Internal (wrapped) dictionary
-        private Dictionary<string, Transform> _prefabs = new Dictionary<string, Transform>();
+        Dictionary<string, Transform> _prefabs = new Dictionary<string, Transform>();
 
         /// <summary>
         /// Get the number of SpawnPools in PoolManager
@@ -2100,7 +2100,7 @@ namespace PathologicalGames
 
 
         #region ICollection<KeyValuePair<string, Transform>> Members
-        private bool IsReadOnly { get { return true; } }
+        bool IsReadOnly { get { return true; } }
         bool ICollection<KeyValuePair<string, Transform>>.IsReadOnly { get { return true; } }
 
         public void Add(KeyValuePair<string, Transform> item)
@@ -2110,7 +2110,7 @@ namespace PathologicalGames
 
         public void Clear() { throw new System.NotImplementedException(); }
 
-        private void CopyTo(KeyValuePair<string, Transform>[] array, int arrayIndex)
+        void CopyTo(KeyValuePair<string, Transform>[] array, int arrayIndex)
         {
             string msg = "Cannot be copied";
             throw new System.NotImplementedException(msg);
@@ -2157,7 +2157,7 @@ namespace PathologicalGames
 
 public class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>
 {
-	private readonly IDictionary<TKey, TValue> _dictionary;
+	readonly IDictionary<TKey, TValue> _dictionary;
 	
 	public ReadOnlyDictionary(IDictionary<TKey, TValue> dictionary)
 	{
@@ -2275,7 +2275,7 @@ public class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>
 	
 	#endregion
 	
-	private static System.Exception ReadOnlyException()
+	static System.Exception ReadOnlyException()
 	{
 		return new System.NotSupportedException("This dictionary is read-only");
 	}
