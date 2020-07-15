@@ -680,7 +680,7 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: TextMeshPro
-    4: TextMeshPro
+    4: TextMeshPro;USE_TWEEN
     7: TextMeshPro
     13: TextMeshPro
     19: TextMeshPro
