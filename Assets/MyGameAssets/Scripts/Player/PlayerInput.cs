@@ -5,14 +5,14 @@
 /// </summary>
 public class PlayerInput : MonoBehaviour
 {
-    bool rightInput;            //右に対応する入力されたかどうか
-    bool centerInput;           //中央に対応する入力されたかどうか
-    bool leftInput;             //左に対応する入力されたかどうか
-    [SerializeField] Transform rightObj = default;
-    [SerializeField] Transform centerObj = default;
-    [SerializeField] Transform leftObj = default;
-    [SerializeField] float tapRange = default;
-    InputAction inputAction;    //入力があった時に実際の処理をするクラス
+    bool rightInput;                                    //右に対応する入力されたかどうか
+    bool centerInput;                                   //中央に対応する入力されたかどうか
+    bool leftInput;                                     //左に対応する入力されたかどうか
+    [SerializeField] Transform rightObj = default;      //右のタップを判定する中心
+    [SerializeField] Transform centerObj = default;     //中央のタップを判定する中心
+    [SerializeField] Transform leftObj = default;       //左のタップを判定する中心
+    [SerializeField] float tapRange = default;          //タップの判定の大きさ
+    InputAction inputAction;                            //入力があった時に実際の処理をするクラス
 
     /// <summary>
     /// 最初に行う処理
