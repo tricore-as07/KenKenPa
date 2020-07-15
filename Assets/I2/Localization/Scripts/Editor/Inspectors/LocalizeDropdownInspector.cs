@@ -10,11 +10,11 @@ namespace I2.Loc
 	[CustomEditor(typeof(LocalizeDropdown))]
 	public class LocalizeDropdownInspector : Editor
 	{
-		ReorderableList mList;
+		private ReorderableList mList;
 
-		List<string> terms;
+		private List<string> terms;
 
-		ReorderableList getList(SerializedObject serObject)
+		private ReorderableList getList(SerializedObject serObject)
 		{
 			if (mList == null) {
 				mList = new ReorderableList (serObject, serObject.FindProperty ("_Terms"), true, true, true, true);
@@ -30,7 +30,7 @@ namespace I2.Loc
 			return mList;
 		}
 
-		void addElementCallback( ReorderableList list )
+		private void addElementCallback( ReorderableList list )
 		{
 			serializedObject.ApplyModifiedProperties();
 
@@ -42,7 +42,7 @@ namespace I2.Loc
 			serializedObject.Update();
 		}
 
-		void removeElementCallback( ReorderableList list )
+		private void removeElementCallback( ReorderableList list )
 		{
 			if (list.index < 0)
 				return;
@@ -54,12 +54,12 @@ namespace I2.Loc
 			serializedObject.Update();
 		}
 
-		void drawHeaderCallback(Rect rect)
+		private void drawHeaderCallback(Rect rect)
 		{
 			GUI.Label(rect, "Terms:");
 		}
 
-		void drawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
+		private void drawElementCallback(Rect rect, int index, bool isActive, bool isFocused)
 		{
 			var serializedElement = mList.serializedProperty.GetArrayElementAtIndex (index);
 

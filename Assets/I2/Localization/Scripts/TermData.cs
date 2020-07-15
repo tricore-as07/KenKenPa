@@ -36,11 +36,16 @@ namespace I2.Loc
 	{
 		public string 			Term 			= string.Empty;
 		public eTermType		TermType 		= eTermType.Text;
+		
+		#if !UNITY_EDITOR
+		[NonSerialized]
+		#endif
 		public string 			Description;
+		
         public string[]         Languages = new string[0];
         public byte[]			Flags 			= new byte[0];  // flags for each translation
 
-        [SerializeField] string[] Languages_Touch = null;      // TO BE REMOVED IN A FUTURE RELEASE
+        [SerializeField] private string[] Languages_Touch = null;      // TO BE REMOVED IN A FUTURE RELEASE
 
         public string GetTranslation ( int idx, string specialization=null, bool editMode=false )
 		{
@@ -141,6 +146,6 @@ namespace I2.Loc
             this.Filter = filter;
         }
 
-        public string Filter { get; set; }
+        public string Filter { get; private set; }
     }
 }

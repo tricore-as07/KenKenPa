@@ -48,9 +48,11 @@ namespace I2.Loc
 			}
 			OnGUI_ScenesList_TitleBar();
 
-			mScrollPos_BuildScenes = GUILayout.BeginScrollView( mScrollPos_BuildScenes, EditorStyles.textArea, GUILayout.Height ( SmallSize ? 100 : 200));
-			
-			for (int i=0, imax=sceneList.Count; i<imax; ++i)
+            GUI.backgroundColor = Color.Lerp(GUITools.LightGray, Color.white, 0.5f);
+            mScrollPos_BuildScenes = GUILayout.BeginScrollView( mScrollPos_BuildScenes, LocalizeInspector.GUIStyle_OldTextArea, GUILayout.Height ( SmallSize ? 100 : 200));
+            GUI.backgroundColor = Color.white;
+
+            for (int i=0, imax=sceneList.Count; i<imax; ++i)
 			{
 				GUILayout.BeginHorizontal();
 				
@@ -113,7 +115,7 @@ namespace I2.Loc
 		}
 
  
-        void OnGUI_ScenesList_SelectAllScenes(bool reset)
+        private void OnGUI_ScenesList_SelectAllScenes(bool reset)
         {
             if (reset || mScenesInBuildSettings == null)
             {

@@ -8,7 +8,7 @@ namespace I2.Loc
 {
 	public partial class LanguageSourceData
 	{
-        string mDelayedGoogleData;  // Data that was downloaded and is waiting for a levelLoaded event to apply the localization without a lag in performance
+        private string mDelayedGoogleData;  // Data that was downloaded and is waiting for a levelLoaded event to apply the localization without a lag in performance
 		#region Connection to Web Service 
 
 		public static void FreeUnusedLanguages()
@@ -128,6 +128,8 @@ namespace I2.Loc
 							case eGoogleUpdateFrequency.Monthly: if (TimeDifference<31) return;
 								break;
 							case eGoogleUpdateFrequency.OnlyOnce: return;
+							case eGoogleUpdateFrequency.EveryOtherDay : if (TimeDifference < 2) return;
+								break;
 						}
 					}
 				}

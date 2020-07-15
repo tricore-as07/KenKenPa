@@ -93,7 +93,7 @@ namespace I2.Loc
             terms_Contexts = DisplayOptions(Terms);
         }
 
-        static List<string> Filter(List<string> terms, string filter)
+        private static List<string> Filter(List<string> terms, string filter)
         {
             var filtered = new List<string>();
             for (var i = 0; i < terms.Count; i++)
@@ -108,7 +108,7 @@ namespace I2.Loc
             return filtered;
         }
 
-        static GUIContent[] DisplayOptions(IList<string> terms)
+        private static GUIContent[] DisplayOptions(IList<string> terms)
         {
             var options = new GUIContent[terms.Count];
             for (var i = 0; i < terms.Count; i++)

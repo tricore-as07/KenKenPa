@@ -584,7 +584,7 @@ namespace I2.Loc.SimpleJSON
 	
 	public class JSONArray : JSONNode, IEnumerable
 	{
-		List<JSONNode> m_List = new List<JSONNode>();
+		private List<JSONNode> m_List = new List<JSONNode>();
 		public override JSONNode this[int aIndex]
 		{
 			get
@@ -678,7 +678,7 @@ namespace I2.Loc.SimpleJSON
 	
 	public class JSONClass : JSONNode, IEnumerable
 	{
-        Dictionary<string, JSONNode> m_Dict = new Dictionary<string, JSONNode>(StringComparer.Ordinal);
+        private Dictionary<string, JSONNode> m_Dict = new Dictionary<string, JSONNode>(StringComparer.Ordinal);
 		public override JSONNode this[string aKey]
 		{
 			get
@@ -851,7 +851,7 @@ namespace I2.Loc.SimpleJSON
 	
 	public class JSONData : JSONNode
 	{
-		string m_Data;
+		private string m_Data;
 		public override string Value
 		{
 			get { return m_Data; }
@@ -926,8 +926,8 @@ namespace I2.Loc.SimpleJSON
 	
 	internal class JSONLazyCreator : JSONNode
 	{
-		JSONNode m_Node = null;
-		string m_Key = null;
+		private JSONNode m_Node = null;
+		private string m_Key = null;
 		
 		public JSONLazyCreator(JSONNode aNode)
 		{
@@ -940,7 +940,7 @@ namespace I2.Loc.SimpleJSON
 			m_Key = aKey;
 		}
 		
-		void Set(JSONNode aVal)
+		private void Set(JSONNode aVal)
 		{
 			if (m_Key == null)
 			{

@@ -71,7 +71,7 @@ namespace I2.Loc
 //			GUILayout.Space(10);
 		}
 
-		bool bSourceInsidePluginsFolder = true;
+		private bool bSourceInsidePluginsFolder = true;
 		public void OnGUI_Warning_SourceInsidePluginsFolder()
 		{
 			if (!bSourceInsidePluginsFolder || mLanguageSource.UserAgreesToHaveItInsideThePluginsFolder)
@@ -138,7 +138,7 @@ Do you want the plugin to automatically move the LanguageSource to a folder outs
             return true;
         }
 
-		static void MoveGlobalSource()
+		private static void MoveGlobalSource()
 		{
 			EditorApplication.delayCall -= MoveGlobalSource;
 

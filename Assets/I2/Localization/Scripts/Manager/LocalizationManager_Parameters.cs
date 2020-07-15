@@ -159,7 +159,7 @@ namespace I2.Loc
 
         #region Plural
 
-        static string GetPluralType( MatchCollection matches, string langCode, _GetParam getParam)
+        private static string GetPluralType( MatchCollection matches, string langCode, _GetParam getParam)
 		{
 			for (int i = 0, nMatches = matches.Count; i < nMatches; ++i)
 			{

@@ -59,7 +59,7 @@ namespace I2.Loc
     {
         public static SpecializationManager Singleton = new SpecializationManager();
 
-        SpecializationManager()
+        private SpecializationManager()
         {
             InitializeSpecializations();
         }
