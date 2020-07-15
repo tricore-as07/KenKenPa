@@ -224,8 +224,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 256106d6bd3c83144bf92e35f8bc1ade, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nativeView: {fileID: 114978325799587698}
-  native: {fileID: 114740638807462900}
+  nativeView: {fileID: 0}
+  native: {fileID: 0}
 --- !u!1 &1108664114912600
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,9 +334,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbbc9f82a9b9a04ba0d218203cab9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topBanner: {fileID: 114575378562213892}
-  bottomBanner: {fileID: 114640458897296896}
-  inter: {fileID: 114565476353410254}
+  topBanner: {fileID: 0}
+  bottomBanner: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &1189872380867746
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: -0.000030517578}
+  m_AnchoredPosition: {x: -0.000061035156, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222651376843106556
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1189872380867746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -402,8 +402,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: 2da90fdf8ea631843b4e9297c7161b19, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -413,6 +411,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &114270892034009492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312000540821248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
@@ -584,8 +583,6 @@ MonoBehaviour:
   LocalizeEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   AlwaysForceLocalize: 0
   LocalizeCallBack:
     Target: {fileID: 0}
@@ -642,9 +639,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cbbc9f82a9b9a04ba0d218203cab9dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topBanner: {fileID: 114626988823816096}
-  bottomBanner: {fileID: 114244163037143620}
-  inter: {fileID: 114601848156351934}
+  topBanner: {fileID: 0}
+  bottomBanner: {fileID: 0}
+  inter: {fileID: 0}
 --- !u!1 &1424455927038270
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,8 +705,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
@@ -775,7 +770,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1425313417053414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
@@ -806,8 +801,6 @@ MonoBehaviour:
   AdShown:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdFailedToShow:
     m_PersistentCalls:
       m_Calls:
@@ -822,13 +815,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdClicked:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!1 &1449189936421672
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,8 +910,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   from: 0
   to: 1
   includeChilds: 1
@@ -1033,8 +1020,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ae31c89e92a01d74385b952c175d9937, type: 3}
     m_FontSize: 14
@@ -1123,7 +1108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488238135933124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 1
@@ -1145,7 +1130,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1488238135933124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreReversedGraphics: 1
@@ -1216,8 +1201,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 18
@@ -1334,17 +1317,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbfc8e8a5fe689e44bcc0fd6598c7324, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Android_Banner:
-  - ca-app-pub-7073050807259252/3002546138
-  - ca-app-pub-7073050807259252/1525812939
-  Android_Interstitial: ca-app-pub-7073050807259252/1661544300
-  Android_NativeExpress: ca-app-pub-3940256099942544/2177258514
-  ios_Banner:
-  - ca-app-pub-7073050807259252/4427877634
-  - ca-app-pub-7073050807259252/1993285985
-  ios_Interstitial: ca-app-pub-7073050807259252/6479325906
-  ios_NativeExpress: ca-app-pub-3940256099942544/8897359316
-  myNendNative: {fileID: 114763152679354838}
+  Android_Banner: []
+  Android_Interstitial: 
+  Android_NativeExpress: 
+  ios_Banner: []
+  ios_Interstitial: 
+  ios_NativeExpress: 
+  myNendNative: {fileID: 0}
 --- !u!114 &114858080452234906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1354,7 +1333,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1610163025218330}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
@@ -1464,8 +1443,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ae31c89e92a01d74385b952c175d9937, type: 3}
     m_FontSize: 10
@@ -1573,8 +1550,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   from: 0
   to: 1
   includeChilds: 1
@@ -1703,8 +1678,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 18
@@ -1761,7 +1734,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780888472431570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -619905303, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_FirstSelected: {fileID: 0}
@@ -1776,7 +1749,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780888472431570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1077351063, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_HorizontalAxis: Horizontal
@@ -1795,7 +1768,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1780888472431570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1997211142, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 2d49b7c1bcd2e07499844da127be038d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ForceModuleActive: 0
@@ -1966,13 +1939,9 @@ MonoBehaviour:
   AdLoaded:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdFailedToReceive:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewFailedToLoadEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   type: 2
 --- !u!1 &1886886655459462
 GameObject:
@@ -2175,13 +2144,9 @@ MonoBehaviour:
   AdLoaded:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdFailedToReceive:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewFailedToLoadEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   type: 2
 --- !u!1 &1938951482078128
 GameObject:
@@ -2294,7 +2259,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1943144307723476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -2303,8 +2268,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2314,6 +2277,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &114249862956306166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2402,8 +2366,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Texture: {fileID: 0}
   m_UVRect:
     serializedVersion: 2
@@ -2465,7 +2427,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1954213272407980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1679637790, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
@@ -2493,7 +2455,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1954213272407980}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -2502,8 +2464,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: c7151a3a0651bc54086ad0dcf44551b7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -2513,6 +2473,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &114428076966443112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2522,7 +2483,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1954213272407980}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: -1200242548, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
@@ -2553,8 +2514,6 @@ MonoBehaviour:
   AdShown:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdFailedToShow:
     m_PersistentCalls:
       m_Calls:
@@ -2569,13 +2528,9 @@ MonoBehaviour:
           m_StringArgument: Destroy
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdClicked:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!114 &114740638807462900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,13 +2558,9 @@ MonoBehaviour:
   AdLoaded:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   AdFailedToReceive:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: NendUnityPlugin.AD.Native.Events.NativeAdViewFailedToLoadEvent, Assembly-CSharp,
-      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   type: 2
 --- !u!1 &1975618063808366
 GameObject:
@@ -2674,8 +2625,6 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: ae31c89e92a01d74385b952c175d9937, type: 3}
     m_FontSize: 15
