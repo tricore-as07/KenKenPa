@@ -11,6 +11,15 @@ public class InputIntervalManager : MonoBehaviour
     float intervalTime = 0f;                                                        //入力から次の入力を受け付けるまでの時間
 
     /// <summary>
+    /// オブジェクトがアクティブになった時によばれる
+    /// </summary>
+    void OnEnable()
+    {
+        UpdateIntervalTime();
+        isAbleInput = true;
+    }
+
+    /// <summary>
     /// 毎フレーム行う処理
     /// </summary>
     void Update()

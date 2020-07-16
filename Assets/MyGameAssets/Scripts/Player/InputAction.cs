@@ -18,23 +18,17 @@ public class InputAction : MonoBehaviour
         stage = GameObject.FindGameObjectWithTag("Stage");
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
+    }
+
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
+    void Start()
+    {
         //管理系のクラス
         inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
         stageCreater = GameObject.FindGameObjectWithTag("StageCreater").GetComponent<StageCreater>();
     }
-
-    ///// <summary>
-    ///// 最初に行う処理
-    ///// </summary>
-    //void Start()
-    //{
-    //    stage = GameObject.FindGameObjectWithTag("Stage");
-    //    //最初のオブジェクトグループのHitCheckクラスを代入
-    //    correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
-    //    //管理系のクラス
-    //    inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
-    //    stageCreater = GameObject.FindGameObjectWithTag("StageCreater").GetComponent<StageCreater>();
-    //}
 
     /// <summary>
     /// 右が入力された時
