@@ -8,15 +8,21 @@ public class StageCreater : MonoBehaviour
     [SerializeField] StageSettingData stageSettingData = default;   //ステージの設定データ
     [SerializeField] GameObject objectsGroupPrefab = default;       //ObjectsGroupのプレハブ
     [SerializeField] GameObject objectsPrefab = default;            //１歩分のオブジェクトのプレハブ
+    [SerializeField] GameObject stagePrefab = default;              //ステージのプレハブ
     GameObject stage = default;                                     //ステージ関連のオブジェクトの親に設定するためのもの
     Vector3 DepthPosition;                                          //ステージ生成時の奥行きの位置
-    
+
     /// <summary>
-    /// 最初に行う処理
+    /// オブジェクトがアクティブになった時によばれる
     /// </summary>
-    void Start()
+    void OnEnable()
     {
-        stage = GameObject.FindGameObjectWithTag("Stage");
+        DepthPosition = Vector3.zero;    //奥行きをリセット
+        if(stage == null)
+        {
+            //自分と同じ親を設定してプレハブを作成
+            stage = Instantiate(stagePrefab,transform.parent);
+        }
         for (var i = 0; i < stageSettingData.GenerateObjectsGroupNum; i++)
         {
             var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);

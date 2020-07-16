@@ -12,7 +12,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Transform centerObj = default;     //中央のタップを判定する中心
     [SerializeField] Transform leftObj = default;       //左のタップを判定する中心
     [SerializeField] float tapRange = default;          //タップの判定の大きさ
-    [SerializeField] Camera camera = default;           //カメラ
+    [SerializeField] new Camera camera = default;       //カメラ
     InputAction inputAction;                            //入力があった時に実際の処理をするクラス
 
     /// <summary>
