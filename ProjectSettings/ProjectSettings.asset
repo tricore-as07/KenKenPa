@@ -10,7 +10,7 @@ PlayerSettings:
   AndroidEnableSustainedPerformanceMode: 0
   defaultScreenOrientation: 4
   targetDevice: 2
-  useOnDemandResources: 0
+  useOnDemandResources: 1
   accelerometerFrequency: 60
   companyName: Tricore
   productName: KenKenPa
@@ -243,7 +243,7 @@ PlayerSettings:
   metalEditorSupport: 1
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 0
-  appleDeveloperTeamID: 
+  appleDeveloperTeamID: EYG2C75PKE
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
@@ -680,7 +680,7 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro;ENABLE_ADMOB;USE_NEND
-    4: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro
+    4: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro;DISABLE_SHARE_HELP
     7: TextMeshPro
     13: TextMeshPro
     19: TextMeshPro
