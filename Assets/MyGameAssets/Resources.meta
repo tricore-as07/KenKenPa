@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/ExternalDependencyManager/Editor.meta
+guid: 6ba94ee40016547ed97189db5f8c4174
+=======
 guid: e5f17f3473fff4de4a125c3443020604
+>>>>>>> AddVmUnityLib:Assets/MyGameAssets/Resources.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

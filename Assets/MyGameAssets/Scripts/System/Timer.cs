@@ -1,32 +1,44 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// 制限時間のタイマー
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float limitTime = 0f;       //制限時間
-    public float LimitTime => limitTime;         //外部に公開するためのプロパティ
+    [SerializeField] float limitTimeSetting = 0f;           //制限時間の設定時間
+    float limitTime;                                        //カウントダウンする制限時間
+    public float LimitTime => limitTime;                    //外部に公開するためのプロパティ
+    [SerializeField] UnityEvent onTimeLimitEvent = default; //制限時間がなくなった時に呼ばれるイベント
+    bool isCallTimeLimitEvent;                              //制限時間がきてイベントが呼ばれたかどうか
+
+    /// <summary>
+    /// オブジェクトがアクティブになった時によばれる
+    /// </summary>
+    void OnEnable()
+    {
+        limitTime = limitTimeSetting;
+        isCallTimeLimitEvent = false;
+    }
 
     /// <summary>
     /// 毎フレーム行う処理
     /// </summary>
     void Update()
     {
-        limitTime -= Time.deltaTime;
-        //制限時間がなくなったら
-        if(limitTime <= 0)
+        if (isCallTimeLimitEvent)
         {
-            OnTimeLIimit();
+            return;
         }
-    }
-
-    /// <summary>
-    /// 制限時間が無くなった時によばれる
-    /// </summary>
-    /// TODO: orimoto 今後実装予定のスコアをリザルトに呼ぶための処理をまとめるためのものです。
-    void OnTimeLIimit()
-    {
-
+        //制限時間がなくなったら
+        if (limitTime <= 0)
+        {
+            onTimeLimitEvent.Invoke();
+            isCallTimeLimitEvent = true;
+        }
+        else
+        {
+            limitTime -= Time.deltaTime;
+        }
     }
 }

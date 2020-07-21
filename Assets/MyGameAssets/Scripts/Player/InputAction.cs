@@ -11,13 +11,20 @@ public class InputAction : MonoBehaviour
     StageCreater stageCreater;                                      //ステージを生成するクラス
 
     /// <summary>
-    /// 最初に行う処理
+    /// オブジェクトがアクティブになった時によばれる
     /// </summary>
-    void Start()
+    void OnEnable()
     {
         stage = GameObject.FindGameObjectWithTag("Stage");
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
+    }
+
+    /// <summary>
+    /// 最初に行う処理
+    /// </summary>
+    void Start()
+    {
         //管理系のクラス
         inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
         stageCreater = GameObject.FindGameObjectWithTag("StageCreater").GetComponent<StageCreater>();

@@ -12,6 +12,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] Transform centerObj = default;     //中央のタップを判定する中心
     [SerializeField] Transform leftObj = default;       //左のタップを判定する中心
     [SerializeField] float tapRange = default;          //タップの判定の大きさ
+    [SerializeField] new Camera camera = default;       //カメラ
     InputAction inputAction;                            //入力があった時に実際の処理をするクラス
 
     /// <summary>
@@ -102,9 +103,9 @@ public class PlayerInput : MonoBehaviour
     bool IsTapInput(Vector2 tapPos,Vector3 objPos)
     {
         //オブジェクトのカメラ上での位置
-        var pos = RectTransformUtility.WorldToScreenPoint(Camera.main, objPos);
+        var pos = RectTransformUtility.WorldToScreenPoint(camera, objPos);
         //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tapPos).sqrMagnitude < Mathf.Pow(tapRange, 2))
+        if ((pos - tapPos).sqrMagnitude < tapRange * tapRange)
         {
             return true;
         }

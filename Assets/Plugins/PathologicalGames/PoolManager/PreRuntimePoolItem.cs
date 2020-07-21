@@ -54,7 +54,7 @@ namespace PathologicalGames
         /// <summary>
         /// Register this item with the pool at game start
         /// </summary>
-        private void Start()
+        void Start()
         {
             SpawnPool pool;
             if (!PoolManager.Pools.TryGetValue(this.poolName, out pool))

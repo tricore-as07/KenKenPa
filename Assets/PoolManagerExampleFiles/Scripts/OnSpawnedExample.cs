@@ -9,7 +9,7 @@ using PathologicalGames;
 /// </description>
 public class OnSpawnedExample : MonoBehaviour 
 {
-	private void OnSpawned(SpawnPool pool)
+	void OnSpawned(SpawnPool pool)
 	{
 		Debug.Log
 		(
@@ -22,7 +22,7 @@ public class OnSpawnedExample : MonoBehaviour
 		);
 	}
 	
-	private void OnDespawned(SpawnPool pool)
+	void OnDespawned(SpawnPool pool)
 	{
 		Debug.Log
 		(
