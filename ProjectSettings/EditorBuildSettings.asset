@@ -11,18 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MyGameAssets/LibBridge/Scenes/demo.unity
     guid: 94a6f675c2b54c74788ebf45f960b71f
-  - enabled: 0
-    path: Assets/MyGameAssets/LibBridge/Scenes/debugSceneRoot.unity
-    guid: 3bad94747d1d48c44a581fab76983b62
-  - enabled: 0
-    path: Assets/MyGameAssets/LibBridge/Scenes/title.unity
-    guid: d6c900f66625360499f1904f1138d5cf
-  - enabled: 1
-    path: Assets/MyGameAssets/Scenes/MockScene.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/MyGameAssets/Scenes/TitleScene.unity
     guid: ce2196257d05e452baa5d2c4b5aeab22
+  - enabled: 1
+    path: Assets/MyGameAssets/Scenes/MockScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/MyGameAssets/Scenes/ResultScene.unity
     guid: 9ae49fa3748d84f0c9fa0543bc3a0109
