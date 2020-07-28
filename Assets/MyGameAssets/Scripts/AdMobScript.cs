@@ -2,13 +2,12 @@
 using UnityEngine;
 
 /// <summary>
-/// AdMObの広告を表示するためのスクリプト
+/// AdMobの広告を表示するためのスクリプト
 /// </summary>
 public class AdMobScript : MonoBehaviour
 {
-
-    public static BannerView bannerView;
-    private AdRequest request;
+    private static BannerView bannerView;       //バナーの設定を管理するstatic変数
+    private AdRequest request;                  //広告のリクエストに必要な変数
 
     /// <summary>
     /// 最初に行う処理
@@ -31,7 +30,6 @@ public class AdMobScript : MonoBehaviour
             .Builder()
             .AddTestDevice(AdRequest.TestDeviceSimulator)
             .Build();
-
         bannerView.LoadAd(request);
     }
 }
