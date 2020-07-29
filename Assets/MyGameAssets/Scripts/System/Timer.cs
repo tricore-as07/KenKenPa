@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 /// <summary>
 /// 制限時間のタイマー
@@ -11,6 +12,7 @@ public class Timer : MonoBehaviour
     public float LimitTime => limitTime;                    //外部に公開するためのプロパティ
     [SerializeField] UnityEvent onTimeLimitEvent = default; //制限時間がなくなった時に呼ばれるイベント
     bool isCallTimeLimitEvent;                              //制限時間がきてイベントが呼ばれたかどうか
+    [SerializeField] Text timeText;                         //タイマーを表示するテキスト
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -39,6 +41,7 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
+            timeText.text = limitTime.ToString("F2");
         }
     }
 }

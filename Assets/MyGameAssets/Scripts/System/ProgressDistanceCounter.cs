@@ -4,6 +4,7 @@
 public static class ProgressDistanceCounter
 {
     static float distanceCounter;      //進んだ距離をカウントする
+    public static float DistanceCounter { get { return distanceCounter; } }
 
     /// <summary>
     /// 初期化処理
