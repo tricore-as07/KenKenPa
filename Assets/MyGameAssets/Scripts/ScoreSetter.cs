@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// </summary>
 public class ScoreSetter : MonoBehaviour
 {
-    [SerializeField] Text scoreText;
+    [SerializeField] Text scoreText;            //スコアのテキスト
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
     /// </summary>

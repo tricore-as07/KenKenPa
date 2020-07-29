@@ -3,8 +3,8 @@
 /// </summary>
 public static class ProgressDistanceCounter
 {
-    static float distanceCounter;      //進んだ距離をカウントする
-    public static float DistanceCounter { get { return distanceCounter; } }
+    static float distanceCounter;                                           //進んだ距離をカウントする
+    public static float DistanceCounter => distanceCounter;                 //進んだ距離を取得するためのプロパティ
 
     /// <summary>
     /// 初期化処理
