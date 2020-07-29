@@ -29,11 +29,11 @@ public static class NendAndroidDependenciesResolver {
         });
 
         //Require
-        DependOn(svcSupport, AndroidLibraryTypeGoogle, GmsIdentifierArtifactName, "15.0.1");
+        DependOn(svcSupport, AndroidLibraryTypeGoogle, GmsIdentifierArtifactName, "17.0.0");
 		DependOn(svcSupport, AndroidLibraryTypeConstraint, ConstraintLayoutArtifactName, "1.1.3");
 
 		//Optional
-		DependOn(svcSupport, AndroidLibraryTypeGoogle, GmsLocationArtifactName, "15.0.1");
+		DependOn(svcSupport, AndroidLibraryTypeGoogle, GmsLocationArtifactName, "17.0.0");
 		#endif
 	}
 

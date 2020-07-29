@@ -1,4 +1,3 @@
-#pragma warning disable 0649
 namespace NendUnityPlugin.AD
 {
 	using UnityEngine;

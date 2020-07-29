@@ -28,7 +28,7 @@ namespace NendUnityPlugin.Common
 		/// <summary>
 		/// Not reached the frequency count.
 		/// </summary>
-		AD_FREQUENCY_NOT_RECHABLE = 4,
+		AD_FREQUENCY_NOT_REACHABLE = 4,
 		
 		/// <summary>
 		/// Ad is already display.

@@ -1,5 +1,4 @@
-﻿#pragma warning disable 0649
-namespace NendUnityPlugin.AD.Native
+﻿namespace NendUnityPlugin.AD.Native
 {
 	using System;
 	using System.Linq;

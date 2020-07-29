@@ -1,10 +1,10 @@
-﻿#pragma warning disable 0618
-namespace NendUnityPlugin.AD.Native.Utils
+﻿namespace NendUnityPlugin.AD.Native.Utils
 {
 	using System;
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine;
+    using UnityEngine.Networking;
 
 	using Log = NendUnityPlugin.Common.NendAdLogger;
 
@@ -17,19 +17,32 @@ namespace NendUnityPlugin.AD.Native.Utils
 				callback (texture);
 				yield break;
 			}
-			using (var www = new WWW (url)) {
-				yield return www;
-				if (string.IsNullOrEmpty (www.error)) {
-					texture = www.texture;
-					TextureCache.Instance.Put (url, texture);
-				} else {
-					Log.E ("Failed to download image: {0}", www.error);
-				}
-				callback (texture);
-			}
-		}
+#if UNITY_2019_1_OR_NEWER
+            using (var www = UnityWebRequestTexture.GetTexture(url)) {
+                yield return www.SendWebRequest();
+                if (www.isHttpError || www.isNetworkError) {
+                    Log.E("Failed to download image: {0}", www.error);
+                } else {
+                    texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                    TextureCache.Instance.Put(url, texture);
+                }
+                callback (texture);
+            }
+#else
+            using (var www = new WWW (url)) {
+                yield return www;
+                if (string.IsNullOrEmpty (www.error)) {
+                    texture = www.texture;
+                    TextureCache.Instance.Put (url, texture);
+                } else {
+                    Log.E ("Failed to download image: {0}", www.error);
+                }
+                callback (texture);
+            }
+#endif
+        }
 
-		private class TextureCache
+        private class TextureCache
 		{
 			private static TextureCache s_Instance = null;
 			private Dictionary<string, Texture2D> m_Cache;
