@@ -1038,8 +1038,8 @@ MonoBehaviour:
   onFinished:
     m_PersistentCalls:
       m_Calls: []
-  from: 0
-  to: 0
+  from: 1
+  to: 1
   includeChilds: 0
   overrideOriginalAlpha: 1
 --- !u!114 &1732694801
