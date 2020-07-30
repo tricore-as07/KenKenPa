@@ -23,7 +23,16 @@ public class StageCreater : MonoBehaviour
             //自分と同じ親を設定してプレハブを作成
             stage = Instantiate(stagePrefab,transform.parent);
         }
-        for (var i = 0; i < stageSettingData.GenerateObjectsGroupNum; i++)
+        int createCount = 0;
+        var startObjectsGroupData = stageSettingData.StartObjectsGroupDatas.GetEnumerator();
+        startObjectsGroupData.Reset();
+        while (startObjectsGroupData.MoveNext())
+        {
+            createCount++;
+            CreateObjectsGroup(startObjectsGroupData.Current);
+        }
+        int loopNum = stageSettingData.GenerateObjectsGroupNum - createCount;
+        for (var i = 0; i < loopNum; i++)
         {
             var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);
             CreateObjectsGroup(objectsGroupData);
