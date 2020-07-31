@@ -45,7 +45,6 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -64,7 +63,6 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -83,7 +81,6 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -119,5 +116,6 @@ public class InputAction : MonoBehaviour
         transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
+        inputIntervalManager.OnInput();
     }
 }
