@@ -9,6 +9,7 @@ public class InputIntervalManager : MonoBehaviour
     public bool isAbleInput { get; private set; }                                   //入力可能かどうか
     float inputIntervalCounter;                                                     //入力間の時間を数えるカウンター
     float intervalTime = 0f;                                                        //入力から次の入力を受け付けるまでの時間
+    bool useStartIntervalData;                                                      //ゲーム開始して1回失敗するまでのデータを使うかどうか
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -17,6 +18,7 @@ public class InputIntervalManager : MonoBehaviour
     {
         UpdateIntervalTime();
         isAbleInput = true;
+        useStartIntervalData = true;
     }
 
     /// <summary>
@@ -44,16 +46,33 @@ public class InputIntervalManager : MonoBehaviour
     void UpdateIntervalTime()
     {
         intervalTime = 0.0f;
-        //設定データのEnumeratorを取得
-        var inputIntervalSetting = inputIntervalSettingData.InputIntervalSettings.GetEnumerator();
-        inputIntervalSetting.Reset();
-        while(inputIntervalSetting.MoveNext())
+        if (useStartIntervalData)
         {
-            //現在のコンボ数が設定にあるコンボ数より小さい時
-            if (inputIntervalSetting.Current.ComboNum > ComboCounter.ComboCount)
+            var inputIntervalSetting = inputIntervalSettingData.StartInputIntervalSettings.GetEnumerator();
+            inputIntervalSetting.Reset();
+            while (inputIntervalSetting.MoveNext())
             {
-                intervalTime = inputIntervalSetting.Current.IntervalTime;
-                break;
+                //現在のコンボ数が設定にあるコンボ数より小さい時
+                if (inputIntervalSetting.Current.ComboNum > ComboCounter.ComboCount)
+                {
+                    intervalTime = inputIntervalSetting.Current.IntervalTime;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            //設定データのEnumeratorを取得
+            var inputIntervalSetting = inputIntervalSettingData.InputIntervalSettings.GetEnumerator();
+            inputIntervalSetting.Reset();
+            while (inputIntervalSetting.MoveNext())
+            {
+                //現在のコンボ数が設定にあるコンボ数より小さい時
+                if (inputIntervalSetting.Current.ComboNum > ComboCounter.ComboCount)
+                {
+                    intervalTime = inputIntervalSetting.Current.IntervalTime;
+                    break;
+                }
             }
         }
     }
@@ -65,5 +84,13 @@ public class InputIntervalManager : MonoBehaviour
     {
         isAbleInput = false;
         inputIntervalCounter = 0f;
+    }
+
+    /// <summary>
+    /// 入力ミスした時に呼ぶ
+    /// </summary>
+    public void MissInput()
+    {
+        useStartIntervalData = false;
     }
 }

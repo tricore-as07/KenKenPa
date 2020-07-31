@@ -44,6 +44,7 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
         }
     }
@@ -62,6 +63,7 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
         }
     }
@@ -80,6 +82,7 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
         }
     }

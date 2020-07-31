@@ -23,3 +23,14 @@ MonoBehaviour:
     intervalTime: 0.2
   - comboNum: 25
     intervalTime: 0.1
+  startInputIntervalSettings:
+  - comboNum: 5
+    intervalTime: 0.25
+  - comboNum: 10
+    intervalTime: 0.2
+  - comboNum: 15
+    intervalTime: 0.15
+  - comboNum: 20
+    intervalTime: 0.1
+  - comboNum: 25
+    intervalTime: 0.05
