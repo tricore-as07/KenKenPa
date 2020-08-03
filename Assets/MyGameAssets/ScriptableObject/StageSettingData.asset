@@ -16,9 +16,11 @@ MonoBehaviour:
   generateObjectsGroupNum: 5
   hitObjectPrefab: {fileID: 9006971639445919526, guid: ba25a1ed5b2e143a49cac87d6ef0ee4e,
     type: 3}
+  notInputHitObjectPrefab: {fileID: 2115033023881887717, guid: 1a915f13bbbc84dcf96cca93202af378,
+    type: 3}
   outObjectPrefab: {fileID: 7520316894623290485, guid: ff64e18bcc6884ba2b178288e509722c,
     type: 3}
-  objectsGroupDatas:
+  startObjectsGroupDatas:
   - {fileID: 11400000, guid: 9c30f11f246ff4887b1006518ca6e2f8, type: 2}
+  objectsGroupDatas:
   - {fileID: 11400000, guid: 625ea898acb5647b38c8797132932641, type: 2}
-  - {fileID: 11400000, guid: 49614cebd84f5464abc4a0916b122066, type: 2}
