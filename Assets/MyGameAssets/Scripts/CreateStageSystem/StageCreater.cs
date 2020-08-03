@@ -97,7 +97,9 @@ public class StageCreater : MonoBehaviour
             //当たりのオブジェクトを生成する
             case ObjectType.HitObject:
                 {
-                    Instantiate(stageSettingData.HitObjectPrefab, parent);
+                    var notInputHitObjectPrefab = Instantiate(stageSettingData.HitObjectPrefab, parent);
+                    notInputHitObjectPrefab.SetActive(false);
+                    Instantiate(stageSettingData.NotInputHitObjectPrefab, parent);
                     break;
                 }
             //外れのオブジェクトを作成する

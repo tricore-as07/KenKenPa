@@ -18,6 +18,7 @@ public class InputAction : MonoBehaviour
         stage = GameObject.FindGameObjectWithTag("Stage");
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
+        correctCheck.OnEnableCorrentCheck();
     }
 
     /// <summary>
@@ -106,6 +107,7 @@ public class InputAction : MonoBehaviour
             //チェックする対象を次のオブジェクトグループに変更
             const int next = 1;
             correctCheck = stage.transform.GetChild(next).GetComponent<CorrectCheck>();
+            correctCheck.OnEnableCorrentCheck();
         }
     }
 
