@@ -8,6 +8,7 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
     static InputIntervalManager inputIntervalManager;       //入力から次の入力を受け付けるまでの時間を管理する
     const int HitObject = 0;                                //子オブジェクトで入力可能時に表示するオブジェクトの要素数
     const int NotInputHitObject = 1;                        //子オブジェクトで入力不可能時に表示するオブジェクトの要素数
+    const int hitObjectNum = 2;                             //当たりのオブジェクトの時の子オブジェクトの数
 
     /// <summary>
     /// オブジェクトが生成された直後
@@ -25,7 +26,7 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
     /// </summary>
     void OnEnableIsAbleInput()
     {
-        if(transform.childCount < 2)
+        if(transform.childCount < hitObjectNum)
         {
             return;
         }
@@ -38,7 +39,7 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
     /// </summary>
     void OnDisableIsAbleInput()
     {
-        if (transform.childCount < 2)
+        if (transform.childCount < hitObjectNum)
         {
             return;
         }
