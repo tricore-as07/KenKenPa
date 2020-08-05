@@ -7,8 +7,10 @@ using UnityEngine;
 [CreateAssetMenu]
 public class InputIntervalSettingData : ScriptableObject
 {
-    [SerializeField] List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>();   ///入力間の受付可能になるまでの時間の設定のリスト
-    public IEnumerable<InputIntervalSetting> InputIntervalSettings => inputIntervalSettings;              //外部に公開するためのプロパティ
+    [SerializeField] List<InputIntervalSetting> inputIntervalSettings = new List<InputIntervalSetting>();           ///入力間の受付可能になるまでの時間の設定のリスト
+    public IEnumerable<InputIntervalSetting> InputIntervalSettings => inputIntervalSettings;                        //外部に公開するためのプロパティ
+    [SerializeField] List<InputIntervalSetting> startInputIntervalSettings = new List<InputIntervalSetting>();      ///ゲーム開始時の入力間の受付可能になるまでの時間の設定のリスト
+    public IEnumerable<InputIntervalSetting> StartInputIntervalSettings => startInputIntervalSettings;              //外部に公開するためのプロパティ
 }
 
 /// <summary>

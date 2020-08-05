@@ -14,33 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 100
   objectsDatas:
-  - rightObjectType: 0
-    centerObjectType: 1
+  - rightObjectType: 1
+    centerObjectType: 0
+    leftObjectType: 1
+  - rightObjectType: 1
+    centerObjectType: 0
+    leftObjectType: 1
+  - rightObjectType: 1
+    centerObjectType: 0
     leftObjectType: 1
   - rightObjectType: 0
     centerObjectType: 1
+    leftObjectType: 0
+  - rightObjectType: 0
+    centerObjectType: 1
+    leftObjectType: 0
+  - rightObjectType: 1
+    centerObjectType: 0
     leftObjectType: 1
   - rightObjectType: 0
     centerObjectType: 1
+    leftObjectType: 0
+  - rightObjectType: 0
+    centerObjectType: 1
+    leftObjectType: 0
+  - rightObjectType: 1
+    centerObjectType: 0
     leftObjectType: 1
   - rightObjectType: 0
     centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 1
+    leftObjectType: 0

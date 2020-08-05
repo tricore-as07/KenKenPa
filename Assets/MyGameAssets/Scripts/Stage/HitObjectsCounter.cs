@@ -9,6 +9,7 @@ public class HitObjectsCounter : MonoBehaviour
     public bool isRightHit { get; private set; }                    //右が当たりかどうか
     public bool isCenterHit { get; private set; }                   //中央が当たりかどうか
     public bool isLeftHit { get; private set; }                     //左があたりかどうか
+
     /// <summary>
     /// 当たりのオブジェクトが二つの時などに同じ場所を2回押しても成功になるのを防ぐためのものです。
     /// </summary>

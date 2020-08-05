@@ -18,6 +18,7 @@ public class InputAction : MonoBehaviour
         stage = GameObject.FindGameObjectWithTag("Stage");
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
+        correctCheck.OnEnableCorrentCheck();
     }
 
     /// <summary>
@@ -44,8 +45,8 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -63,8 +64,8 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -82,8 +83,8 @@ public class InputAction : MonoBehaviour
             else
             {
                 ComboCounter.OnMissCombo();
+                inputIntervalManager.MissInput();
             }
-            inputIntervalManager.OnInput();
         }
     }
 
@@ -106,6 +107,7 @@ public class InputAction : MonoBehaviour
             //チェックする対象を次のオブジェクトグループに変更
             const int next = 1;
             correctCheck = stage.transform.GetChild(next).GetComponent<CorrectCheck>();
+            correctCheck.OnEnableCorrentCheck();
         }
     }
 
@@ -119,5 +121,6 @@ public class InputAction : MonoBehaviour
         transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
+        inputIntervalManager.OnInput();
     }
 }
