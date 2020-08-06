@@ -680,7 +680,7 @@ PlayerSettings:
   webGLWasmStreaming: 0
   scriptingDefineSymbols:
     1: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro;ENABLE_ADMOB;USE_NEND
-    4: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro;DISABLE_SHARE_HELP
+    4: USE_TWEEN;USE_POOL_MANAGER;TextMeshPro;DISABLE_SHARE_HELP;ENABLE_ADMOB;USE_NEND
     7: TextMeshPro
     13: TextMeshPro
     19: TextMeshPro
