@@ -10,14 +10,6 @@ public class CorrectCheck : MonoBehaviour
     bool changedCheckObject;                //判定するオブジェクトを変更したかどうか
 
     /// <summary>
-    /// 最初に行う処理
-    /// </summary>
-    void Start()
-    {
-        CheckObjectUpdate();
-    }
-
-    /// <summary>
     /// 判定をするオブジェクトのデータを更新する
     /// </summary>
     void CheckObjectUpdate()
@@ -27,6 +19,10 @@ public class CorrectCheck : MonoBehaviour
         {
             //判定につかうスクリプトの更新
             hitObjectsCounter = transform.GetChild(checkNum).GetComponent<HitObjectsCounter>();
+            //入力可能かどうかで見た目を変える機能を有効にする
+            hitObjectsCounter.transform.GetChild(StageConstants.rightNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
+            hitObjectsCounter.transform.GetChild(StageConstants.centerNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
+            hitObjectsCounter.transform.GetChild(StageConstants.leftNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
         }
     }
 
@@ -35,6 +31,10 @@ public class CorrectCheck : MonoBehaviour
     /// </summary>
     void OnAllCorrectProcess()
     {
+        //入力可能かどうかで見た目を変える機能を無効にする
+        hitObjectsCounter.transform.GetChild(StageConstants.rightNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.centerNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.leftNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
         //判定が終わったオブジェクトを非アクティブにする
         transform.GetChild(checkNum).gameObject.SetActive(false);
         //判定するオブジェクトを次のオブジェクトにする
@@ -131,5 +131,17 @@ public class CorrectCheck : MonoBehaviour
     public void OnNecessaryCorrectCheck()
     {
         Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// 現在のオブジェクトグループの判定が有効になった時
+    /// </summary>
+    public void OnEnableCorrentCheck()
+    {
+        hitObjectsCounter = transform.GetChild(checkNum).GetComponent<HitObjectsCounter>();
+        //入力可能かどうかで見た目を変える機能を有効にする
+        hitObjectsCounter.transform.GetChild(StageConstants.rightNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.centerNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.leftNum).GetComponent<InputtableIsByObjectLookChange>().OnEnableCorrentCheck();
     }
 }
