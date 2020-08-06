@@ -1,32 +1,46 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// ゲームプレイシーンの管理をするクラス
 /// </summary>
 public class GamePlayManager : MonoBehaviour
 {
-    [SerializeField] List<GameObject> manageObject = new List<GameObject>();        //管理するオブジェクト
+    [SerializeField] GameObject gamePlayObject = default;       //ゲームをプレイする際のオブジェクト
+    [SerializeField] GameObject fakeLoadObject = default;       //フェイクロードのオブジェクト
+    [SerializeField] float fakeLoadTime = default;              //フェイクロードを表示しておく時間
+    float fakeLoadTimeCount;                                    //フェークロードを表示している時間をカウントする
 
-    /// <summary>
-    /// ゲームをスタートする時に呼ばれる
-    /// </summary>
-    public void GameStart()
+
+    void OnEnable()
     {
-        foreach (var obj in manageObject)
+        GamePlayStop();
+        fakeLoadTimeCount = 0;
+    }
+
+    void Update()
+    {
+        fakeLoadTimeCount += Time.deltaTime;
+        if(fakeLoadTimeCount > fakeLoadTime)
         {
-            obj.SetActive(true);
+            GamePlayStart();
         }
     }
 
     /// <summary>
-    /// ゲームをストップさせる時に呼ばれる
+    /// ゲームをスタートする時に呼ぶ
     /// </summary>
-    public void GameStop()
+    void GamePlayStart()
     {
-        foreach (var obj in manageObject)
-        {
-            obj.SetActive(false);
-        }
+        gamePlayObject.SetActive(true);
+        fakeLoadObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// ゲームをストップさせる時に呼ぶ
+    /// </summary>
+    void GamePlayStop()
+    {
+        gamePlayObject.SetActive(false);
+        fakeLoadObject.SetActive(true);
     }
 }
