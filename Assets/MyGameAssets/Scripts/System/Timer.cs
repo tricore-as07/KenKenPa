@@ -25,6 +25,9 @@ public class Timer : MonoBehaviour
         isCountDown = false;
     }
 
+    /// <summary>
+    /// カウントダウンを開始する
+    /// </summary>
     public void StartCountDown()
     {
         isCountDown = true;
