@@ -41,7 +41,7 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text = limitTime.ToString("F2");
+            timeText.text =　"残り時間 : " + limitTime.ToString("0") + "秒";
         }
     }
 }
