@@ -17,7 +17,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
-        SetActiveGamePlayObject();
+        GamePlayStop();
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     public void SetActiveGamePlayObject()
     {
-        gamePlayObject.SetActive(true);
+        gamePlayObject.SetActive(false);
     }
 
     /// <summary>

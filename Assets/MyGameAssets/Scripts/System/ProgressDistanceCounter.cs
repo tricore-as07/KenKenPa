@@ -1,10 +1,13 @@
-﻿/// <summary>
+﻿using UnityEngine.UI;
+
+/// <summary>
 /// 前進した距離をカウントしておくクラス
 /// </summary>
 public static class ProgressDistanceCounter
 {
     static float distanceCounter;                                           //進んだ距離をカウントする
     public static float DistanceCounter => distanceCounter;                 //進んだ距離を取得するためのプロパティ
+    static Text distText;                                                   //進んだ距離を表示するText
 
     /// <summary>
     /// 初期化処理
@@ -12,6 +15,7 @@ public static class ProgressDistanceCounter
     public static void Initialize()
     {
         distanceCounter = 0;
+        distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
     }
 
     /// <summary>
@@ -21,5 +25,15 @@ public static class ProgressDistanceCounter
     public static void OnProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
+        distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+    }
+
+    /// <summary>
+    /// 進んだ距離を表示するText
+    /// </summary>
+    /// <param name="text">表示するText</param>
+    public static void SetDistText(Text text)
+    {
+        distText = text;
     }
 }

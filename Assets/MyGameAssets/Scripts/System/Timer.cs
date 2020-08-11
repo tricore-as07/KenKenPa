@@ -51,11 +51,12 @@ public class Timer : MonoBehaviour
         {
             onTimeLimitEvent.Invoke();
             isCallTimeLimitEvent = true;
+            limitTime = 0;
         }
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text = limitTime.ToString("F2");
+            timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
         }
     }
 }
