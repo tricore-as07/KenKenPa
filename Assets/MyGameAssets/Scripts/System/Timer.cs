@@ -13,6 +13,7 @@ public class Timer : MonoBehaviour
     [SerializeField] UnityEvent onTimeLimitEvent = default; //制限時間がなくなった時に呼ばれるイベント
     bool isCallTimeLimitEvent;                              //制限時間がきてイベントが呼ばれたかどうか
     [SerializeField] Text timeText;                         //タイマーを表示するテキスト
+    bool isCountDown;                                       //カウントダウンをするかどうか
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -21,6 +22,15 @@ public class Timer : MonoBehaviour
     {
         limitTime = limitTimeSetting;
         isCallTimeLimitEvent = false;
+        isCountDown = false;
+    }
+
+    /// <summary>
+    /// カウントダウンを開始する
+    /// </summary>
+    public void StartCountDown()
+    {
+        isCountDown = true;
     }
 
     /// <summary>
@@ -28,6 +38,10 @@ public class Timer : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(!isCountDown)
+        {
+            return;
+        }
         if (isCallTimeLimitEvent)
         {
             return;
@@ -41,7 +55,7 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text =　"残り時間 : " + limitTime.ToString("0") + "秒";
+            timeText.text = limitTime.ToString("F2");
         }
     }
 }
