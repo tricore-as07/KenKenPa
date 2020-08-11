@@ -6,8 +6,8 @@ using UnityEngine.UI;
 /// </summary>
 public class InitializeMockScene : MonoBehaviour
 {
-    [SerializeField] Text distText = default;
-    [SerializeField] Text comboText = default;
+    [SerializeField] Text distText = default;           //進んだ距離を表示するText
+    [SerializeField] Text comboText = default;          //コンボを表示するText
 
     /// <summary>
     /// スクリプトのインスタンスがロードされた時に呼ばれる
