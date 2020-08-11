@@ -1504,7 +1504,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 189612, guid: f54741faf8baa9d448468237a8c96ea0, type: 3}
       propertyPath: m_Name
-      value: SceneRoot_MockScene
+      value: SceneRoot_GamePlayScene
       objectReference: {fileID: 0}
     - target: {fileID: 425292, guid: f54741faf8baa9d448468237a8c96ea0, type: 3}
       propertyPath: m_LocalPosition.x
