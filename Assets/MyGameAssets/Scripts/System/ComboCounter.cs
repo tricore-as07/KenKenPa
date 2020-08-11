@@ -1,9 +1,12 @@
-﻿/// <summary>
+﻿using UnityEngine.UI;
+
+/// <summary>
 /// コンボをカウントするクラス
 /// </summary>
 public static class ComboCounter
 {
     public static int ComboCount { get; private set; }     //コンボをカウントする
+    static Text comboText;                                 //コンボを表示するText
 
     /// <summary>
     /// 初期化処理
@@ -19,6 +22,7 @@ public static class ComboCounter
     public static void OnSuccessCombo()
     {
         ComboCount++;
+        comboText.text = ComboCount.ToString() + "Combo!!";
     }
 
     /// <summary>
@@ -27,5 +31,15 @@ public static class ComboCounter
     public static void OnMissCombo()
     {
         ComboCount = 0;
+        comboText.text = "";
+    }
+
+    /// <summary>
+    /// コンボを表示するTextをセットする
+    /// </summary>
+    /// <param name="text">表示するText</param>
+    public static void SetComboText(Text text)
+    {
+        comboText = text;
     }
 }
