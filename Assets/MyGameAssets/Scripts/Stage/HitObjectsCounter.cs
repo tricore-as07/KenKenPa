@@ -19,12 +19,17 @@ public class HitObjectsCounter : MonoBehaviour
     [SerializeField] Transform rightObjectTransform = default;      //右のオブジェクトのTransform
     [SerializeField] Transform centerObjectTransform = default;     //中央のオブジェクトのTransform
     [SerializeField] Transform leftObjectTransform = default;       //左のオブジェクトのTransform
+    static PlayerEffectCreater playerEffectCreater = null;
 
     /// <summary>
     /// 最初に行う処理
     /// </summary>
     void Start()
     {
+        if(playerEffectCreater == null)
+        {
+            playerEffectCreater = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerEffectCreater>();
+        }
         CountHitObjectsNum();
     }
 
@@ -66,6 +71,7 @@ public class HitObjectsCounter : MonoBehaviour
         }
         isRightCorrect = true;
         hitObjectsNum--;
+        playerEffectCreater.CreateCorrectEffect(StageConstants.rightNum);
     }
 
     /// <summary>
@@ -79,6 +85,7 @@ public class HitObjectsCounter : MonoBehaviour
         }
         isCenterCorrect = true;
         hitObjectsNum--;
+        playerEffectCreater.CreateCorrectEffect(StageConstants.centerNum);
     }
 
     /// <summary>
@@ -92,14 +99,17 @@ public class HitObjectsCounter : MonoBehaviour
         }
         isLeftCorrect = true;
         hitObjectsNum--;
+        playerEffectCreater.CreateCorrectEffect(StageConstants.leftNum);
     }
 
     /// <summary>
     /// 間違ったものを選んだ時に呼ばれる
     /// </summary>
-    public void OnMistakeSelect()
+    /// <param name="selectNum">選んだ場所の要素数</param>
+    public void OnMistakeSelect(int selectNum)
     {
         CountHitObjectsNum();
+        playerEffectCreater.CreateMissEffect(selectNum);
     }
 
     /// <summary>
