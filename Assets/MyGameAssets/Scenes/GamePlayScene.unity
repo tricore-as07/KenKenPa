@@ -287,9 +287,10 @@ GameObject:
   - component: {fileID: 16986430}
   - component: {fileID: 16986429}
   - component: {fileID: 16986431}
+  - component: {fileID: 16986432}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,6 +354,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2d800b3e76b488690980497f9f1a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &16986432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16986427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d11d1dd259e04355a2b556c8a8ebef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightObj: {fileID: 556443546}
+  centerObj: {fileID: 297678471}
+  leftObj: {fileID: 1823928471}
+  correctEffect: {fileID: 1605288786288348, guid: 05ac55d5a44c06846b0d135a8afaa497,
+    type: 3}
+  missEffect: {fileID: 1605288786288348, guid: c26438066ba56434bb0788cd78d35adc, type: 3}
 --- !u!1 &40919614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2931314705576267432, guid: 83d562ed2933c40e89a6cfcd40abbe73,
@@ -374,7 +393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &43526301
 Transform:
   m_ObjectHideFlags: 0
@@ -1189,7 +1208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &515029886
 Transform:
   m_ObjectHideFlags: 0
@@ -1855,7 +1874,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: bf882ea178a999648a63680a4a04ac5d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -2063,7 +2082,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: bf882ea178a999648a63680a4a04ac5d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
@@ -2595,7 +2614,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: bf882ea178a999648a63680a4a04ac5d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1
