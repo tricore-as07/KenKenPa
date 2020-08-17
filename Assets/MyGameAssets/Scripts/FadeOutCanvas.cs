@@ -47,7 +47,7 @@ public class FadeOutCanvas : MonoBehaviour
             if(canvasGroup.alpha <= 0)
             {
                 isStartFadeOut = false;
-                gamePlayManager.StartGamePlay();
+                gamePlayManager.PlayGameStart();
             }
         }
     }

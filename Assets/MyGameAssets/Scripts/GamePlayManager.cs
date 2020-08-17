@@ -17,7 +17,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     void OnDisable()
     {
-        GamePlayStop();
+        PlayGameStop();
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
     }
@@ -37,7 +37,7 @@ public class GamePlayManager : MonoBehaviour
     /// <summary>
     /// ゲームプレイをスタートする時に呼ぶ
     /// </summary>
-    public void StartGamePlay()
+    public void PlayGameStart()
     {
         timer.StartCountDown();
         fakeLoadObject.SetActive(false);
@@ -54,7 +54,7 @@ public class GamePlayManager : MonoBehaviour
     /// <summary>
     /// ゲームをストップさせる時に呼ぶ
     /// </summary>
-    void GamePlayStop()
+    void PlayGameStop()
     {
         gamePlayObject.SetActive(false);
         fakeLoadObject.SetActive(true);

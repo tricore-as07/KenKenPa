@@ -26,7 +26,7 @@ public class InputAction : MonoBehaviour
     /// </summary>
     void OnDisable()
     {
-        correctCheck.OnDisableCorrentCheck();
+        correctCheck.OnDisableCorrectCheck();
     }
 
     /// <summary>

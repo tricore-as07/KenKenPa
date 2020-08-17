@@ -12,7 +12,7 @@ public class CorrectCheck : MonoBehaviour
     /// <summary>
     /// 入力された場所が当たりか外れかの判定が非アクティブになった時
     /// </summary>
-    public void OnDisableCorrentCheck()
+    public void OnDisableCorrectCheck()
     {
         //入力可能かどうかで見た目を変える機能を無効にする
         hitObjectsCounter.transform.GetChild(StageConstants.rightNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
