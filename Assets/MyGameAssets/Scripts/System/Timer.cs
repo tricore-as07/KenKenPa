@@ -23,6 +23,7 @@ public class Timer : MonoBehaviour
         limitTime = limitTimeSetting;
         isCallTimeLimitEvent = false;
         isCountDown = false;
+        timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
     }
 
     /// <summary>

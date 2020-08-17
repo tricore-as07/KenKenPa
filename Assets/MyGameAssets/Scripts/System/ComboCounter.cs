@@ -14,6 +14,7 @@ public static class ComboCounter
     public static void Initialize()
     {
         ComboCount = 0;
+        comboText.text = "";
     }
 
     /// <summary>

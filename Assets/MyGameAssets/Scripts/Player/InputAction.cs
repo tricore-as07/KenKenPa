@@ -22,6 +22,14 @@ public class InputAction : MonoBehaviour
     }
 
     /// <summary>
+    /// オブジェクトが非アクティブになった時によばれる
+    /// </summary>
+    void OnDisable()
+    {
+        correctCheck.OnDisableCorrentCheck();
+    }
+
+    /// <summary>
     /// 最初に行う処理
     /// </summary>
     void Start()

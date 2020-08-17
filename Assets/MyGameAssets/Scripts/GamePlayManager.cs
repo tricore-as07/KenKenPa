@@ -13,20 +13,13 @@ public class GamePlayManager : MonoBehaviour
     float fakeLoadTimeCount;                                    //フェークロードを表示している時間をカウントする
 
     /// <summary>
-    /// オブジェクトがアクティブになった時によばれる
-    /// </summary>
-    void OnEnable()
-    {
-        GamePlayStop();
-    }
-
-    /// <summary>
     /// オブジェクトが非アクティブになった時によばれる
     /// </summary>
     void OnDisable()
     {
         GamePlayStop();
         fakeLoadTimeCount = 0;
+        fakeLoadObject.SetActive(true);
     }
 
     /// <summary>
@@ -35,7 +28,7 @@ public class GamePlayManager : MonoBehaviour
     void Update()
     {
         fakeLoadTimeCount += Time.deltaTime;
-        if(fakeLoadTimeCount >= fakeLoadTime)
+        if (fakeLoadTimeCount >= fakeLoadTime)
         {
             fadeOutCanvas.StartFadeOut();
         }
@@ -55,7 +48,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     public void SetActiveGamePlayObject()
     {
-        gamePlayObject.SetActive(false);
+        gamePlayObject.SetActive(true);
     }
 
     /// <summary>

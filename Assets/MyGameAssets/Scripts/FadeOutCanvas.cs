@@ -17,6 +17,7 @@ public class FadeOutCanvas : MonoBehaviour
     void OnEnable()
     {
         isStartFadeOut = false;
+        canvasGroup.alpha = 1;
     }
 
     /// <summary>
