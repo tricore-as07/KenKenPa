@@ -99,6 +99,8 @@ public class InputIntervalManager : MonoBehaviour
     {
         useStartIntervalData = false;
         onDisableIsAbleInputFunc?.Invoke();
+        isAbleInput = false;
+        inputIntervalCounter = 0f;
     }
 
     /// <summary>

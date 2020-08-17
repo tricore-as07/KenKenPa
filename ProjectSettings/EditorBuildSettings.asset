@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/MyGameAssets/Scenes/TitleScene.unity
     guid: ce2196257d05e452baa5d2c4b5aeab22
   - enabled: 1
-    path: Assets/MyGameAssets/Scenes/MockScene.unity
+    path: Assets/MyGameAssets/Scenes/GamePlayScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/MyGameAssets/Scenes/ResultScene.unity

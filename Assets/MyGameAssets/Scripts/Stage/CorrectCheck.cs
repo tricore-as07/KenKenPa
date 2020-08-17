@@ -10,6 +10,17 @@ public class CorrectCheck : MonoBehaviour
     bool changedCheckObject;                //判定するオブジェクトを変更したかどうか
 
     /// <summary>
+    /// 入力された場所が当たりか外れかの判定が非アクティブになった時
+    /// </summary>
+    public void OnDisableCorrectCheck()
+    {
+        //入力可能かどうかで見た目を変える機能を無効にする
+        hitObjectsCounter.transform.GetChild(StageConstants.rightNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.centerNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
+        hitObjectsCounter.transform.GetChild(StageConstants.leftNum).GetComponent<InputtableIsByObjectLookChange>().OnDisableCorrentCheck();
+    }
+
+    /// <summary>
     /// 判定をするオブジェクトのデータを更新する
     /// </summary>
     void CheckObjectUpdate()

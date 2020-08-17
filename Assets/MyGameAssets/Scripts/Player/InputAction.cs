@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// 入力があった際の動作をするクラス
@@ -10,7 +9,6 @@ public class InputAction : MonoBehaviour
     GameObject stage;                                               //ステージのオブジェクト
     InputIntervalManager inputIntervalManager;                      //入力から次の入力を受け付けるまでの時間を管理するクラス
     StageCreater stageCreater;                                      //ステージを生成するクラス
-    [SerializeField] float objectDist = default;                    //オブジェクトの距離
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -21,6 +19,14 @@ public class InputAction : MonoBehaviour
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
         correctCheck.OnEnableCorrentCheck();
+    }
+
+    /// <summary>
+    /// オブジェクトが非アクティブになった時によばれる
+    /// </summary>
+    void OnDisable()
+    {
+        correctCheck.OnDisableCorrectCheck();
     }
 
     /// <summary>
@@ -119,8 +125,9 @@ public class InputAction : MonoBehaviour
     /// FIXME orimoto モック版作成時のためマジックナンバー使用（本実装時に修正予定）
     void OnAllCorrectSelectPlayerAction()
     {
-        transform.position += new Vector3(0.0f, 0.0f, objectDist);
-        ProgressDistanceCounter.OnProgressPlayer(objectDist);
+        const float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
+        transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
+        ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
         inputIntervalManager.OnInput();
     }
