@@ -353,6 +353,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2d800b3e76b488690980497f9f1a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &40919614 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2931314705576267432, guid: 83d562ed2933c40e89a6cfcd40abbe73,
+    type: 3}
+  m_PrefabInstance: {fileID: 244819511}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &43526300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,6 +1071,8 @@ MonoBehaviour:
   canvasGroup: {fileID: 422075521}
   fadeOutTime: 1
   gamePlayManager: {fileID: 548904793}
+  banner: {fileID: 40919614}
+  nendNative: {fileID: 1002315109}
 --- !u!1 &497979549
 GameObject:
   m_ObjectHideFlags: 0
