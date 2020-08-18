@@ -1,4 +1,5 @@
 ﻿using UnityEngine.UI;
+using I2.Loc;
 
 /// <summary>
 /// コンボをカウントするクラス
@@ -23,7 +24,15 @@ public static class ComboCounter
     public static void OnSuccessCombo()
     {
         ComboCount++;
-        comboText.text = ComboCount.ToString() + "Combo!!";
+        if(LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            comboText.text = ComboCount.ToString() + "コンボ!!";
+
+        }
+        else if(LocalizationManager.CurrentLanguage == "English")
+        {
+            comboText.text = ComboCount.ToString() + "Combo!!";
+        }
     }
 
     /// <summary>
@@ -32,7 +41,15 @@ public static class ComboCounter
     public static void OnMissCombo()
     {
         ComboCount = 0;
-        comboText.text = "";
+        if (LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            comboText.text = "ミス!";
+
+        }
+        else if (LocalizationManager.CurrentLanguage == "English")
+        {
+            comboText.text = "Miss!";
+        }
     }
 
     /// <summary>
