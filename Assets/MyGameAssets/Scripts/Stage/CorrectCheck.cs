@@ -69,7 +69,7 @@ public class CorrectCheck : MonoBehaviour
             }
             return true;
         }
-        hitObjectsCounter.OnMistakeSelect();
+        hitObjectsCounter.OnMistakeSelect(StageConstants.rightNum);
         return false;
     }
 
@@ -88,7 +88,7 @@ public class CorrectCheck : MonoBehaviour
             }
             return true;
         }
-        hitObjectsCounter.OnMistakeSelect();
+        hitObjectsCounter.OnMistakeSelect(StageConstants.centerNum);
         return false;
     }
 
@@ -107,7 +107,7 @@ public class CorrectCheck : MonoBehaviour
             }
             return true;
         }
-        hitObjectsCounter.OnMistakeSelect();
+        hitObjectsCounter.OnMistakeSelect(StageConstants.leftNum);
         return false;
     }
 
