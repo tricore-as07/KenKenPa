@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
 /// スコアをセットする
 /// </summary>
 public class ScoreSetter : MonoBehaviour
 {
-    [SerializeField] Text scoreText;            //スコアのテキスト
+    [SerializeField] TextMeshProUGUI scoreText;            //スコアのテキスト
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
     /// </summary>
