@@ -1,4 +1,5 @@
 ﻿using UnityEngine.UI;
+using I2.Loc;
 
 /// <summary>
 /// 前進した距離をカウントしておくクラス
@@ -16,6 +17,14 @@ public static class ProgressDistanceCounter
     {
         distanceCounter = 0;
         distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        if (LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        }
+        else if (LocalizationManager.CurrentLanguage == "English")
+        {
+            distText.text = "mileage : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        }
     }
 
     /// <summary>
@@ -26,6 +35,14 @@ public static class ProgressDistanceCounter
     {
         distanceCounter += progressDistance;
         distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        if (LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        }
+        else if (LocalizationManager.CurrentLanguage == "English")
+        {
+            distText.text = "Mileage : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
+        }
     }
 
     /// <summary>

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using I2.Loc;
 
 /// <summary>
 /// 制限時間のタイマー
@@ -23,7 +24,14 @@ public class Timer : MonoBehaviour
         limitTime = limitTimeSetting;
         isCallTimeLimitEvent = false;
         isCountDown = false;
-        timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
+        if (LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
+        }
+        else if (LocalizationManager.CurrentLanguage == "English")
+        {
+            timeText.text = "Time limit : " + limitTime.ToString("0") + "s";
+        }
     }
 
     /// <summary>
@@ -57,7 +65,14 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
+            if (LocalizationManager.CurrentLanguage == "Japanese")
+            {
+                timeText.text = "残り時間 : " + limitTime.ToString("0") + "秒";
+            }
+            else if (LocalizationManager.CurrentLanguage == "English")
+            {
+                timeText.text = "Time limit : " + limitTime.ToString("0") + "s";
+            }
         }
     }
 }
