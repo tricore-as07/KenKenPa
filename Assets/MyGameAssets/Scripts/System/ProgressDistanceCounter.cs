@@ -34,7 +34,6 @@ public static class ProgressDistanceCounter
     public static void OnProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
-        distanceCounter = 0;
         distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
         if (LocalizationManager.CurrentLanguage == "Japanese")
         {
