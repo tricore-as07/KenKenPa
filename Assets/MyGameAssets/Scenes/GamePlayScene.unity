@@ -1812,8 +1812,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020147954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
-  m_LocalScale: {x: 1, y: 1, z: 1000}
+  m_LocalPosition: {x: 0, y: 0, z: 4950}
+  m_LocalScale: {x: 5, y: 1, z: 1000}
   m_Children: []
   m_Father: {fileID: 43526301}
   m_RootOrder: 2
@@ -2734,6 +2734,12 @@ MonoBehaviour:
     type: 3}
   stagePrefab: {fileID: 1932526264424291511, guid: 07ac3989882644cde970b42a4065360e,
     type: 3}
+  backgroundGroupPrefab: {fileID: 6653044354721723866, guid: 7c573f1112438412fbe47f41e240ff31,
+    type: 3}
+  backgroundPrefabs:
+  - {fileID: 871801256511083376, guid: 71fc51a1802d24417a3ae186a7a2a08e, type: 3}
+  - {fileID: 2840905078805284942, guid: ef57ca4dba7af47ea887146cb5b607a9, type: 3}
+  backgroundOnjectNum: 5
 --- !u!4 &1972780685964228080 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8743379531816133710, guid: 11372167c296e492bb1d8612dfc003de,
