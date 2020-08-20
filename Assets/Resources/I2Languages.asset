@@ -81,6 +81,46 @@ MonoBehaviour:
       - "\u8A00\u8A9E"
       Flags: 0000
       Languages_Touch: []
+    - Term: ComboMiss
+      TermType: 0
+      Description: 
+      Languages:
+      - Miss!
+      - "\u30DF\u30B9!"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Combo_Back
+      TermType: 0
+      Description: 
+      Languages:
+      - Combo!!
+      - "\u30B3\u30F3\u30DC!!"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Time_Front
+      TermType: 0
+      Description: 
+      Languages:
+      - 'Time limit : '
+      - "\u6B8B\u308A\u6642\u9593 : "
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Time_Back
+      TermType: 0
+      Description: 
+      Languages:
+      - s
+      - "\u79D2"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: Dist_Front
+      TermType: 0
+      Description: 
+      Languages:
+      - 
+      - 
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: '-'

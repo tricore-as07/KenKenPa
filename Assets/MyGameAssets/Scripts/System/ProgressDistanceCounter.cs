@@ -9,6 +9,7 @@ public static class ProgressDistanceCounter
     static float distanceCounter;                                           //進んだ距離をカウントする
     public static float DistanceCounter => distanceCounter;                 //進んだ距離を取得するためのプロパティ
     static Text distText;                                                   //進んだ距離を表示するText
+    static string distFrontText;                                            //進んだ距離の前に表示するテキストの文字列
 
     /// <summary>
     /// 初期化処理
@@ -16,15 +17,8 @@ public static class ProgressDistanceCounter
     public static void Initialize()
     {
         distanceCounter = 0;
-        distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        if (LocalizationManager.CurrentLanguage == "Japanese")
-        {
-            distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        }
-        else if (LocalizationManager.CurrentLanguage == "English")
-        {
-            distText.text = "mileage : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        }
+        distFrontText = LocalizationManager.GetTranslation("Dist_Front");
+        distText.text = distFrontText + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
     }
 
     /// <summary>
@@ -34,15 +28,7 @@ public static class ProgressDistanceCounter
     public static void OnProgressPlayer(float progressDistance)
     {
         distanceCounter += progressDistance;
-        distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        if (LocalizationManager.CurrentLanguage == "Japanese")
-        {
-            distText.text = "進行距離 : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        }
-        else if (LocalizationManager.CurrentLanguage == "English")
-        {
-            distText.text = "Mileage : " + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
-        }
+        distText.text = distFrontText + ProgressDistanceCounter.DistanceCounter.ToString() + "m";
     }
 
     /// <summary>
