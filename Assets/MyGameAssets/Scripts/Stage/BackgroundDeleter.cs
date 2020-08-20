@@ -5,8 +5,8 @@
 /// </summary>
 public class BackgroundDeleter : MonoBehaviour
 {
-    static GameObject player;
-    static StageCreater stageCreater;
+    static GameObject player;               //プレイヤーのオブジェクト
+    static StageCreater stageCreater;       //ステージの生成をするクラス
 
     /// <summary>
     /// 最初に行う処理
@@ -28,6 +28,7 @@ public class BackgroundDeleter : MonoBehaviour
     /// </summary>
     void Update()
     {
+        //プレイヤーよりポジションが後ろの場合
         if(player.transform.position.z > transform.position.z)
         {
             stageCreater.CreateBackground();
