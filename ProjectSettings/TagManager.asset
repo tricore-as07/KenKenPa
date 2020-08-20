@@ -12,6 +12,7 @@ TagManager:
   - InputIntervalManager
   - Stage
   - StageCreater
+  - SoundManager
   layers:
   - Default
   - TransparentFX
