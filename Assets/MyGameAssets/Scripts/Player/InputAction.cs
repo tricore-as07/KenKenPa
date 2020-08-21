@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// 入力があった際の動作をするクラス
 /// </summary>
 public class InputAction : MonoBehaviour
 {
-    CorrectCheck correctCheck;                                      //入力された場所が当たりか外れかを判定するクラス
-    GameObject stage;                                               //ステージのオブジェクト
-    InputIntervalManager inputIntervalManager;                      //入力から次の入力を受け付けるまでの時間を管理するクラス
-    StageCreater stageCreater;                                      //ステージを生成するクラス
+    [SerializeField] AudioSource audioSource = default;                 //オーディオソースコンポーネント
+    [SerializeField] AudioClip correctSE = default;                     //正解時のSE
+    [SerializeField] AudioClip incorrectSE = default;                   //不正解時のSE
+    CorrectCheck correctCheck;                                          //入力された場所が当たりか外れかを判定するクラス
+    GameObject stage;                                                   //ステージのオブジェクト
+    InputIntervalManager inputIntervalManager;                          //入力から次の入力を受け付けるまでの時間を管理するクラス
+    StageCreater stageCreater;                                          //ステージを生成するクラス
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -54,6 +58,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
                 inputIntervalManager.MissInput();
+                audioSource.PlayOneShot(incorrectSE);
             }
         }
     }
@@ -73,6 +78,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
                 inputIntervalManager.MissInput();
+                audioSource.PlayOneShot(incorrectSE);
             }
         }
     }
@@ -92,6 +98,7 @@ public class InputAction : MonoBehaviour
             {
                 ComboCounter.OnMissCombo();
                 inputIntervalManager.MissInput();
+                audioSource.PlayOneShot(incorrectSE);
             }
         }
     }
@@ -130,5 +137,6 @@ public class InputAction : MonoBehaviour
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
         inputIntervalManager.OnInput();
+        audioSource.PlayOneShot(correctSE);
     }
 }

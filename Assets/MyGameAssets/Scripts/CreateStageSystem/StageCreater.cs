@@ -1,16 +1,22 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 /// <summary>
 /// ステージの生成をするクラス
 /// </summary>
 public class StageCreater : MonoBehaviour
 {
-    [SerializeField] StageSettingData stageSettingData = default;   //ステージの設定データ
-    [SerializeField] GameObject objectsGroupPrefab = default;       //ObjectsGroupのプレハブ
-    [SerializeField] GameObject objectsPrefab = default;            //１歩分のオブジェクトのプレハブ
-    [SerializeField] GameObject stagePrefab = default;              //ステージのプレハブ
-    GameObject stage = default;                                     //ステージ関連のオブジェクトの親に設定するためのもの
-    Vector3 DepthPosition;                                          //ステージ生成時の奥行きの位置
+    [SerializeField] StageSettingData stageSettingData = default;                   //ステージの設定データ
+    [SerializeField] GameObject objectsGroupPrefab = default;                       //ObjectsGroupのプレハブ
+    [SerializeField] GameObject objectsPrefab = default;                            //１歩分のオブジェクトのプレハブ
+    [SerializeField] GameObject stagePrefab = default;                              //ステージのプレハブ
+    [SerializeField] GameObject backgroundGroupPrefab = default;                    //背景オブジェクトをまとめるオブジェクトのプレハブ
+    [SerializeField]List<GameObject> backgroundPrefabs = new List<GameObject>();    //背景のプレハブのリスト
+    [SerializeField] int backgroundOnjectNum = default;                             //背景オブジェクトの数
+    GameObject stage = default;                                                     //ステージ関連のオブジェクトの親に設定するためのもの
+    GameObject backGround = default;                                                //背景オブジェクトをまとめるオブジェクト
+    Vector3 DepthPosition;                                                          //ステージ生成時の奥行きの位置
+    Vector3 backgroundPutPos;                                                       //背景を設置するポジション
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -22,6 +28,11 @@ public class StageCreater : MonoBehaviour
         {
             //自分と同じ親を設定してプレハブを作成
             stage = Instantiate(stagePrefab,transform.parent);
+        }
+        if (backGround == null)
+        {
+            //自分と同じ親を設定してプレハブを作成
+            backGround = Instantiate(backgroundGroupPrefab, transform.parent);
         }
         int createCount = 0;
         var startObjectsGroupData = stageSettingData.StartObjectsGroupDatas.GetEnumerator();
@@ -36,6 +47,12 @@ public class StageCreater : MonoBehaviour
         {
             var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);
             CreateObjectsGroup(objectsGroupData);
+        }
+        //背景オブジェクトの生成
+        Vector3 backgroundPutPos = new Vector3(0,0,0);
+        for(var i = 0; i < backgroundOnjectNum; i++)
+        {
+            CreateBackground();
         }
     }
 
@@ -109,5 +126,26 @@ public class StageCreater : MonoBehaviour
                     break;
                 }
         }
+    }
+
+    /// <summary>
+    /// 背景を作成する
+    /// </summary>
+    public void CreateBackground()
+    {
+        var backgroundObj = GetRandomBackgroundPrefab();
+        backgroundObj = Instantiate(backgroundObj, backGround.transform);
+        backgroundObj.transform.position = backgroundPutPos;
+        const int backgroundDist = 30;  //背景オブジェクトの間隔
+        backgroundPutPos += new Vector3(0, 0, backgroundDist);
+    }
+
+    /// <summary>
+    /// 背景のプレハブをランダムに取得する
+    /// </summary>
+    /// <returns>ランダムに抽出された背景用プレハブ</returns>
+    GameObject GetRandomBackgroundPrefab()
+    {
+        return backgroundPrefabs[UnityEngine.Random.Range(0, backgroundPrefabs.Count)];
     }
 }
