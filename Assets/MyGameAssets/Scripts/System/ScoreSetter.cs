@@ -13,6 +13,7 @@ public class ScoreSetter : MonoBehaviour
     void OnEnable()
     {
         scoreText.text = ProgressDistanceCounter.DistanceCounter.ToString() + "m!";
+        GameServiceUtil.ReportScore((int)ProgressDistanceCounter.DistanceCounter, 0);
     }
 }
 
