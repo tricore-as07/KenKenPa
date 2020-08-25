@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// ゲーム中のプレイヤーの入力に関するクラス
@@ -14,6 +15,10 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] float tapRange = default;          //タップの判定の大きさ
     [SerializeField] new Camera camera = default;       //カメラ
     InputAction inputAction;                            //入力があった時に実際の処理をするクラス
+    [SerializeField] float sideInputIntervalTime = default;
+    float sideInputDistSetting;
+    bool isSideInputInterval;
+    Vector2 sideInputPos;
 
     /// <summary>
     /// 最初に行う処理
@@ -21,6 +26,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         inputAction = GetComponent<InputAction>();
+        sideInputDistSetting = Screen.width / 5;
     }
 
     /// <summary>
@@ -61,6 +67,7 @@ public class PlayerInput : MonoBehaviour
     void OnEnable()
     {
         IT_Gesture.onMultiTapE += OnMultiTap;
+        isSideInputInterval = false;
     }
 
     /// <summary>
@@ -77,20 +84,41 @@ public class PlayerInput : MonoBehaviour
     /// <param name="tap">タップに関する情報</param>
     void OnMultiTap(Tap tap)
     {
-        //右がタップ入力されているか
-        if (IsTapInput(tap.pos,rightObj.position))
+        ////右がタップ入力されているか
+        //if (IsTapInput(tap.pos,rightObj.position))
+        //{
+        //    inputAction.OnRightInput();
+        //}
+        ////中央がタップ入力されているか
+        //if (IsTapInput(tap.pos, centerObj.position))
+        //{
+        //    inputAction.OnCenterInput();
+        //}
+        ////左がタップ入力されているか
+        //if (IsTapInput(tap.pos, leftObj.position))
+        //{
+        //    inputAction.OnLeftInput();
+        //}
+
+        if(isSideInputInterval)
         {
-            inputAction.OnRightInput();
+            float inputDist = sideInputPos.x - tap.pos.x;
+            if(inputDist > sideInputDistSetting)
+            {
+                inputAction.OnLeftInput();
+                inputAction.OnRightInput();
+                isSideInputInterval = false;
+                return;
+            }
         }
-        //中央がタップ入力されているか
-        if (IsTapInput(tap.pos, centerObj.position))
+        if(Screen.width / 3 < tap.pos.x && tap.pos.x < Screen.width / 3 * 2)
         {
             inputAction.OnCenterInput();
         }
-        //左がタップ入力されているか
-        if (IsTapInput(tap.pos, leftObj.position))
+        else
         {
-            inputAction.OnLeftInput();
+            isSideInputInterval = true;
+            sideInputPos = tap.pos;
         }
     }
 
@@ -110,5 +138,15 @@ public class PlayerInput : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    /// <summary>
+    /// サイド入力がされた時に呼ばれるコルーチン
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator OnSideInput()
+    {
+        yield return new WaitForSeconds(sideInputIntervalTime);
+        isSideInputInterval = false;
     }
 }

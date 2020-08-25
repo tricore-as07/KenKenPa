@@ -346,6 +346,7 @@ MonoBehaviour:
   leftObj: {fileID: 1823928471}
   tapRange: 100
   camera: {fileID: 963194227}
+  sideInputIntervalTime: 0.15
 --- !u!114 &16986431
 MonoBehaviour:
   m_ObjectHideFlags: 0
