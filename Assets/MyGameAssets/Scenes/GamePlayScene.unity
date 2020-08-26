@@ -329,6 +329,7 @@ MonoBehaviour:
   audioSource: {fileID: 16986433}
   correctSE: {fileID: 8300000, guid: 55b225108b99f493983433f88618ac27, type: 3}
   incorrectSE: {fileID: 8300000, guid: f4835300617a34c8f9de1c14e9345fce, type: 3}
+  playerInput: {fileID: 16986430}
 --- !u!114 &16986430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,9 +342,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1efdaca855b2a45cbbe07da51df8d935, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightObj: {fileID: 556443546}
-  centerObj: {fileID: 297678471}
-  leftObj: {fileID: 1823928471}
   tapRange: 100
   camera: {fileID: 963194227}
   sideInputIntervalTime: 0.15
@@ -1585,7 +1583,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: -0.014452741, z: 4.5887e-41, w: 7.9671736e-10}
+  m_BoundingSphereOverride: {x: 1e-45, y: 0, z: 0, w: 3.1e-44}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1731,7 +1729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.60876137, y: -0, z: -0, w: 0.7933534}
-  m_LocalPosition: {x: 0, y: 9, z: 5}
+  m_LocalPosition: {x: 0, y: 9, z: 8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 16986428}

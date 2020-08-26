@@ -43,8 +43,8 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
         {
             return;
         }
-        transform.GetChild(HitObject).gameObject.SetActive(false);
-        transform.GetChild(NotInputHitObject).gameObject.SetActive(true);
+        transform.GetChild(HitObject).gameObject.SetActive(true);
+        transform.GetChild(NotInputHitObject).gameObject.SetActive(false);
     }
 
     /// <summary>

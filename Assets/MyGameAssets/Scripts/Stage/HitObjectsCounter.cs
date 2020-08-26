@@ -109,7 +109,6 @@ public class HitObjectsCounter : MonoBehaviour
     public void OnMistakeSelect(int selectNum)
     {
         CountHitObjectsNum();
-        playerEffectCreater.CreateMissEffect(selectNum);
     }
 
     /// <summary>

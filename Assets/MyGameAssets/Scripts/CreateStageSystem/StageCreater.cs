@@ -49,7 +49,7 @@ public class StageCreater : MonoBehaviour
             CreateObjectsGroup(objectsGroupData);
         }
         //背景オブジェクトの生成
-        Vector3 backgroundPutPos = new Vector3(0,0,0);
+        backgroundPutPos = new Vector3(0,0,0);
         for(var i = 0; i < backgroundOnjectNum; i++)
         {
             CreateBackground();

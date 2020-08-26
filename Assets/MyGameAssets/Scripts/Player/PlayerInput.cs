@@ -9,16 +9,14 @@ public class PlayerInput : MonoBehaviour
     bool rightInput;                                    //右に対応する入力されたかどうか
     bool centerInput;                                   //中央に対応する入力されたかどうか
     bool leftInput;                                     //左に対応する入力されたかどうか
-    [SerializeField] Transform rightObj = default;      //右のタップを判定する中心
-    [SerializeField] Transform centerObj = default;     //中央のタップを判定する中心
-    [SerializeField] Transform leftObj = default;       //左のタップを判定する中心
     [SerializeField] float tapRange = default;          //タップの判定の大きさ
     [SerializeField] new Camera camera = default;       //カメラ
     InputAction inputAction;                            //入力があった時に実際の処理をするクラス
-    [SerializeField] float sideInputIntervalTime = default;
-    float sideInputDistSetting;
-    bool isSideInputInterval;
-    Vector2 sideInputPos;
+    [SerializeField] float sideInputIntervalTime = default; //左右入力のズレの許容時間
+    float sideInputDistSetting;                             //左右入力の間の最低距離
+    bool isSideInputInterval;                               //左右入力のズレの許容時間内かどうか
+    Vector2 sideInputPos;                                   //左右入力の早かった方のポジション
+    Coroutine sideInputCoroutine;                           //左右入力のズレの許容時間を待つ用のコルーチン
 
     /// <summary>
     /// 最初に行う処理
@@ -26,6 +24,7 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         inputAction = GetComponent<InputAction>();
+        //画面の横幅の５分の１は左右入力で間を開けるように設定
         sideInputDistSetting = Screen.width / 5;
     }
 
@@ -84,69 +83,60 @@ public class PlayerInput : MonoBehaviour
     /// <param name="tap">タップに関する情報</param>
     void OnMultiTap(Tap tap)
     {
-        ////右がタップ入力されているか
-        //if (IsTapInput(tap.pos,rightObj.position))
-        //{
-        //    inputAction.OnRightInput();
-        //}
-        ////中央がタップ入力されているか
-        //if (IsTapInput(tap.pos, centerObj.position))
-        //{
-        //    inputAction.OnCenterInput();
-        //}
-        ////左がタップ入力されているか
-        //if (IsTapInput(tap.pos, leftObj.position))
-        //{
-        //    inputAction.OnLeftInput();
-        //}
-
+        //左右入力のズレの許容時間内なら
         if(isSideInputInterval)
         {
-            float inputDist = sideInputPos.x - tap.pos.x;
+            float inputDist = sideInputPos.x - tap.pos.x;   //左右入力の横幅の間隔
+            //左右入力の横幅の間隔が設定された距離より空いていれば
             if(inputDist > sideInputDistSetting)
             {
+                //左右の入力をオンにする
                 inputAction.OnLeftInput();
                 inputAction.OnRightInput();
                 isSideInputInterval = false;
+                StopCoroutine(sideInputCoroutine);
                 return;
             }
         }
-        if(Screen.width / 3 < tap.pos.x && tap.pos.x < Screen.width / 3 * 2)
+        bool isTapCenter = Screen.width / 3 < tap.pos.x && tap.pos.x < Screen.width / 3 * 2;
+        sideInputPos = tap.pos;
+        //入力された場所が中央なら
+        if (isTapCenter)
         {
             inputAction.OnCenterInput();
         }
+        //入力された場所が中央じゃなければ
         else
         {
             isSideInputInterval = true;
-            sideInputPos = tap.pos;
+            sideInputCoroutine = StartCoroutine(OnSideInput());
         }
-    }
-
-    /// <summary>
-    /// タップ入力されているかどうか
-    /// </summary>
-    /// <param name="tapPos">タップされたポジション</param>
-    /// <param name="objPos">入力を判定するオブジェクトのポジション</param>
-    /// <returns>入力されている : true,入力されていない : false</returns>
-    bool IsTapInput(Vector2 tapPos,Vector3 objPos)
-    {
-        //オブジェクトのカメラ上での位置
-        var pos = RectTransformUtility.WorldToScreenPoint(camera, objPos);
-        //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tapPos).sqrMagnitude < tapRange * tapRange)
-        {
-            return true;
-        }
-        return false;
     }
 
     /// <summary>
     /// サイド入力がされた時に呼ばれるコルーチン
     /// </summary>
     /// <returns></returns>
-    private IEnumerator OnSideInput()
+    IEnumerator OnSideInput()
     {
         yield return new WaitForSeconds(sideInputIntervalTime);
+        //入力のズレの許容時間が過ぎたら
         isSideInputInterval = false;
+    }
+
+    /// <summary>
+    /// 中央入力でミスだった場合にサイド入力かどうか誤差許容時間だけ待つ
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator WaitSideInput()
+    {
+        isSideInputInterval = true;
+        yield return new WaitForSeconds(sideInputIntervalTime);
+        if(!isSideInputInterval)
+        {
+            yield break;
+        }
+        isSideInputInterval = false;
+        inputAction.OnCenterInputMiss();
     }
 }

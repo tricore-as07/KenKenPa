@@ -9,6 +9,7 @@ public class InputAction : MonoBehaviour
     [SerializeField] AudioSource audioSource = default;                 //オーディオソースコンポーネント
     [SerializeField] AudioClip correctSE = default;                     //正解時のSE
     [SerializeField] AudioClip incorrectSE = default;                   //不正解時のSE
+    [SerializeField] PlayerInput playerInput;                           //ゲーム中のプレイヤーの入力に関するクラス
     CorrectCheck correctCheck;                                          //入力された場所が当たりか外れかを判定するクラス
     GameObject stage;                                                   //ステージのオブジェクト
     InputIntervalManager inputIntervalManager;                          //入力から次の入力を受け付けるまでの時間を管理するクラス
@@ -76,9 +77,7 @@ public class InputAction : MonoBehaviour
             }
             else
             {
-                ComboCounter.OnMissCombo();
-                inputIntervalManager.MissInput();
-                audioSource.PlayOneShot(incorrectSE);
+                StartCoroutine(playerInput.WaitSideInput());
             }
         }
     }
@@ -138,5 +137,15 @@ public class InputAction : MonoBehaviour
         ComboCounter.OnSuccessCombo();
         inputIntervalManager.OnInput();
         audioSource.PlayOneShot(correctSE);
+    }
+
+    /// <summary>
+    /// 中央入力でミスだった時に呼ばれる
+    /// </summary>
+    public void OnCenterInputMiss()
+    {
+        ComboCounter.OnMissCombo();
+        inputIntervalManager.MissInput();
+        audioSource.PlayOneShot(incorrectSE);
     }
 }
