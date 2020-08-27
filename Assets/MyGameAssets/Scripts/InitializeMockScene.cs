@@ -8,6 +8,7 @@ public class InitializeMockScene : MonoBehaviour
 {
     [SerializeField] Text distText = default;           //進んだ距離を表示するText
     [SerializeField] Text comboText = default;          //コンボを表示するText
+    [SerializeField] Timer timer = default;             //タイマークラス
 
     /// <summary>
     /// スクリプトのインスタンスがロードされた時に呼ばれる
@@ -16,6 +17,7 @@ public class InitializeMockScene : MonoBehaviour
     {
         ProgressDistanceCounter.SetDistText(distText);
         ComboCounter.SetComboText(comboText);
+        ComboCounter.SetTimer(timer);
     }
 
     /// <summary>

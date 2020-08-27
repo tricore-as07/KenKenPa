@@ -244,6 +244,11 @@ PrefabInstance:
       propertyPath: timeBonusCoefficient
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
+        type: 3}
+      propertyPath: timeBonusByCombo
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f053bea2dd63d44bba37cdb56133de26, type: 3}
 --- !u!1 &11549711 stripped
@@ -1822,6 +1827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distText: {fileID: 1167095055}
   comboText: {fileID: 1494372574}
+  timer: {fileID: 11549714}
 --- !u!1001 &929160544
 PrefabInstance:
   m_ObjectHideFlags: 0

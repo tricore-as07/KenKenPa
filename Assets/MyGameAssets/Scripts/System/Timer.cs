@@ -20,6 +20,7 @@ public class Timer : MonoBehaviour
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
     [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
+    [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -80,5 +81,13 @@ public class Timer : MonoBehaviour
                 EndCountDownObject.SetActive(true);
             }
         }
+    }
+
+    /// <summary>
+    /// コンボによるタイムボーナスの追加
+    /// </summary>
+    public void AddTimeBonusByCombo()
+    {
+        limitTime += timeBonusByCombo;
     }
 }

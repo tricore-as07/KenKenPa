@@ -11,6 +11,8 @@ public static class ComboCounter
     static Text comboText;                                 //コンボを表示するText
     static string comboMissText;
     static string comboBackText;
+    static Timer timer;
+    const int timeBonusComboNum = 10;
 
     /// <summary>
     /// 初期化処理
@@ -35,6 +37,10 @@ public static class ComboCounter
         {
             MaxComboCount = ComboCount;
         }
+        if(ComboCount % timeBonusComboNum == 0)
+        {
+            timer.AddTimeBonusByCombo();
+        }
     }
 
     /// <summary>
@@ -53,5 +59,14 @@ public static class ComboCounter
     public static void SetComboText(Text text)
     {
         comboText = text;
+    }
+
+    /// <summary>
+    /// 制限時間管理するタイマークラスをセットする
+    /// </summary>
+    /// <param name="timer">制限時間のタイマー</param>
+    public static void SetTimer(Timer argTimer)
+    {
+        timer = argTimer;
     }
 }
