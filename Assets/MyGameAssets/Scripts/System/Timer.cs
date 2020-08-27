@@ -15,6 +15,7 @@ public class Timer : MonoBehaviour
     bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
     [SerializeField] Text timeText;                             //タイマーを表示するテキスト
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
+    [SerializeField] Animator animator = default;
     bool isCountDown;                                           //カウントダウンをするかどうか
     string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
@@ -70,13 +71,13 @@ public class Timer : MonoBehaviour
         {
             limitTime -= Time.deltaTime;
             timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
-            //制限時間が１０秒以下になって、終了カウントダウンがアクティブになっていない時
             if(limitTime <= 11.0 && !isAddTimeBonus)
             {
                 isAddTimeBonus = true;
                 limitTime += ComboCounter.MaxComboCount / timeBonusCoefficient;
             }
-            if(limitTime <= 10.5 && !EndCountDownObject.activeSelf)
+            //制限時間が１０秒以下になって、終了カウントダウンがアクティブになっていない時
+            if (limitTime <= 10.5 && !EndCountDownObject.activeSelf)
             {
                 EndCountDownObject.SetActive(true);
             }
@@ -88,6 +89,12 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void AddTimeBonusByCombo()
     {
+        if(EndCountDownObject.activeSelf)
+        {
+            float nowTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+            nowTime -= (float)(1.0 / 11.0);
+            animator.CrossFade("EndCountDown",0.0f,0, nowTime);
+        }
         limitTime += timeBonusByCombo;
     }
 }

@@ -249,6 +249,11 @@ PrefabInstance:
       propertyPath: timeBonusByCombo
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
+        type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 929160546}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f053bea2dd63d44bba37cdb56133de26, type: 3}
 --- !u!1 &11549711 stripped
@@ -1955,6 +1960,12 @@ PrefabInstance:
 --- !u!1 &929160545 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2566456917302706483, guid: 96a79327d90214192bcd640d9f83962a,
+    type: 3}
+  m_PrefabInstance: {fileID: 929160544}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &929160546 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 759086652, guid: 96a79327d90214192bcd640d9f83962a,
     type: 3}
   m_PrefabInstance: {fileID: 929160544}
   m_PrefabAsset: {fileID: 0}
