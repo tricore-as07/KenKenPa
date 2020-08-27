@@ -14,9 +14,11 @@ public class Timer : MonoBehaviour
     [SerializeField] UnityEvent onTimeLimitEvent = default; //制限時間がなくなった時に呼ばれるイベント
     bool isCallTimeLimitEvent;                              //制限時間がきてイベントが呼ばれたかどうか
     [SerializeField] Text timeText;                         //タイマーを表示するテキスト
+    [SerializeField] GameObject EndCountDownObject = default;
     bool isCountDown;                                       //カウントダウンをするかどうか
     string timeFrontText;                                   //制限時間の前に表示するテキストの文字列
     string timeBackText;                                    //制限時間の後ろに表示するテキストの文字列
+    bool isAddTimeBonus;                                    //タイムボーナスを追加したかどうか
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -29,6 +31,8 @@ public class Timer : MonoBehaviour
         timeFrontText = LocalizationManager.GetTranslation("Time_Front");
         timeBackText = LocalizationManager.GetTranslation("Time_Back");
         timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
+        EndCountDownObject.SetActive(false);
+        isAddTimeBonus = false;
     }
 
     /// <summary>
@@ -64,6 +68,15 @@ public class Timer : MonoBehaviour
         {
             limitTime -= Time.deltaTime;
             timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
+            //制限時間が１０秒以下になって、終了カウントダウンがアクティブになっていない時
+            if(limitTime <= 11.0 && !isAddTimeBonus)
+            {
+                isAddTimeBonus = true;
+            }
+            if(limitTime <= 10.5 && !EndCountDownObject.activeSelf)
+            {
+                EndCountDownObject.SetActive(true);
+            }
         }
     }
 }
