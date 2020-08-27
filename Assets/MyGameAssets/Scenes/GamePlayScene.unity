@@ -239,6 +239,11 @@ PrefabInstance:
       propertyPath: EndCountDownObject
       value: 
       objectReference: {fileID: 929160545}
+    - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
+        type: 3}
+      propertyPath: timeBonusCoefficient
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f053bea2dd63d44bba37cdb56133de26, type: 3}
 --- !u!1 &11549711 stripped

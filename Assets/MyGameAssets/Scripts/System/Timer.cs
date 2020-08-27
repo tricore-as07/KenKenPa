@@ -8,17 +8,18 @@ using I2.Loc;
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float limitTimeSetting = 0f;           //制限時間の設定時間
-    float limitTime;                                        //カウントダウンする制限時間
-    public float LimitTime => limitTime;                    //外部に公開するためのプロパティ
-    [SerializeField] UnityEvent onTimeLimitEvent = default; //制限時間がなくなった時に呼ばれるイベント
-    bool isCallTimeLimitEvent;                              //制限時間がきてイベントが呼ばれたかどうか
-    [SerializeField] Text timeText;                         //タイマーを表示するテキスト
-    [SerializeField] GameObject EndCountDownObject = default;
-    bool isCountDown;                                       //カウントダウンをするかどうか
-    string timeFrontText;                                   //制限時間の前に表示するテキストの文字列
-    string timeBackText;                                    //制限時間の後ろに表示するテキストの文字列
-    bool isAddTimeBonus;                                    //タイムボーナスを追加したかどうか
+    [SerializeField] float limitTimeSetting = 0f;               //制限時間の設定時間
+    float limitTime;                                            //カウントダウンする制限時間
+    public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
+    [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
+    bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
+    [SerializeField] Text timeText;                             //タイマーを表示するテキスト
+    [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
+    bool isCountDown;                                           //カウントダウンをするかどうか
+    string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
+    string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
+    bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
+    [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -72,6 +73,7 @@ public class Timer : MonoBehaviour
             if(limitTime <= 11.0 && !isAddTimeBonus)
             {
                 isAddTimeBonus = true;
+                limitTime += ComboCounter.MaxComboCount / timeBonusCoefficient;
             }
             if(limitTime <= 10.5 && !EndCountDownObject.activeSelf)
             {

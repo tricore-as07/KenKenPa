@@ -7,6 +7,7 @@ using I2.Loc;
 public static class ComboCounter
 {
     public static int ComboCount { get; private set; }     //コンボをカウントする
+    public static int MaxComboCount { get; private set; }  //最大コンボのカウント
     static Text comboText;                                 //コンボを表示するText
     static string comboMissText;
     static string comboBackText;
@@ -17,6 +18,7 @@ public static class ComboCounter
     public static void Initialize()
     {
         ComboCount = 0;
+        MaxComboCount = 0;
         comboText.text = "";
         comboMissText = LocalizationManager.GetTranslation("ComboMiss");
         comboBackText = LocalizationManager.GetTranslation("Combo_Back");
@@ -29,6 +31,10 @@ public static class ComboCounter
     {
         ComboCount++;
         comboText.text = ComboCount.ToString() + comboBackText;
+        if(MaxComboCount < ComboCount)
+        {
+            MaxComboCount = ComboCount;
+        }
     }
 
     /// <summary>
