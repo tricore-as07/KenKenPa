@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 /// <summary>
 /// 入力があった際の動作をするクラス

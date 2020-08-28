@@ -121,6 +121,30 @@ MonoBehaviour:
       - "\u9032\u884C\u8DDD\u96E2 : "
       Flags: 0000
       Languages_Touch: []
+    - Term: Volume
+      TermType: 0
+      Description: 
+      Languages:
+      - Volume
+      - "\u97F3\u91CF"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: ComboBonus
+      TermType: 0
+      Description: 
+      Languages:
+      - Combo Bonus
+      - "\u30B3\u30F3\u30DC\u30DC\u30FC\u30CA\u30B9"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BonusTime
+      TermType: 0
+      Description: 
+      Languages:
+      - +1s
+      - "+1\u79D2"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: '-'

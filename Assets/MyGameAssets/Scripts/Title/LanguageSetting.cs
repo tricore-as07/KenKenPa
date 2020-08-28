@@ -7,6 +7,23 @@ using TMPro;
 /// </summary>
 public class LanguageSetting : MonoBehaviour
 {
+    [SerializeField] TMP_Dropdown dropdown;
+
+    /// <summary>
+    /// スクリプトのインスタンスがロードされた時に呼ばれる
+    /// </summary>
+    void Awake()
+    {
+        if(LocalizationManager.CurrentLanguage == "Japanese")
+        {
+            dropdown.value = 0;
+        }
+        else if(LocalizationManager.CurrentLanguage == "English")
+        {
+            dropdown.value = 1;
+        }
+    }
+
     /// <summary>
     /// 設定言語が変更された時に呼ばれる
     /// </summary>

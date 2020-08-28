@@ -16,17 +16,17 @@ public class PlayerEffectCreater : MonoBehaviour
     /// <param name="correctNum">選んだ正解の要素数</param>
     public void CreateCorrectEffect(int correctNum)
     {
-        if (correctNum == StageConstants.rightNum)
-        {
-            Instantiate(correctEffect,rightObj);
-        }
-        else if (correctNum == StageConstants.centerNum)
-        {
-            Instantiate(correctEffect, centerObj);
-        }
-        else if (correctNum == StageConstants.leftNum)
-        {
-            Instantiate(correctEffect, leftObj);
-        }
+        //if (correctNum == StageConstants.rightNum)
+        //{
+        //    Instantiate(correctEffect,rightObj);
+        //}
+        //else if (correctNum == StageConstants.centerNum)
+        //{
+        //    Instantiate(correctEffect, centerObj);
+        //}
+        //else if (correctNum == StageConstants.leftNum)
+        //{
+        //    Instantiate(correctEffect, leftObj);
+        //}
     }
 }
