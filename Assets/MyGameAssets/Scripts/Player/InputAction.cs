@@ -146,7 +146,7 @@ public class InputAction : MonoBehaviour
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
         inputIntervalManager.OnInput();
-        audioSource.PlayOneShot(correctSE);
+        audioSource.PlayOneShot(correctSE, audioSource.volume);
     }
 
     /// <summary>
