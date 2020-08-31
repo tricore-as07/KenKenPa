@@ -141,8 +141,8 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - +1s
-      - "+1\u79D2"
+      - +3s
+      - "+3\u79D2"
       Flags: 0000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

@@ -8,6 +8,7 @@ using TMPro;
 public class ShowComboBonusUI : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI meshPro;
+    [SerializeField] float showTime;
     string timeBack;
 
     /// <summary>
@@ -24,7 +25,7 @@ public class ShowComboBonusUI : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
-        Invoke("ShowStop",1f);
+        Invoke("ShowStop", showTime);
         timeBack = LocalizationManager.GetTranslation("Time_Back");
     }
 
