@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
+using TMPro;
 using I2.Loc;
 
 /// <summary>
@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
     public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
     [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
     bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
-    [SerializeField] Text timeText;                             //タイマーを表示するテキスト
+    [SerializeField] TextMeshProUGUI timeText;                             //タイマーを表示するテキスト
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
     [SerializeField] Animator animator = default;
     bool isCountDown;                                           //カウントダウンをするかどうか

@@ -1,5 +1,5 @@
-﻿using UnityEngine.UI;
-using I2.Loc;
+﻿using I2.Loc;
+using TMPro;
 
 /// <summary>
 /// コンボをカウントするクラス
@@ -8,7 +8,7 @@ public static class ComboCounter
 {
     public static int ComboCount { get; private set; }     //コンボをカウントする
     public static int MaxComboCount { get; private set; }  //最大コンボのカウント
-    static Text comboText;                                 //コンボを表示するText
+    static TextMeshProUGUI comboText;                                 //コンボを表示するText
     static string comboMissText;
     static string comboBackText;
     static Timer timer;
@@ -56,7 +56,7 @@ public static class ComboCounter
     /// コンボを表示するTextをセットする
     /// </summary>
     /// <param name="text">表示するText</param>
-    public static void SetComboText(Text text)
+    public static void SetComboText(TextMeshProUGUI text)
     {
         comboText = text;
     }
