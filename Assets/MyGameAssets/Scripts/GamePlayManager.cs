@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using VMUnityLib;
 
 /// <summary>
 /// ゲームプレイシーンの管理をするクラス
@@ -12,6 +13,8 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] FadeOutCanvas fadeOutCanvas = default;     //フェードアウトをするキャンバス
     [SerializeField] GameObject inputObject = default;
     float fakeLoadTimeCount;                                    //フェークロードを表示している時間をカウントする
+    [SerializeField] SceneChanger changer;
+    [SerializeField] PlayerInput player;
 
     /// <summary>
     /// オブジェクトが非アクティブになった時によばれる
@@ -22,6 +25,7 @@ public class GamePlayManager : MonoBehaviour
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
         inputObject.SetActive(false);
+        player.enabled = true;
     }
 
     /// <summary>
@@ -61,5 +65,24 @@ public class GamePlayManager : MonoBehaviour
     {
         gamePlayObject.SetActive(false);
         fakeLoadObject.SetActive(true);
+    }
+
+    /// <summary>
+    /// タイムリミットがきた時に呼ばれる
+    /// </summary>
+    public void OnTimeLimit()
+    {
+        IT_Gesture.onMultiTapE += OnTapAfterTimeLimit;
+        player.enabled = false;
+    }
+
+    /// <summary>
+    /// タイムリミット後にタップされた時に呼ばれる
+    /// </summary>
+    /// <param name="tap"></param>
+    public void OnTapAfterTimeLimit(Tap tap)
+    {
+        changer.ChangeScene();
+        IT_Gesture.onMultiTapE -= OnTapAfterTimeLimit;
     }
 }
