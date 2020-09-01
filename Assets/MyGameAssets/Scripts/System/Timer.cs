@@ -13,16 +13,16 @@ public class Timer : MonoBehaviour
     public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
     [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
     bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
-    [SerializeField] TextMeshProUGUI timeText;                             //タイマーを表示するテキスト
+    [SerializeField] TextMeshProUGUI timeText;                  //タイマーを表示するテキスト
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
-    [SerializeField] Animator animator = default;
+    [SerializeField] Animator animator = default;               //カウントダウンのアニメーター
     bool isCountDown;                                           //カウントダウンをするかどうか
     string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
     [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
     [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
-    [SerializeField] GameObject comboBonus;
+    [SerializeField] GameObject comboBonus = default;           //
     ShowComboBonusUI showComboBonusUI;
 
     /// <summary>
