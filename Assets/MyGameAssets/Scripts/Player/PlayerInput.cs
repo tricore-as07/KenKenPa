@@ -15,7 +15,7 @@ public class PlayerInput : MonoBehaviour
     float sideInputDistSetting;                             //左右入力の間の最低距離
     bool isSideInputInterval;                               //左右入力のズレの許容時間内かどうか
     Coroutine sideInputCoroutine;                           //左右入力のズレの許容時間を待つ用のコルーチン
-    bool hasReleasedAfterInput;
+    bool hasReleasedAfterInput;                             //入力したあと離したかどうか
 
     /// <summary>
     /// 最初に行う処理
@@ -32,6 +32,18 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void Update()
     {
+        //入力された後に指が離されたかどうか
+        if (!hasReleasedAfterInput)
+        {
+            if (Input.touchCount == 0)
+            {
+                hasReleasedAfterInput = true;
+            }
+            else
+            {
+                return;
+            }
+        }
         UpdateInput();
         if (rightInput)
         {
@@ -57,18 +69,7 @@ public class PlayerInput : MonoBehaviour
         centerInput = Input.GetKeyDown(KeyCode.S);
         leftInput = Input.GetKeyDown(KeyCode.A);
 #endif
-        //入力された後に指が離されたかどうか
-        if(!hasReleasedAfterInput)
-        {
-            if(Input.touchCount == 0)
-            {
-                hasReleasedAfterInput = true;
-            }
-            else
-            {
-                return;
-            }
-        }
+        //タップされた指が１本のとき
         if (Input.touchCount == 1)
         {
             Touch touch = Input.touches[0];
@@ -80,7 +81,8 @@ public class PlayerInput : MonoBehaviour
                 hasReleasedAfterInput = false;
             }
         }
-        else if(Input.touchCount == 2)
+        //タップされた指が２本のとき
+        else if (Input.touchCount == 2)
         {
             Touch firstTouch = Input.touches[0];
             Touch secondTouch = Input.touches[1];
@@ -104,7 +106,14 @@ public class PlayerInput : MonoBehaviour
     void OnEnable()
     {
         isSideInputInterval = false;
-        hasReleasedAfterInput = true;
+    }
+
+    /// <summary>
+    /// オブジェクトが非アクティブになった時に呼ばれる
+    /// </summary>
+    void OnDisable()
+    {
+        hasReleasedAfterInput = false;
     }
 
     /// <summary>

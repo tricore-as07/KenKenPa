@@ -22,8 +22,8 @@ public class Timer : MonoBehaviour
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
     [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
     [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
-    [SerializeField] GameObject comboBonus = default;           //
-    ShowComboBonusUI showComboBonusUI;
+    [SerializeField] GameObject comboBonus = default;           //コンボボーナスのUIオブジェクト
+    ShowComboBonusUI showComboBonusUI;                          //コンボボーナスのUIを表示するためのクラス
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -47,6 +47,14 @@ public class Timer : MonoBehaviour
     public void StartCountDown()
     {
         isCountDown = true;
+    }
+
+    /// <summary>
+    /// カウントダウンを停止する
+    /// </summary>
+    public void StopCountDown()
+    {
+        isCountDown = false;
     }
 
     /// <summary>

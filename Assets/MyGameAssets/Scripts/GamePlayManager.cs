@@ -11,10 +11,9 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] float fakeLoadTime = default;              //フェイクロードを表示しておく時間
     [SerializeField] Timer timer = default;                     //タイマークラス
     [SerializeField] FadeOutCanvas fadeOutCanvas = default;     //フェードアウトをするキャンバス
-    [SerializeField] GameObject inputObject = default;
     float fakeLoadTimeCount;                                    //フェークロードを表示している時間をカウントする
-    [SerializeField] SceneChanger changer;
-    [SerializeField] PlayerInput player;
+    [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
+    [SerializeField] PlayerInput player;                        //プレイヤーの入力を管理するクラス
 
     /// <summary>
     /// オブジェクトが非アクティブになった時によばれる
@@ -24,7 +23,6 @@ public class GamePlayManager : MonoBehaviour
         StopGamePlay();
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
-        inputObject.SetActive(false);
         player.enabled = true;
     }
 
@@ -47,7 +45,6 @@ public class GamePlayManager : MonoBehaviour
     {
         timer.StartCountDown();
         fakeLoadObject.SetActive(false);
-        inputObject.SetActive(true);
     }
 
     /// <summary>
