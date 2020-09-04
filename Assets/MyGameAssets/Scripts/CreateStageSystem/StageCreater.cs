@@ -12,6 +12,8 @@ public class StageCreater : MonoBehaviour
     [SerializeField] GameObject stagePrefab = default;                              //ステージのプレハブ
     [SerializeField] GameObject backgroundGroupPrefab = default;                    //背景オブジェクトをまとめるオブジェクトのプレハブ
     [SerializeField]List<GameObject> backgroundPrefabs = new List<GameObject>();    //背景のプレハブのリスト
+    [SerializeField] List<GameObject> hitObjectPrefabs = new List<GameObject>();    //当たりのオブジェクトのプレハブ
+    [SerializeField] List<GameObject> notHitObjectPrefabs = new List<GameObject>(); //当たりで入力できない時のオブジェクトのプレハブ
     [SerializeField] int backgroundOnjectNum = default;                             //背景オブジェクトの数
     GameObject stage = default;                                                     //ステージ関連のオブジェクトの親に設定するためのもの
     GameObject backGround = default;                                                //背景オブジェクトをまとめるオブジェクト
@@ -114,9 +116,28 @@ public class StageCreater : MonoBehaviour
             //当たりのオブジェクトを生成する
             case ObjectType.HitObject:
                 {
-                    var notInputHitObjectPrefab = Instantiate(stageSettingData.HitObjectPrefab, parent);
-                    notInputHitObjectPrefab.SetActive(false);
-                    Instantiate(stageSettingData.NotInputHitObjectPrefab, parent);
+                    //回転角度の違いを１２分にする
+                    var rotNum = 12;
+                    //オブジェクトを回転させるローテーションを作成
+                    Vector3 rot = new Vector3(0f,Random.Range(0, rotNum) * 360 / rotNum, 0f);
+                    var randomNum = Random.Range(0, hitObjectPrefabs.Count + rotNum);
+                    //ランダムで生成した数が設定されているプレハブの数の範囲内だったら
+                    if(randomNum < hitObjectPrefabs.Count)
+                    {
+                        var obj = Instantiate(hitObjectPrefabs[randomNum], parent);
+                        obj.SetActive(false);
+                        obj = Instantiate(notHitObjectPrefabs[randomNum], parent);
+                    }
+                    //範囲外の場合は正円じゃないプレハブを回転させる
+                    else
+                    {
+                        var obj = Instantiate(hitObjectPrefabs[hitObjectPrefabs.Count - 1], parent);
+                        obj.SetActive(false);
+                        obj.transform.eulerAngles = rot;
+                        obj = Instantiate(notHitObjectPrefabs[hitObjectPrefabs.Count - 1], parent);
+                        obj.transform.eulerAngles = rot;
+                    }
+
                     break;
                 }
             //外れのオブジェクトを作成する
