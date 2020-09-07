@@ -303,7 +303,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4540596214710364
 Transform:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222651376843106556
@@ -608,7 +608,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4420888871793924
 Transform:
   m_ObjectHideFlags: 0
@@ -1336,8 +1336,8 @@ MonoBehaviour:
   Android_Interstitial: ca-app-pub-3940256099942544/1033173712
   Android_NativeExpress: ca-app-pub-3940256099942544/2247696110
   ios_Banner:
-  - ca-app-pub-4943898464524496/6303746443
-  - ca-app-pub-4943898464524496/6303746443
+  - ca-app-pub-3940256099942544/6300978111
+  - ca-app-pub-3940256099942544/6300978111
   ios_Interstitial: ca-app-pub-3940256099942544/4411468910
   ios_NativeExpress: ca-app-pub-3940256099942544/3986624511
   myNendNative: {fileID: 114763152679354838}
@@ -1933,8 +1933,8 @@ MonoBehaviour:
       apiKey: 46357c272981bab5154caf62bf93b3f4bca26bb6
       spotID: 611546
     iOS:
-      apiKey: 81501ed14cd44cee901b0c78e78791a332f38982
-      spotID: 1012897
+      apiKey: f5caaedf7567238cfcbf4417cc29d621a337ecd2
+      spotID: 1012894
   loadWhenActivated: 1
   enableAutoReload: 0
   reloadInterval: 0
