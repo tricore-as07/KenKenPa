@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
     [SerializeField] Animator animator = default;               //カウントダウンのアニメーター
     bool isCountDown;                                           //カウントダウンをするかどうか
+    public bool IsCountDown => isCountDown;                     //外部に公開するためのプロパティ
     string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
@@ -103,14 +104,19 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void AddTimeBonusByCombo()
     {
-        if(EndCountDownObject.activeSelf)
+        limitTime += timeBonusByCombo;
+        comboBonus.SetActive(true);
+        showComboBonusUI.SetBonusTime((int)timeBonusByCombo);
+        if (EndCountDownObject.activeSelf)
         {
+            if(limitTime > 10.5)
+            {
+                EndCountDownObject.SetActive(false);
+                return;
+            }
             float nowTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
             nowTime -= (float)(1.0 / 11.0);
             animator.CrossFade("EndCountDown",0.0f,0, nowTime);
         }
-        limitTime += timeBonusByCombo;
-        showComboBonusUI.SetBonusTime((int)timeBonusByCombo);
-        comboBonus.SetActive(true);
     }
 }

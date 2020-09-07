@@ -12,7 +12,7 @@ public static class ComboCounter
     static string comboMissText;
     static string comboBackText;
     static Timer timer;
-    const int timeBonusComboNum = 10;
+    const int timeBonusComboNum = 20;
 
     /// <summary>
     /// 初期化処理

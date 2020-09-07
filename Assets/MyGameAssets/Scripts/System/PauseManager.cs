@@ -25,10 +25,14 @@ public class PauseManager : MonoBehaviour
     {
         if(pauseStatus)
         {
-            isPause = true;
-            timer.StopCountDown();
-            pauseImage.SetActive(true);
-            player.GetComponent<PlayerInput>().enabled = false;
+            //カウントダウンしている時だけポーズする
+            if(timer.IsCountDown)
+            {
+                isPause = true;
+                timer.StopCountDown();
+                pauseImage.SetActive(true);
+                player.GetComponent<PlayerInput>().enabled = false;
+            }
         }
     }
 

@@ -11,6 +11,7 @@ public class FadeOutCanvas : MonoBehaviour
     [SerializeField] GamePlayManager gamePlayManager;       //ゲームプレイシーンを管理するクラス
     [SerializeField] GameObject CountDown;
     bool isStartFadeOut;                                    //フェードアウトを開始したかどうか
+    public bool IsStartFadeOut => isStartFadeOut;           //外部に公開するためのプロパティ
     [SerializeField] GameObject banner;
     [SerializeField] GameObject nendNative;
 
@@ -31,7 +32,6 @@ public class FadeOutCanvas : MonoBehaviour
     public void StartFadeOut()
     {
         isStartFadeOut = true;
-        gamePlayManager.SetActiveGamePlayObject();
         banner.SetActive(false);
         nendNative.SetActive(false);
     }

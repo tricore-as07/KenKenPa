@@ -11,9 +11,11 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] float fakeLoadTime = default;              //フェイクロードを表示しておく時間
     [SerializeField] Timer timer = default;                     //タイマークラス
     [SerializeField] FadeOutCanvas fadeOutCanvas = default;     //フェードアウトをするキャンバス
-    float fakeLoadTimeCount;                                    //フェークロードを表示している時間をカウントする
+    float fakeLoadTimeCount;                                    //フェイクロードを表示している時間をカウントする
+    bool callFakeLoad = false;                                  //フェイクロードを呼んだかどうか
     [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
     [SerializeField] PlayerInput player;                        //プレイヤーの入力を管理するクラス
+    bool gameEnd;                                               //ゲーム終了したかどうか
 
     /// <summary>
     /// オブジェクトが非アクティブになった時によばれる
@@ -24,6 +26,7 @@ public class GamePlayManager : MonoBehaviour
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
         player.enabled = true;
+        callFakeLoad = false;
     }
 
     /// <summary>
@@ -31,10 +34,23 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if(gameEnd)
+        {
+            if(Input.touchCount > 0)
+            {
+                OnTapAfterTimeLimit();
+            }
+        }
+        if(callFakeLoad)
+        {
+            return;
+        }
         fakeLoadTimeCount += Time.deltaTime;
         if (fakeLoadTimeCount >= fakeLoadTime)
         {
+            callFakeLoad = true;
             fadeOutCanvas.StartFadeOut();
+            SetActiveGamePlayObject();
         }
     }
 
@@ -45,14 +61,16 @@ public class GamePlayManager : MonoBehaviour
     {
         timer.StartCountDown();
         fakeLoadObject.SetActive(false);
+        player.GetComponent<PlayerInput>().enabled = true;
     }
 
     /// <summary>
     /// ゲームに必要なオブジェクトをアクティブにする時に呼ぶ
     /// </summary>
-    public void SetActiveGamePlayObject()
+    void SetActiveGamePlayObject()
     {
         gamePlayObject.SetActive(true);
+        player.GetComponent<PlayerInput>().enabled = false;
     }
 
     /// <summary>
@@ -69,17 +87,16 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     public void OnTimeLimit()
     {
-        IT_Gesture.onMultiTapE += OnTapAfterTimeLimit;
         player.enabled = false;
+        gameEnd = true;
     }
 
     /// <summary>
     /// タイムリミット後にタップされた時に呼ばれる
     /// </summary>
-    /// <param name="tap"></param>
-    public void OnTapAfterTimeLimit(Tap tap)
+    void OnTapAfterTimeLimit()
     {
         changer.ChangeScene();
-        IT_Gesture.onMultiTapE -= OnTapAfterTimeLimit;
+        gameEnd = false; 
     }
 }
