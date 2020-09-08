@@ -1726,7 +1726,7 @@ MonoBehaviour:
   timer: {fileID: 11549714}
   fadeOutCanvas: {fileID: 422075522}
   changer: {fileID: 11549712}
-  player: {fileID: 16986430}
+  playerInput: {fileID: 16986430}
 --- !u!1 &556443545
 GameObject:
   m_ObjectHideFlags: 0

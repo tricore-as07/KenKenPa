@@ -14,7 +14,7 @@ public class GamePlayManager : MonoBehaviour
     float fakeLoadTimeCount;                                    //フェイクロードを表示している時間をカウントする
     bool callFakeLoad = false;                                  //フェイクロードを呼んだかどうか
     [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
-    [SerializeField] PlayerInput player;                        //プレイヤーの入力を管理するクラス
+    [SerializeField] PlayerInput playerInput;                   //プレイヤーの入力を管理するクラス
     bool gameEnd;                                               //ゲーム終了したかどうか
 
     /// <summary>
@@ -25,7 +25,7 @@ public class GamePlayManager : MonoBehaviour
         StopGamePlay();
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
-        player.enabled = true;
+        playerInput.enabled = true;
         callFakeLoad = false;
     }
 
@@ -61,7 +61,7 @@ public class GamePlayManager : MonoBehaviour
     {
         timer.StartCountDown();
         fakeLoadObject.SetActive(false);
-        player.GetComponent<PlayerInput>().enabled = true;
+        playerInput.enabled = true;
     }
 
     /// <summary>
@@ -70,7 +70,7 @@ public class GamePlayManager : MonoBehaviour
     void SetActiveGamePlayObject()
     {
         gamePlayObject.SetActive(true);
-        player.GetComponent<PlayerInput>().enabled = false;
+        playerInput.enabled = false;
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     public void OnTimeLimit()
     {
-        player.enabled = false;
+        playerInput.enabled = false;
         gameEnd = true;
     }
 
