@@ -1697,10 +1697,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1496856123}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8206ed6a590134c4e9c75031d4eb0f3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 4311e9ed0968847caa32a5fb919391d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BGMaudioSource: {fileID: 1496856127}
+  audioSource: {fileID: 1496856127}
+  key: 1
 --- !u!1 &1512419412
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,12 +10,15 @@ public class PlayerInput : MonoBehaviour
     bool centerInput;                                       //中央に対応する入力されたかどうか
     bool leftInput;                                         //左に対応する入力されたかどうか
     [SerializeField] new Camera camera = default;           //カメラ
-    InputAction inputAction;                                //入力があった時に実際の処理をするクラス
     [SerializeField] float sideInputIntervalTime = default; //左右入力のズレの許容時間
+    InputAction inputAction;                                //入力があった時に実際の処理をするクラス
     float sideInputDistSetting;                             //左右入力の間の最低距離
     bool isSideInputInterval;                               //左右入力のズレの許容時間内かどうか
     Coroutine sideInputCoroutine;                           //左右入力のズレの許容時間を待つ用のコルーチン
     bool hasReleasedAfterInput;                             //入力したあと離したかどうか
+    [SerializeField] int sideInputDistOfScreenSplitNum;     //左右入力の間隔を画面の分割数で表したもの
+    readonly int leftWidth = Screen.width / 3;              //画面の左側と中央を区別するライン
+    readonly int rightWidth = Screen.width / 3 * 2;         //画面の右側と中央を区別するライン
 
     /// <summary>
     /// 最初に行う処理
@@ -24,7 +27,7 @@ public class PlayerInput : MonoBehaviour
     {
         inputAction = GetComponent<InputAction>();
         //画面の横幅の５分の１は左右入力で間を開けるように設定
-        sideInputDistSetting = Screen.width / 5;
+        sideInputDistSetting = Screen.width / sideInputDistOfScreenSplitNum;
     }
 
     /// <summary>
@@ -73,7 +76,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.touchCount == 1)
         {
             Touch touch = Input.touches[0];
-            bool isTapCenter = Screen.width / 3 < touch.position.x && touch.position.x < Screen.width / 3 * 2;
+            bool isTapCenter = leftWidth < touch.position.x && touch.position.x < rightWidth;
             //入力された場所が中央なら
             if (isTapCenter)
             {

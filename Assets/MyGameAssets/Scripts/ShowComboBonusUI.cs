@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using I2.Loc;
 using TMPro;
+using System.Collections;
+using System;
 
 /// <summary>
 /// コンボボーナスのUIを表示する
@@ -25,12 +27,22 @@ public class ShowComboBonusUI : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
-        Invoke("ShowStop", showTime);
+        //showTimeの時間後にコンボボーナスオブジェクトを非アクティブにする
+        StartCoroutine(DelayMethod(showTime, () => {
+            gameObject.SetActive(false);
+        }));
         timeBack = LocalizationManager.GetTranslation("Time_Back");
     }
 
-    void ShowStop()
+    /// <summary>
+    /// 渡された処理を指定時間後に実行する
+    /// </summary>
+    /// <param name="waitTime">遅延時間</param>
+    /// <param name="action">実行したい処理</param>
+    /// <returns></returns>
+    private IEnumerator DelayMethod(float waitTime, Action action)
     {
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(waitTime);
+        action();
     }
 }
