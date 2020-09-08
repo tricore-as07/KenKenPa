@@ -9,22 +9,24 @@ using I2.Loc;
 public class Timer : MonoBehaviour
 {
     [SerializeField] float limitTimeSetting = 0f;               //制限時間の設定時間
-    float limitTime;                                            //カウントダウンする制限時間
-    public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
-    [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
-    bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
     [SerializeField] TextMeshProUGUI timeText;                  //タイマーを表示するテキスト
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
     [SerializeField] Animator animator = default;               //カウントダウンのアニメーター
+    [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
+    [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
+    [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
+    [SerializeField] GameObject comboBonus = default;           //コンボボーナスのUIオブジェクト
+    ShowComboBonusUI showComboBonusUI;                          //コンボボーナスのUIを表示するためのクラス
+    float limitTime;                                            //カウントダウンする制限時間
+    public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
+    bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
     bool isCountDown;                                           //カウントダウンをするかどうか
     public bool IsCountDown => isCountDown;                     //外部に公開するためのプロパティ
     string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
-    [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
-    [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
-    [SerializeField] GameObject comboBonus = default;           //コンボボーナスのUIオブジェクト
-    ShowComboBonusUI showComboBonusUI;                          //コンボボーナスのUIを表示するためのクラス
+    const float countDownAnimationTime = 11f;                   //アニメーションの時間
+    const float startEndCountDownTime = 10.5f;                  //終了のカウントダウンが始まる時間
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -83,7 +85,7 @@ public class Timer : MonoBehaviour
         {
             limitTime -= Time.deltaTime;
             timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
-            if(limitTime <= 11.0 && !isAddTimeBonus)
+            if(limitTime <= countDownAnimationTime && !isAddTimeBonus)
             {
                 isAddTimeBonus = true;
                 var bonusTime = ComboCounter.MaxComboCount / timeBonusCoefficient;
@@ -92,7 +94,7 @@ public class Timer : MonoBehaviour
                 limitTime += bonusTime;
             }
             //制限時間が１０秒以下になって、終了カウントダウンがアクティブになっていない時
-            if (limitTime <= 10.5 && !EndCountDownObject.activeSelf)
+            if (limitTime <= startEndCountDownTime && !EndCountDownObject.activeSelf)
             {
                 EndCountDownObject.SetActive(true);
             }
@@ -109,13 +111,13 @@ public class Timer : MonoBehaviour
         showComboBonusUI.SetBonusTime((int)timeBonusByCombo);
         if (EndCountDownObject.activeSelf)
         {
-            if(limitTime > 10.5)
+            if(limitTime > startEndCountDownTime)
             {
                 EndCountDownObject.SetActive(false);
                 return;
             }
             float nowTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            nowTime -= (float)(1.0 / 11.0);
+            nowTime -= (float)(1.0 / countDownAnimationTime);
             animator.CrossFade("EndCountDown",0.0f,0, nowTime);
         }
     }

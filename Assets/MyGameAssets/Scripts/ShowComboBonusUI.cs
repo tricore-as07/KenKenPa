@@ -9,9 +9,9 @@ using System;
 /// </summary>
 public class ShowComboBonusUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI meshPro;
-    [SerializeField] float showTime;
-    string timeBack;
+    [SerializeField] TextMeshProUGUI meshPro;       //コンボボーナスを表示するText
+    [SerializeField] float showTime;                //コンボボーナスを表示する時間
+    string timeBack;                                //時間の後ろの文字
 
     /// <summary>
     /// ボーナスタイムをセット

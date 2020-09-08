@@ -2000,7 +2000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de25c79e4fe194d07b1894c41772ca2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 16986427}
+  input: {fileID: 16986430}
   pauseImage: {fileID: 1090873758}
   timer: {fileID: 11549714}
 --- !u!1 &705507993

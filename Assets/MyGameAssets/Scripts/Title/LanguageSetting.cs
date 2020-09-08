@@ -2,6 +2,13 @@
 using I2.Loc;
 using TMPro;
 
+//言語の種類
+public enum LanguageType
+{
+    Japanese = 0,
+    English  = 1 
+}
+
 /// <summary>
 /// 言語設定
 /// </summary>
@@ -14,11 +21,11 @@ public class LanguageSetting : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        if(LocalizationManager.CurrentLanguage == "Japanese")
+        if(LocalizationManager.CurrentLanguage == LanguageType.Japanese.ToString())
         {
             dropdown.value = 0;
         }
-        else if(LocalizationManager.CurrentLanguage == "English")
+        else if(LocalizationManager.CurrentLanguage == LanguageType.English.ToString())
         {
             dropdown.value = 1;
         }
@@ -29,13 +36,13 @@ public class LanguageSetting : MonoBehaviour
     /// </summary>
     public void OnChangeLanguage(TMP_Dropdown change)
     {
-        if(change.value == 0)
+        if(change.value == (int)LanguageType.Japanese)
         {
-            LocalizationManager.CurrentLanguage = "Japanese";
+            LocalizationManager.CurrentLanguage = LanguageType.Japanese.ToString();
         }
-        else if (change.value == 1)
-        {
-            LocalizationManager.CurrentLanguage = "English";
+        else if (change.value == (int)LanguageType.English)
+        { 
+            LocalizationManager.CurrentLanguage = LanguageType.English.ToString();
         }
     }
 }

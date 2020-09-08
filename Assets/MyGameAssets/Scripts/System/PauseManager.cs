@@ -5,7 +5,7 @@
 /// </summary>
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] GameObject player = default;           //プレイヤーのオブジェクト
+    [SerializeField] PlayerInput input = default;           //プレイヤーのオブジェクト
     [SerializeField] GameObject pauseImage = default;       //ポーズする時に表示するオブジェクト
     [SerializeField] Timer timer = default;                 //タイマークラス
     bool isPause;                                           //ポーズしているかどうか
@@ -31,7 +31,7 @@ public class PauseManager : MonoBehaviour
                 isPause = true;
                 timer.StopCountDown();
                 pauseImage.SetActive(true);
-                player.GetComponent<PlayerInput>().enabled = false;
+                input.enabled = false;
             }
         }
     }
@@ -49,7 +49,7 @@ public class PauseManager : MonoBehaviour
                 isPause = false;
                 timer.StartCountDown();
                 pauseImage.SetActive(false);
-                player.GetComponent<PlayerInput>().enabled = true;
+                input.enabled = true;
             }
         }
     }
