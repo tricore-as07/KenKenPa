@@ -16,8 +16,8 @@ public class PlayerInput : MonoBehaviour
     Coroutine sideInputCoroutine;                           //左右入力のズレの許容時間を待つ用のコルーチン
     bool hasReleasedAfterInput;                             //入力したあと離したかどうか
     const int sideInputDistOfScreenSplitNum = 5;            //左右入力の間隔を画面の分割数で表したもの
-    static readonly int leftWidth = Screen.width / 3;       //画面の左側と中央を区別するライン
-    static readonly int rightWidth = Screen.width / 3 * 2;  //画面の右側と中央を区別するライン
+    static readonly int leftWidth = Screen.width / 3;       //画面の左側かどうかを区別するライン（画面の横幅の３分の１より小さい値なら左側）
+    static readonly int rightWidth = Screen.width / 3 * 2;  //画面の右側かどうかを区別するライン（画面の横幅の３分の２より大きい値なら右側）
     static readonly float sideInputDistSetting              //左右入力の間隔
         = Screen.width / sideInputDistOfScreenSplitNum;
 
