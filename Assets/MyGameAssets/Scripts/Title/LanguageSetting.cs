@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using I2.Loc;
 using TMPro;
+using System.Collections.Generic;
 
 //言語の種類
 public enum LanguageType
@@ -15,17 +16,22 @@ public enum LanguageType
 public class LanguageSetting : MonoBehaviour
 {
     [SerializeField] TMP_Dropdown dropdown;
+    public static readonly Dictionary<LanguageType, string> Language = new Dictionary<LanguageType, string>
+    {
+        { LanguageType.Japanese,"Japanese" },
+        { LanguageType.English,"English" }
+    };
 
     /// <summary>
     /// スクリプトのインスタンスがロードされた時に呼ばれる
     /// </summary>
     void Awake()
     {
-        if(LocalizationManager.CurrentLanguage == LanguageType.Japanese.ToString())
+        if(LocalizationManager.CurrentLanguage == Language[LanguageType.Japanese])
         {
             dropdown.value = 0;
         }
-        else if(LocalizationManager.CurrentLanguage == LanguageType.English.ToString())
+        else if(LocalizationManager.CurrentLanguage == Language[LanguageType.English])
         {
             dropdown.value = 1;
         }
@@ -38,11 +44,11 @@ public class LanguageSetting : MonoBehaviour
     {
         if(change.value == (int)LanguageType.Japanese)
         {
-            LocalizationManager.CurrentLanguage = LanguageType.Japanese.ToString();
+            LocalizationManager.CurrentLanguage = Language[LanguageType.Japanese];
         }
         else if (change.value == (int)LanguageType.English)
         { 
-            LocalizationManager.CurrentLanguage = LanguageType.English.ToString();
+            LocalizationManager.CurrentLanguage = Language[LanguageType.English];
         }
     }
 }

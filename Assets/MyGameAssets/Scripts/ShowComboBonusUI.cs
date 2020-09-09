@@ -39,7 +39,6 @@ public class ShowComboBonusUI : MonoBehaviour
     /// </summary>
     /// <param name="waitTime">遅延時間</param>
     /// <param name="action">実行したい処理</param>
-    /// <returns></returns>
     private IEnumerator DelayMethod(float waitTime, Action action)
     {
         yield return new WaitForSeconds(waitTime);

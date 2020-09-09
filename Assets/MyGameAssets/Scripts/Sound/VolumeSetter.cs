@@ -12,7 +12,6 @@ public enum VolumeKey
 /// </summary>
 public class VolumeSetter : MonoBehaviour
 {
-
     [SerializeField] AudioSource audioSource;   //設定するオーディオソース
     [SerializeField] VolumeKey key;             //何のボリュームを設定するか
 

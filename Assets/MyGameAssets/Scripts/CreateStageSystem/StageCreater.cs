@@ -19,6 +19,7 @@ public class StageCreater : MonoBehaviour
     GameObject backGround = default;                                                //背景オブジェクトをまとめるオブジェクト
     Vector3 DepthPosition;                                                          //ステージ生成時の奥行きの位置
     Vector3 backgroundPutPos;                                                       //背景を設置するポジション
+    const int objectRotateNum = 12;                                                 //回転角度の違いを１２分にする
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -116,11 +117,9 @@ public class StageCreater : MonoBehaviour
             //当たりのオブジェクトを生成する
             case ObjectType.HitObject:
                 {
-                    //回転角度の違いを１２分にする
-                    var rotNum = 12;
                     //オブジェクトを回転させるローテーションを作成
-                    Vector3 rot = new Vector3(0f,Random.Range(0, rotNum) * 360 / rotNum, 0f);
-                    var randomNum = Random.Range(0, hitObjectPrefabs.Count + rotNum);
+                    Vector3 rot = new Vector3(0f,Random.Range(0, objectRotateNum) * 360 / objectRotateNum, 0f);
+                    var randomNum = Random.Range(0, hitObjectPrefabs.Count + objectRotateNum);
                     //ランダムで生成した数が設定されているプレハブの数の範囲内だったら
                     if(randomNum < hitObjectPrefabs.Count)
                     {

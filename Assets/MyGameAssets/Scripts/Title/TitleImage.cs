@@ -14,12 +14,12 @@ public class TitleImage : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        if (LocalizationManager.CurrentLanguage == "Japanese")
+        if (LocalizationManager.CurrentLanguage == LanguageSetting.Language[LanguageType.Japanese])
         {
             titleImageJP.SetActive(true);
             titleImageEN.SetActive(false);
         }
-        else if (LocalizationManager.CurrentLanguage == "English")
+        else if (LocalizationManager.CurrentLanguage == LanguageSetting.Language[LanguageType.English])
         {
             titleImageJP.SetActive(false);
             titleImageEN.SetActive(true);
@@ -31,12 +31,12 @@ public class TitleImage : MonoBehaviour
     /// </summary>
     public void OnChangeLanguage()
     {
-        if (LocalizationManager.CurrentLanguage == "Japanese")
+        if (LocalizationManager.CurrentLanguage == LanguageSetting.Language[LanguageType.Japanese])
         {
             titleImageJP.SetActive(true);
             titleImageEN.SetActive(false);
         }
-        else if (LocalizationManager.CurrentLanguage == "English")
+        else if (LocalizationManager.CurrentLanguage == LanguageSetting.Language[LanguageType.English])
         {
             titleImageJP.SetActive(false);
             titleImageEN.SetActive(true);

@@ -12,7 +12,7 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] Timer timer = default;                     //タイマークラス
     [SerializeField] FadeOutCanvas fadeOutCanvas = default;     //フェードアウトをするキャンバス
     float fakeLoadTimeCount;                                    //フェイクロードを表示している時間をカウントする
-    bool callFakeLoad = false;                                  //フェイクロードを呼んだかどうか
+    bool endFakeLoad = false;                                   //フェイクロードが終了したかどうか
     [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
     [SerializeField] PlayerInput playerInput;                   //プレイヤーの入力を管理するクラス
     bool gameEnd;                                               //ゲーム終了したかどうか
@@ -26,7 +26,7 @@ public class GamePlayManager : MonoBehaviour
         fakeLoadTimeCount = 0;
         fakeLoadObject.SetActive(true);
         playerInput.enabled = true;
-        callFakeLoad = false;
+        endFakeLoad = false;
     }
 
     /// <summary>
@@ -34,21 +34,29 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if(gameEnd)
+        //ゲーム終了フラグが立っていて、画面をタップされたら
+        if (gameEnd && Input.touchCount > 0)
         {
-            if(Input.touchCount > 0)
-            {
-                OnTapAfterTimeLimit();
-            }
+            OnTapAfterTimeLimit();
         }
-        if(callFakeLoad)
+        UpdateFakeLoad();
+    }
+
+    /// <summary>
+    /// フェイクロードのアップデート処理
+    /// </summary>
+    void UpdateFakeLoad()
+    {
+        //フェイクロードが終了していたら
+        if (endFakeLoad)
         {
             return;
         }
         fakeLoadTimeCount += Time.deltaTime;
         if (fakeLoadTimeCount >= fakeLoadTime)
         {
-            callFakeLoad = true;
+            //フェイクロードの表示終了処理
+            endFakeLoad = true;
             fadeOutCanvas.StartFadeOut();
             SetActiveGamePlayObject();
         }
