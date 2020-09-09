@@ -121,7 +121,6 @@ public class PlayerInput : MonoBehaviour
     /// <summary>
     /// 中央入力でミスだった場合にサイド入力かどうか誤差許容時間だけ待つ
     /// </summary>
-    /// <returns></returns>
     public IEnumerator WaitSideInput()
     {
         isSideInputInterval = true;

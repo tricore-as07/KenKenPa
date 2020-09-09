@@ -37,15 +37,17 @@ public class StageCreater : MonoBehaviour
             //自分と同じ親を設定してプレハブを作成
             backGround = Instantiate(backgroundGroupPrefab, transform.parent);
         }
-        int createCount = 0;
+        //オブジェクトを作った回数
+        int createObjectsCount = 0;
         var startObjectsGroupData = stageSettingData.StartObjectsGroupDatas.GetEnumerator();
         startObjectsGroupData.Reset();
         while (startObjectsGroupData.MoveNext())
         {
-            createCount++;
+            createObjectsCount++;
             CreateObjectsGroup(startObjectsGroupData.Current);
         }
-        int loopNum = stageSettingData.GenerateObjectsGroupNum - createCount;
+        //ループする回数
+        int loopNum = stageSettingData.GenerateObjectsGroupNum - createObjectsCount;
         for (var i = 0; i < loopNum; i++)
         {
             var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);

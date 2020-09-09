@@ -81,12 +81,15 @@ public class Timer : MonoBehaviour
             limitTime = 0;
             timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
         }
+        //制限時間が残っている時の処理
         else
         {
             limitTime -= Time.deltaTime;
             timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
+            //カウントダウンアニメーションが始まる時間より小さく、１ゲーム1回のタイムボーナスを追加していなかったら
             if(limitTime <= countDownAnimationTime && !isAddTimeBonus)
             {
+                //１ゲームで1回だけタイムボーナスを追加する
                 isAddTimeBonus = true;
                 var bonusTime = ComboCounter.MaxComboCount / timeBonusCoefficient;
                 showComboBonusUI.SetBonusTime((int)bonusTime);
@@ -106,18 +109,22 @@ public class Timer : MonoBehaviour
     /// </summary>
     public void AddTimeBonusByCombo()
     {
-        limitTime += timeBonusByCombo;
-        comboBonus.SetActive(true);
+        limitTime += timeBonusByCombo;      //タイムの追加
+        comboBonus.SetActive(true);         //タイムボーナスのUIをアクティブに
         showComboBonusUI.SetBonusTime((int)timeBonusByCombo);
+        //終了時のカウントダウンがアクティブの時
         if (EndCountDownObject.activeSelf)
         {
+            //カウントダウンを始める時間より現在の時間が大きくなったら
             if(limitTime > startEndCountDownTime)
             {
+                //カウントダウンを非アクティブにして早期リターン
                 EndCountDownObject.SetActive(false);
                 return;
             }
+            //増えた時間に応じてアニメーションを巻き戻す
             float nowTime = animator.GetCurrentAnimatorStateInfo(0).normalizedTime;
-            nowTime -= (float)(1.0 / countDownAnimationTime);
+            nowTime -= (float)(timeBonusByCombo / countDownAnimationTime);
             animator.CrossFade("EndCountDown",0.0f,0, nowTime);
         }
     }
