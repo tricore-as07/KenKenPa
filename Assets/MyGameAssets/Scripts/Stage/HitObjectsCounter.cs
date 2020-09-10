@@ -65,6 +65,7 @@ public class HitObjectsCounter : MonoBehaviour
     /// </summary>
     public void OnCorrectSelectRight()
     {
+        //右が当たりで2回目押された時は何の処理もしないで早期リターン
         if(isRightCorrect)
         {
             return;
@@ -79,6 +80,7 @@ public class HitObjectsCounter : MonoBehaviour
     /// </summary>
     public void OnCorrectSelectCenter()
     {
+        //中央が当たりで2回目押された時は何の処理もしないで早期リターン
         if (isCenterCorrect)
         {
             return;
@@ -93,6 +95,7 @@ public class HitObjectsCounter : MonoBehaviour
     /// </summary>
     public void OnCorrectSelectLeft()
     {
+        //左が当たりで2回目押された時は何の処理もしないで早期リターン
         if (isLeftCorrect)
         {
             return;
@@ -109,7 +112,6 @@ public class HitObjectsCounter : MonoBehaviour
     public void OnMistakeSelect(int selectNum)
     {
         CountHitObjectsNum();
-        playerEffectCreater.CreateMissEffect(selectNum);
     }
 
     /// <summary>

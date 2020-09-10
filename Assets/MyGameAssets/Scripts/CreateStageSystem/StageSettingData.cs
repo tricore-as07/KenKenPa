@@ -11,10 +11,6 @@ public class StageSettingData : ScriptableObject
     public int ObjectDistance => objectDistance;                                                    //外部に公開するためのプロパティ
     [SerializeField] int generateObjectsGroupNum = default;                                         //生成するオブジェクトグループの数
     public int GenerateObjectsGroupNum => generateObjectsGroupNum;                                  //外部に公開するためのプロパティ
-    [SerializeField] GameObject hitObjectPrefab = default;                                          //当たりのオブジェクトのプレハブ
-    public GameObject HitObjectPrefab => hitObjectPrefab;                                           //外部に公開するためのプロパティ
-    [SerializeField] GameObject notInputHitObjectPrefab = default;                                  //当たりで入力できない時のオブジェクトのプレハブ
-    public GameObject NotInputHitObjectPrefab => notInputHitObjectPrefab;                           //外部に公開するためのプロパティ
     [SerializeField] GameObject outObjectPrefab = default;                                          //外れのオブジェクトのプレハブ
     public GameObject OutObjectPrefab => outObjectPrefab;                                           //外部に公開するためのプロパティ
     [SerializeField] List<ObjectsGroupData> startObjectsGroupDatas = new List<ObjectsGroupData>();  //ゲーム開始時のオブジェクトグループのデータのリスト

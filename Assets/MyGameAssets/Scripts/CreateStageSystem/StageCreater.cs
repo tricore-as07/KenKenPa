@@ -12,11 +12,14 @@ public class StageCreater : MonoBehaviour
     [SerializeField] GameObject stagePrefab = default;                              //ステージのプレハブ
     [SerializeField] GameObject backgroundGroupPrefab = default;                    //背景オブジェクトをまとめるオブジェクトのプレハブ
     [SerializeField]List<GameObject> backgroundPrefabs = new List<GameObject>();    //背景のプレハブのリスト
+    [SerializeField] List<GameObject> hitObjectPrefabs = new List<GameObject>();    //当たりのオブジェクトのプレハブ
+    [SerializeField] List<GameObject> notHitObjectPrefabs = new List<GameObject>(); //当たりで入力できない時のオブジェクトのプレハブ
     [SerializeField] int backgroundOnjectNum = default;                             //背景オブジェクトの数
     GameObject stage = default;                                                     //ステージ関連のオブジェクトの親に設定するためのもの
     GameObject backGround = default;                                                //背景オブジェクトをまとめるオブジェクト
     Vector3 DepthPosition;                                                          //ステージ生成時の奥行きの位置
     Vector3 backgroundPutPos;                                                       //背景を設置するポジション
+    const int objectRotateNum = 12;                                                 //回転角度の違いを１２分にする
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -34,22 +37,24 @@ public class StageCreater : MonoBehaviour
             //自分と同じ親を設定してプレハブを作成
             backGround = Instantiate(backgroundGroupPrefab, transform.parent);
         }
-        int createCount = 0;
+        //オブジェクトを作った回数
+        int createObjectsCount = 0;
         var startObjectsGroupData = stageSettingData.StartObjectsGroupDatas.GetEnumerator();
         startObjectsGroupData.Reset();
         while (startObjectsGroupData.MoveNext())
         {
-            createCount++;
+            createObjectsCount++;
             CreateObjectsGroup(startObjectsGroupData.Current);
         }
-        int loopNum = stageSettingData.GenerateObjectsGroupNum - createCount;
+        //ループする回数
+        int loopNum = stageSettingData.GenerateObjectsGroupNum - createObjectsCount;
         for (var i = 0; i < loopNum; i++)
         {
             var objectsGroupData = RandomWithWeight.Lottery<ObjectsGroupData>(stageSettingData.ObjectsGroupDatas);
             CreateObjectsGroup(objectsGroupData);
         }
         //背景オブジェクトの生成
-        Vector3 backgroundPutPos = new Vector3(0,0,0);
+        backgroundPutPos = new Vector3(0,0,0);
         for(var i = 0; i < backgroundOnjectNum; i++)
         {
             CreateBackground();
@@ -114,9 +119,26 @@ public class StageCreater : MonoBehaviour
             //当たりのオブジェクトを生成する
             case ObjectType.HitObject:
                 {
-                    var notInputHitObjectPrefab = Instantiate(stageSettingData.HitObjectPrefab, parent);
-                    notInputHitObjectPrefab.SetActive(false);
-                    Instantiate(stageSettingData.NotInputHitObjectPrefab, parent);
+                    //オブジェクトを回転させるローテーションを作成
+                    Vector3 rot = new Vector3(0f,Random.Range(0, objectRotateNum) * 360 / objectRotateNum, 0f);
+                    var randomNum = Random.Range(0, hitObjectPrefabs.Count + objectRotateNum);
+                    //ランダムで生成した数が設定されているプレハブの数の範囲内だったら
+                    if(randomNum < hitObjectPrefabs.Count)
+                    {
+                        var obj = Instantiate(hitObjectPrefabs[randomNum], parent);
+                        obj.SetActive(false);
+                        obj = Instantiate(notHitObjectPrefabs[randomNum], parent);
+                    }
+                    //範囲外の場合は正円じゃないプレハブを回転させる
+                    else
+                    {
+                        var obj = Instantiate(hitObjectPrefabs[hitObjectPrefabs.Count - 1], parent);
+                        obj.SetActive(false);
+                        obj.transform.eulerAngles = rot;
+                        obj = Instantiate(notHitObjectPrefabs[hitObjectPrefabs.Count - 1], parent);
+                        obj.transform.eulerAngles = rot;
+                    }
+
                     break;
                 }
             //外れのオブジェクトを作成する

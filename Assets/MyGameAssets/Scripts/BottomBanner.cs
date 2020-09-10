@@ -27,7 +27,9 @@ public class BottomBanner : MonoBehaviour
     {
         if (userAdData.useAdMobBanner)
         {
-            adMobManager.ShowBanner(AdMobManager.BANNER.BOTTOM,true);
+            //AdMobの広告がテスト広告しか表示されないため、Nendのみに
+            //adMobManager.ShowBanner(AdMobManager.BANNER.BOTTOM,true);
+            nendAdController.ShowBottomBanner(true);
         }
         else
         {

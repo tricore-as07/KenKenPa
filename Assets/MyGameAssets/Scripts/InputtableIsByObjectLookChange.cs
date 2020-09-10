@@ -6,8 +6,10 @@
 public class InputtableIsByObjectLookChange : MonoBehaviour
 {
     static InputIntervalManager inputIntervalManager;       //入力から次の入力を受け付けるまでの時間を管理する
-    const int HitObject = 0;                                //子オブジェクトで入力可能時に表示するオブジェクトの要素数
-    const int NotInputHitObject = 1;                        //子オブジェクトで入力不可能時に表示するオブジェクトの要素数
+    GameObject inputtableObject;                            //入力可能な時のオブジェクト
+    GameObject notInputtableObject;                         //入力不可能な時のオブジェクト
+    const int InputtableObject = 0;                         //子オブジェクトで入力可能時に表示するオブジェクトの要素数
+    const int NotInputtableObject = 1;                      //子オブジェクトで入力不可能時に表示するオブジェクトの要素数
     const int hitObjectNum = 2;                             //当たりのオブジェクトの時の子オブジェクトの数
 
     /// <summary>
@@ -30,8 +32,8 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
         {
             return;
         }
-        transform.GetChild(HitObject).gameObject.SetActive(true);
-        transform.GetChild(NotInputHitObject).gameObject.SetActive(false);
+        inputtableObject.SetActive(true);
+        notInputtableObject.SetActive(false);
     }
 
     /// <summary>
@@ -43,8 +45,8 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
         {
             return;
         }
-        transform.GetChild(HitObject).gameObject.SetActive(false);
-        transform.GetChild(NotInputHitObject).gameObject.SetActive(true);
+        inputtableObject.SetActive(true);
+        notInputtableObject.SetActive(false);
     }
 
     /// <summary>
@@ -54,6 +56,12 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
     {
         inputIntervalManager.AddOnEnableIsAbleInputFunc(OnEnableIsAbleInput);
         inputIntervalManager.AddOnDisableIsAbleInputFunc(OnDisableIsAbleInput);
+        bool isHitObject = transform.childCount >= hitObjectNum;        //当たりのオブジェクトかどうか
+        if (isHitObject)
+        {
+            inputtableObject = transform.GetChild(InputtableObject).gameObject;
+            notInputtableObject = transform.GetChild(NotInputtableObject).gameObject;
+        }
     }
 
     /// <summary>

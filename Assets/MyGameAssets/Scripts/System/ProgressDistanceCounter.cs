@@ -1,5 +1,5 @@
-﻿using UnityEngine.UI;
-using I2.Loc;
+﻿using I2.Loc;
+using TMPro;
 
 /// <summary>
 /// 前進した距離をカウントしておくクラス
@@ -8,7 +8,7 @@ public static class ProgressDistanceCounter
 {
     static float distanceCounter;                                           //進んだ距離をカウントする
     public static float DistanceCounter => distanceCounter;                 //進んだ距離を取得するためのプロパティ
-    static Text distText;                                                   //進んだ距離を表示するText
+    static TextMeshProUGUI distText;                                                   //進んだ距離を表示するText
     static string distFrontText;                                            //進んだ距離の前に表示するテキストの文字列
 
     /// <summary>
@@ -35,7 +35,7 @@ public static class ProgressDistanceCounter
     /// 進んだ距離を表示するText
     /// </summary>
     /// <param name="text">表示するText</param>
-    public static void SetDistText(Text text)
+    public static void SetDistText(TextMeshProUGUI text)
     {
         distText = text;
     }

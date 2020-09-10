@@ -1,19 +1,25 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// ゲーム中のプレイヤーの入力に関するクラス
 /// </summary>
 public class PlayerInput : MonoBehaviour
 {
-    bool rightInput;                                    //右に対応する入力されたかどうか
-    bool centerInput;                                   //中央に対応する入力されたかどうか
-    bool leftInput;                                     //左に対応する入力されたかどうか
-    [SerializeField] Transform rightObj = default;      //右のタップを判定する中心
-    [SerializeField] Transform centerObj = default;     //中央のタップを判定する中心
-    [SerializeField] Transform leftObj = default;       //左のタップを判定する中心
-    [SerializeField] float tapRange = default;          //タップの判定の大きさ
-    [SerializeField] new Camera camera = default;       //カメラ
-    InputAction inputAction;                            //入力があった時に実際の処理をするクラス
+    bool rightInput;                                        //右に対応する入力されたかどうか
+    bool centerInput;                                       //中央に対応する入力されたかどうか
+    bool leftInput;                                         //左に対応する入力されたかどうか
+    [SerializeField] new Camera camera = default;           //カメラ
+    [SerializeField] float sideInputIntervalTime = default; //左右入力のズレの許容時間
+    InputAction inputAction;                                //入力があった時に実際の処理をするクラス
+    bool isSideInputInterval;                               //左右入力のズレの許容時間内かどうか
+    Coroutine sideInputCoroutine;                           //左右入力のズレの許容時間を待つ用のコルーチン
+    bool hasReleasedAfterInput;                             //入力したあと離したかどうか
+    const int sideInputDistOfScreenSplitNum = 5;            //左右入力の間隔を画面の分割数で表したもの
+    static readonly int leftWidth = Screen.width / 3;       //画面の左側かどうかを区別するライン（画面の横幅の３分の１より小さい値なら左側）
+    static readonly int rightWidth = Screen.width / 3 * 2;  //画面の右側かどうかを区別するライン（画面の横幅の３分の２より大きい値なら右側）
+    static readonly float sideInputDistSetting              //左右入力の間隔
+        = Screen.width / sideInputDistOfScreenSplitNum;
 
     /// <summary>
     /// 最初に行う処理
@@ -28,7 +34,19 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void Update()
     {
-#if UNITY_EDITOR
+        //入力された後に指が離されたかどうか
+        if (!hasReleasedAfterInput)
+        {
+            if (Input.touchCount == 0)
+            {
+                hasReleasedAfterInput = true;
+            }
+            else
+            {
+                //入力された後に指が離されていない場合は次の入力を受け付けないため早期リターン
+                return;
+            }
+        }
         UpdateInput();
         if (rightInput)
         {
@@ -42,7 +60,6 @@ public class PlayerInput : MonoBehaviour
         {
             inputAction.OnLeftInput();
         }
-#endif
     }
 
     /// <summary>
@@ -50,9 +67,39 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void UpdateInput()
     {
+#if UNITY_EDITOR
         rightInput = Input.GetKeyDown(KeyCode.D);
         centerInput = Input.GetKeyDown(KeyCode.S);
         leftInput = Input.GetKeyDown(KeyCode.A);
+#endif
+        //タップされた指が１本のとき
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.touches[0];
+            bool isTapCenter = leftWidth < touch.position.x && touch.position.x < rightWidth;
+            //入力された場所が中央なら
+            if (isTapCenter)
+            {
+                inputAction.OnCenterInput();
+                hasReleasedAfterInput = false;
+            }
+        }
+        //タップされた指が２本のとき
+        else if (Input.touchCount == 2)
+        {
+            Touch firstTouch = Input.touches[0];
+            Touch secondTouch = Input.touches[1];
+            float inputDist = Mathf.Abs(firstTouch.position.x - secondTouch.position.x);
+            if (inputDist > sideInputDistSetting)
+            {
+                //左右の入力をオンにする
+                inputAction.OnLeftInput();
+                inputAction.OnRightInput();
+                isSideInputInterval = false;
+                hasReleasedAfterInput = false;
+                StopCoroutine(sideInputCoroutine);
+            }
+        }
     }
 
     /// <summary>
@@ -60,7 +107,7 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
-        IT_Gesture.onMultiTapE += OnMultiTap;
+        isSideInputInterval = false;
     }
 
     /// <summary>
@@ -68,47 +115,31 @@ public class PlayerInput : MonoBehaviour
     /// </summary>
     void OnDisable()
     {
-        IT_Gesture.onMultiTapE -= OnMultiTap;
+        hasReleasedAfterInput = false;
     }
 
     /// <summary>
-    /// タップされた時によばれる
+    /// 中央入力でミスだった場合にサイド入力かどうか誤差許容時間だけ待つ
     /// </summary>
-    /// <param name="tap">タップに関する情報</param>
-    void OnMultiTap(Tap tap)
+    public IEnumerator WaitSideInput()
     {
-        //右がタップ入力されているか
-        if (IsTapInput(tap.pos,rightObj.position))
+        isSideInputInterval = true;
+        yield return new WaitForSeconds(sideInputIntervalTime);
+        if(!isSideInputInterval)
         {
-            inputAction.OnRightInput();
+            yield break;
         }
-        //中央がタップ入力されているか
-        if (IsTapInput(tap.pos, centerObj.position))
-        {
-            inputAction.OnCenterInput();
-        }
-        //左がタップ入力されているか
-        if (IsTapInput(tap.pos, leftObj.position))
-        {
-            inputAction.OnLeftInput();
-        }
+        hasReleasedAfterInput = true;
+        isSideInputInterval = false;
+        inputAction.OnCenterInputMiss();
     }
 
     /// <summary>
-    /// タップ入力されているかどうか
+    /// サイド入力判定をするときのコルーチンをセットする
     /// </summary>
-    /// <param name="tapPos">タップされたポジション</param>
-    /// <param name="objPos">入力を判定するオブジェクトのポジション</param>
-    /// <returns>入力されている : true,入力されていない : false</returns>
-    bool IsTapInput(Vector2 tapPos,Vector3 objPos)
+    /// <param name="coroutine">セットするコルーチン</param>
+    public void SetSideInputCoroutine(Coroutine coroutine)
     {
-        //オブジェクトのカメラ上での位置
-        var pos = RectTransformUtility.WorldToScreenPoint(camera, objPos);
-        //タップした位置がオブジェクトからの一定範囲内なら
-        if ((pos - tapPos).sqrMagnitude < tapRange * tapRange)
-        {
-            return true;
-        }
-        return false;
+        sideInputCoroutine = coroutine;
     }
 }
