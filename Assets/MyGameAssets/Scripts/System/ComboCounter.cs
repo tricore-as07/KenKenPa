@@ -1,5 +1,6 @@
 ﻿using I2.Loc;
 using TMPro;
+using UnityEngine;
 
 /// <summary>
 /// コンボをカウントするクラス
@@ -13,6 +14,9 @@ public static class ComboCounter
     static string comboBackText;                            //コンボの後ろに表示する文字列
     static Timer timer;                                     //タイマークラス
     const int timeBonusComboNum = 20;                       //タイムボーナスを追加するコンボ数
+    static GameObject comboUi;                              //コンボを表示するUIのオブジェクト
+    static Animator animator;                               //コンボのアニメーター
+    const string stateName = "AddComboAnimation";
 
     /// <summary>
     /// 初期化処理
@@ -33,7 +37,8 @@ public static class ComboCounter
     {
         ComboCount++;
         comboText.text = ComboCount.ToString() + comboBackText;
-        if(MaxComboCount < ComboCount)
+        animator.Play(stateName,0,0f);
+        if (MaxComboCount < ComboCount)
         {
             MaxComboCount = ComboCount;
         }
@@ -56,9 +61,11 @@ public static class ComboCounter
     /// コンボを表示するTextをセットする
     /// </summary>
     /// <param name="text">表示するText</param>
-    public static void SetComboText(TextMeshProUGUI text)
+    public static void SetComboObject(GameObject obj)
     {
-        comboText = text;
+        comboUi = obj;
+        comboText = comboUi.GetComponent<TextMeshProUGUI>();
+        animator = comboUi.GetComponent<Animator>();
     }
 
     /// <summary>

@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
         type: 3}
       propertyPath: limitTimeSetting
-      value: 30
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
         type: 3}
@@ -911,7 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 481ab606793a67349be805c13febeba0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTarget: {fileID: 545075018}
+  mTarget: {fileID: 159886903}
   mAlignment_RTL: 514
   mAlignment_LTR: 514
   mAlignmentWasRTL: 0
@@ -1777,6 +1777,7 @@ RectTransform:
   - {fileID: 1757813932}
   - {fileID: 1201898249}
   - {fileID: 1494372573}
+  - {fileID: 1330696441}
   - {fileID: 1090873759}
   m_Father: {fileID: 1465678944}
   m_RootOrder: 0
@@ -2546,7 +2547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distText: {fileID: 1194863423}
-  comboText: {fileID: 1494372574}
+  comboUi: {fileID: 1494372572}
   timer: {fileID: 11549714}
 --- !u!114 &879193250
 MonoBehaviour:
@@ -3002,7 +3003,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 497979550}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3470,7 +3471,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1330696441
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3478,7 +3479,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1330696440}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3486,12 +3487,12 @@ RectTransform:
   - {fileID: 159886902}
   - {fileID: 545075019}
   - {fileID: 1460577187}
-  m_Father: {fileID: 1494372573}
-  m_RootOrder: 0
+  m_Father: {fileID: 497979550}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 340}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1330696442
@@ -3961,6 +3962,7 @@ GameObject:
   - component: {fileID: 1494372573}
   - component: {fileID: 1494372575}
   - component: {fileID: 1494372574}
+  - component: {fileID: 1494372576}
   m_Layer: 5
   m_Name: Combo
   m_TagString: Untagged
@@ -3978,16 +3980,15 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1330696441}
+  m_Children: []
   m_Father: {fileID: 497979550}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -250}
   m_SizeDelta: {x: 300, y: 100}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1494372574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4016,7 +4017,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281897686
   m_fontColor: {r: 0.8392157, g: 0.57254905, b: 0.21960784, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -4107,6 +4108,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494372572}
   m_CullTransparentMesh: 0
+--- !u!95 &1494372576
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494372572}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d2330e603aa4240fc9380956b303fe37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1566405703
 PrefabInstance:
   m_ObjectHideFlags: 0
