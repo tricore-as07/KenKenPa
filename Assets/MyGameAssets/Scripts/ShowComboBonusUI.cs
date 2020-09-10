@@ -9,9 +9,11 @@ using System;
 /// </summary>
 public class ShowComboBonusUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI meshPro;       //コンボボーナスを表示するText
-    [SerializeField] float showTime;                //コンボボーナスを表示する時間
-    string timeBack;                                //時間の後ろの文字
+    [SerializeField] TextMeshProUGUI meshPro = default;         //コンボボーナスを表示するText
+    [SerializeField] float showTime = default;                  //コンボボーナスを表示する時間
+    [SerializeField] CanvasGroup canvas = default;              //コンボボーナスのキャンバスグループ
+    [SerializeField] float fadeOutTime = default;               //フェードアウト
+    string timeBack;                                            //時間の後ろの文字
 
     /// <summary>
     /// ボーナスタイムをセット
@@ -28,10 +30,13 @@ public class ShowComboBonusUI : MonoBehaviour
     void OnEnable()
     {
         //showTimeの時間後にコンボボーナスオブジェクトを非アクティブにする
-        StartCoroutine(DelayMethod(showTime, () => {
+        StartCoroutine(DelayMethod(showTime, () =>
+        {
             gameObject.SetActive(false);
         }));
         timeBack = LocalizationManager.GetTranslation("Time_Back");
+        canvas.alpha = 1;
+        StartCoroutine(FadeOutCanvas(showTime - fadeOutTime, fadeOutTime, canvas));
     }
 
     /// <summary>
@@ -39,9 +44,26 @@ public class ShowComboBonusUI : MonoBehaviour
     /// </summary>
     /// <param name="waitTime">遅延時間</param>
     /// <param name="action">実行したい処理</param>
-    private IEnumerator DelayMethod(float waitTime, Action action)
+    IEnumerator DelayMethod(float waitTime, Action action)
     {
         yield return new WaitForSeconds(waitTime);
         action();
+    }
+
+    /// <summary>
+    /// 指定された時間後にキャンバスをフェードアウトさせる
+    /// </summary>
+    /// <param name="waitTime">遅らせる時間</param>
+    /// <param name="runTime">実行にかける時間</param>
+    /// <param name="fadeOutCanvas">フェードアウトさせるキャンバス</param>
+    IEnumerator FadeOutCanvas(float waitTime, float runTime, CanvasGroup fadeOutCanvas)
+    {
+        yield return new WaitForSeconds(waitTime);
+        while (runTime >= 0)
+        {
+            fadeOutCanvas.alpha -= Time.deltaTime / runTime;
+            runTime -= Time.deltaTime;
+            yield return null;
+        }
     }
 }

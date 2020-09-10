@@ -6,13 +6,13 @@ using TMPro;
 /// </summary>
 public static class ComboCounter
 {
-    public static int ComboCount { get; private set; }     //コンボをカウントする
-    public static int MaxComboCount { get; private set; }  //最大コンボのカウント
-    static TextMeshProUGUI comboText;                                 //コンボを表示するText
-    static string comboMissText;
-    static string comboBackText;
-    static Timer timer;
-    const int timeBonusComboNum = 20;
+    public static int ComboCount { get; private set; }      //コンボをカウントする
+    public static int MaxComboCount { get; private set; }   //最大コンボのカウント
+    static TextMeshProUGUI comboText;                       //コンボを表示するText
+    static string comboMissText;                            //コンボをミスした時に表示する文字列
+    static string comboBackText;                            //コンボの後ろに表示する文字列
+    static Timer timer;                                     //タイマークラス
+    const int timeBonusComboNum = 20;                       //タイムボーナスを追加するコンボ数
 
     /// <summary>
     /// 初期化処理
