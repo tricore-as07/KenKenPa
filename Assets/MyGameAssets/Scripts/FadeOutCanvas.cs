@@ -9,9 +9,11 @@ public class FadeOutCanvas : MonoBehaviour
     [SerializeField] float fadeOutTime = 1.0f;              //フェードアウトにかける時間
     public float FadeOutTime => fadeOutTime;                //外部に公開するためのプロパティ
     [SerializeField] GamePlayManager gamePlayManager;       //ゲームプレイシーンを管理するクラス
+    [SerializeField] GameObject countDown;                  //カウントダウンのオブジェクト
     bool isStartFadeOut;                                    //フェードアウトを開始したかどうか
-    [SerializeField] GameObject banner;
-    [SerializeField] GameObject nendNative;
+    public bool IsStartFadeOut => isStartFadeOut;           //外部に公開するためのプロパティ
+    [SerializeField] GameObject banner;                     //バナー広告のオブジェクト
+    [SerializeField] GameObject nendNative;                 //ネイティブ広告のオブジェクト
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -30,7 +32,6 @@ public class FadeOutCanvas : MonoBehaviour
     public void StartFadeOut()
     {
         isStartFadeOut = true;
-        gamePlayManager.SetActiveGamePlayObject();
         banner.SetActive(false);
         nendNative.SetActive(false);
     }
@@ -47,7 +48,7 @@ public class FadeOutCanvas : MonoBehaviour
             if(canvasGroup.alpha <= 0)
             {
                 isStartFadeOut = false;
-                gamePlayManager.StartGamePlay();
+                countDown.SetActive(true);
             }
         }
     }

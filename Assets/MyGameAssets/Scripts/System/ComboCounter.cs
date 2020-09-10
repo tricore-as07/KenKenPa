@@ -1,5 +1,5 @@
-﻿using UnityEngine.UI;
-using I2.Loc;
+﻿using I2.Loc;
+using TMPro;
 
 /// <summary>
 /// コンボをカウントするクラス
@@ -7,9 +7,12 @@ using I2.Loc;
 public static class ComboCounter
 {
     public static int ComboCount { get; private set; }     //コンボをカウントする
-    static Text comboText;                                 //コンボを表示するText
+    public static int MaxComboCount { get; private set; }  //最大コンボのカウント
+    static TextMeshProUGUI comboText;                                 //コンボを表示するText
     static string comboMissText;
     static string comboBackText;
+    static Timer timer;
+    const int timeBonusComboNum = 20;
 
     /// <summary>
     /// 初期化処理
@@ -17,6 +20,7 @@ public static class ComboCounter
     public static void Initialize()
     {
         ComboCount = 0;
+        MaxComboCount = 0;
         comboText.text = "";
         comboMissText = LocalizationManager.GetTranslation("ComboMiss");
         comboBackText = LocalizationManager.GetTranslation("Combo_Back");
@@ -29,6 +33,14 @@ public static class ComboCounter
     {
         ComboCount++;
         comboText.text = ComboCount.ToString() + comboBackText;
+        if(MaxComboCount < ComboCount)
+        {
+            MaxComboCount = ComboCount;
+        }
+        if(ComboCount % timeBonusComboNum == 0)
+        {
+            timer.AddTimeBonusByCombo();
+        }
     }
 
     /// <summary>
@@ -44,8 +56,17 @@ public static class ComboCounter
     /// コンボを表示するTextをセットする
     /// </summary>
     /// <param name="text">表示するText</param>
-    public static void SetComboText(Text text)
+    public static void SetComboText(TextMeshProUGUI text)
     {
         comboText = text;
+    }
+
+    /// <summary>
+    /// 制限時間管理するタイマークラスをセットする
+    /// </summary>
+    /// <param name="timer">制限時間のタイマー</param>
+    public static void SetTimer(Timer argTimer)
+    {
+        timer = argTimer;
     }
 }

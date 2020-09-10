@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 /// <summary>
 /// 入力があった際の動作をするクラス
@@ -9,6 +8,9 @@ public class InputAction : MonoBehaviour
     [SerializeField] AudioSource audioSource = default;                 //オーディオソースコンポーネント
     [SerializeField] AudioClip correctSE = default;                     //正解時のSE
     [SerializeField] AudioClip incorrectSE = default;                   //不正解時のSE
+    [SerializeField] PlayerInput playerInput;                           //ゲーム中のプレイヤーの入力に関するクラス
+    [SerializeField] GameObject playerTarget;                           //プレイヤーの目標位置のためのオブジェクト
+    [SerializeField, Range(0f, 1f)] float InterpolationNum;             //補間に使う値 
     CorrectCheck correctCheck;                                          //入力された場所が当たりか外れかを判定するクラス
     GameObject stage;                                                   //ステージのオブジェクト
     InputIntervalManager inputIntervalManager;                          //入力から次の入力を受け付けるまでの時間を管理するクラス
@@ -23,6 +25,7 @@ public class InputAction : MonoBehaviour
         //最初のオブジェクトグループのHitCheckクラスを代入
         correctCheck = stage.transform.GetChild(0).GetComponent<CorrectCheck>();
         correctCheck.OnEnableCorrentCheck();
+        playerTarget.transform.position = Vector3.zero;
     }
 
     /// <summary>
@@ -41,6 +44,15 @@ public class InputAction : MonoBehaviour
         //管理系のクラス
         inputIntervalManager = GameObject.FindGameObjectWithTag("InputIntervalManager").GetComponent<InputIntervalManager>();
         stageCreater = GameObject.FindGameObjectWithTag("StageCreater").GetComponent<StageCreater>();
+    }
+
+    /// <summary>
+    /// 毎フレーム行う処理
+    /// </summary>
+    void Update()
+    {
+        //ターゲットとの距離を
+        transform.position = Vector3.Lerp(transform.position,playerTarget.transform.position, InterpolationNum);
     }
 
     /// <summary>
@@ -76,9 +88,7 @@ public class InputAction : MonoBehaviour
             }
             else
             {
-                ComboCounter.OnMissCombo();
-                inputIntervalManager.MissInput();
-                audioSource.PlayOneShot(incorrectSE);
+                StartCoroutine(playerInput.WaitSideInput());
             }
         }
     }
@@ -129,14 +139,23 @@ public class InputAction : MonoBehaviour
     /// <summary>
     /// 当たりを全て選んだ時にプレイヤーがやる処理
     /// </summary>
-    /// FIXME orimoto モック版作成時のためマジックナンバー使用（本実装時に修正予定）
     void OnAllCorrectSelectPlayerAction()
     {
         const float ObjectDistance = 3f;              //オブジェクトの間の距離（ランダム生成システム作成時にScriptableObjectで設定できるように変更予定）
-        transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
+        playerTarget.transform.position += new Vector3(0.0f, 0.0f, ObjectDistance);
         ProgressDistanceCounter.OnProgressPlayer(ObjectDistance);
         ComboCounter.OnSuccessCombo();
         inputIntervalManager.OnInput();
-        audioSource.PlayOneShot(correctSE);
+        audioSource.PlayOneShot(correctSE, audioSource.volume);
+    }
+
+    /// <summary>
+    /// 中央入力でミスだった時に呼ばれる
+    /// </summary>
+    public void OnCenterInputMiss()
+    {
+        ComboCounter.OnMissCombo();
+        inputIntervalManager.MissInput();
+        audioSource.PlayOneShot(incorrectSE);
     }
 }
