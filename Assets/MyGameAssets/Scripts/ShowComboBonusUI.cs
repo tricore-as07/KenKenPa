@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using I2.Loc;
 using TMPro;
+using System.Collections.Generic;
 using System.Collections;
 using System;
 
@@ -9,12 +10,14 @@ using System;
 /// </summary>
 public class ShowComboBonusUI : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI meshPro = default;         //コンボボーナスを表示するText
-    [SerializeField] float showTime = default;                  //コンボボーナスを表示する時間
-    [SerializeField] CanvasGroup canvas = default;              //コンボボーナスのキャンバスグループ
-    [SerializeField] float fadeOutTime = default;               //フェードアウト
-    string timeBack;                                            //時間の後ろの文字
-
+    [SerializeField] TextMeshProUGUI meshPro = default;             //コンボボーナスを表示するText
+    [SerializeField] float showTime = default;                      //コンボボーナスを表示する時間
+    [SerializeField] CanvasGroup canvas = default;                  //コンボボーナスのキャンバスグループ
+    [SerializeField] float fadeOutTime = default;                   //フェードアウト
+    string timeBack;                                                //時間の後ろの文字
+    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   ///入力間の受付可能になるまでの時間の設定のリスト
+        = new List<ComboBonusUiSetting>();           
+        
     /// <summary>
     /// ボーナスタイムをセット
     /// </summary>
@@ -29,6 +32,7 @@ public class ShowComboBonusUI : MonoBehaviour
     /// </summary>
     void OnEnable()
     {
+        SelectPraiseComboBonusUI();
         //showTimeの時間後にコンボボーナスオブジェクトを非アクティブにする
         StartCoroutine(DelayMethod(showTime, () =>
         {
@@ -37,6 +41,28 @@ public class ShowComboBonusUI : MonoBehaviour
         timeBack = LocalizationManager.GetTranslation("Time_Back");
         canvas.alpha = 1;
         StartCoroutine(FadeOutCanvas(showTime - fadeOutTime, fadeOutTime, canvas));
+    }
+
+    /// <summary>
+    /// コンボボーナスで褒めるUIを選択する
+    /// </summary>
+    void SelectPraiseComboBonusUI()
+    {
+        GameObject ui = null;
+        //設定されているコンボ数より今のコンボ数が多かったら後にアクティブにするオブジェクトに代入する
+        foreach(var comboBonusSetting in comboBonusSettings)
+        {
+            if(comboBonusSetting.ComboNum < ComboCounter.ComboCount)
+            {
+                ui = comboBonusSetting.ShowUi;
+                comboBonusSetting.ShowUi.SetActive(false);
+            }
+        }
+        //有効にするUIがあったときはアクティブにする
+        if(ui != null)
+        {
+            ui.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -66,4 +92,17 @@ public class ShowComboBonusUI : MonoBehaviour
             yield return null;
         }
     }
+}
+
+/// <summary>
+/// コンボ数によって表示するUIを別々に設定する
+/// </summary>
+/// NOTE : orimoto ここで設定されているコンボ数以上で設定されているオブジェクトをアクティブにする
+[System.Serializable]
+public class ComboBonusUiSetting
+{
+    [SerializeField] int comboNum = default;                        //コンボ数
+    public int ComboNum => comboNum;                                //外部に公開するためのプロパティ
+    [SerializeField] GameObject showUi = default;                   //表示するUI
+    public GameObject ShowUi => showUi;                       //外部に公開するためのプロパティ
 }
