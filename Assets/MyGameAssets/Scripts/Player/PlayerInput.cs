@@ -43,6 +43,7 @@ public class PlayerInput : MonoBehaviour
             }
             else
             {
+                //入力された後に指が離されていない場合は次の入力を受け付けないため早期リターン
                 return;
             }
         }
@@ -97,7 +98,6 @@ public class PlayerInput : MonoBehaviour
                 isSideInputInterval = false;
                 hasReleasedAfterInput = false;
                 StopCoroutine(sideInputCoroutine);
-                return;
             }
         }
     }

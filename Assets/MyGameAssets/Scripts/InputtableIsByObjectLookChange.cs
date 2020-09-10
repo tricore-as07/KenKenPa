@@ -56,12 +56,12 @@ public class InputtableIsByObjectLookChange : MonoBehaviour
     {
         inputIntervalManager.AddOnEnableIsAbleInputFunc(OnEnableIsAbleInput);
         inputIntervalManager.AddOnDisableIsAbleInputFunc(OnDisableIsAbleInput);
-        if (transform.childCount < hitObjectNum)
+        bool isHitObject = transform.childCount >= hitObjectNum;        //当たりのオブジェクトかどうか
+        if (isHitObject)
         {
-            return;
+            inputtableObject = transform.GetChild(InputtableObject).gameObject;
+            notInputtableObject = transform.GetChild(NotInputtableObject).gameObject;
         }
-        inputtableObject = transform.GetChild(InputtableObject).gameObject;
-        notInputtableObject = transform.GetChild(NotInputtableObject).gameObject;
     }
 
     /// <summary>
