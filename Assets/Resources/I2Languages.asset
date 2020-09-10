@@ -53,8 +53,10 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - Share
-      - "\u30B7\u30A7\u30A2"
+      - 'Watch the video
+
+        Get the item'
+      - "\u52D5\u753B\u3092\u898B\u3066\n\u30A2\u30A4\u30C6\u30E0\u3092\u30B2\u30C3\u30C8\u3059\u308B"
       Flags: 0000
       Languages_Touch: []
     - Term: Retry
