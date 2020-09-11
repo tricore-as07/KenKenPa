@@ -10,13 +10,18 @@ public static class ComboCounter
     public static int ComboCount { get; private set; }      //コンボをカウントする
     public static int MaxComboCount { get; private set; }   //最大コンボのカウント
     static TextMeshProUGUI comboText;                       //コンボを表示するText
-    static string comboMissText;                            //コンボをミスした時に表示する文字列
     static string comboBackText;                            //コンボの後ろに表示する文字列
     static Timer timer;                                     //タイマークラス
     const int timeBonusComboNum = 20;                       //タイムボーナスを追加するコンボ数
-    static GameObject comboUi;                              //コンボを表示するUIのオブジェクト
-    static Animator animator;                               //コンボのアニメーター
-    const string stateName = "AddComboAnimation";
+    static Animator addAnimator;                            //コンボのアニメーター
+    static Animator missAnimator;                           //コンボのアニメーター
+    const string addStateName = "AddComboAnimation";        //コンボを追加した時のアニメーション
+    const string missStateName = "MissComboAnimation";      //コンボをミスした時のアニメーション
+    static int sccessObjNum = 0;                            //成功した時に表示するオブジェクトの要素数番号
+    static int missObjNum = 1;                              //失敗した時に表示するオブジェクトの要素数番号
+    static GameObject sccessObj;                            //成功した時に表示するオブジェクト
+    static GameObject missObj;                              //失敗した時に表示するオブジェクト
+    static ComboMaterialDecider decider;                    //コンボ数でマテリアルを変更するクラス
 
     /// <summary>
     /// 初期化処理
@@ -26,7 +31,6 @@ public static class ComboCounter
         ComboCount = 0;
         MaxComboCount = 0;
         comboText.text = "";
-        comboMissText = LocalizationManager.GetTranslation("ComboMiss");
         comboBackText = LocalizationManager.GetTranslation("Combo_Back");
     }
 
@@ -35,13 +39,20 @@ public static class ComboCounter
     /// </summary>
     public static void OnSuccessCombo()
     {
+        sccessObj.SetActive(true);
+        missObj.SetActive(false);
         ComboCount++;
+        decider.OnAddCombo();
+        //コンボ数を文字列にしてテキストを書き換える
         comboText.text = ComboCount.ToString() + comboBackText;
-        animator.Play(stateName,0,0f);
+        //アニメーションを最初から再生
+        addAnimator.Play(addStateName, 0,0f);
+        //コンボの最大数のカウント
         if (MaxComboCount < ComboCount)
         {
             MaxComboCount = ComboCount;
         }
+        //タイムボーナスがもらえるコンボ数なら
         if(ComboCount % timeBonusComboNum == 0)
         {
             timer.AddTimeBonusByCombo();
@@ -53,19 +64,25 @@ public static class ComboCounter
     /// </summary>
     public static void OnMissCombo()
     {
+        sccessObj.SetActive(false);
+        missObj.SetActive(true);
+        missAnimator.Play(missStateName, 0, 0f);
         ComboCount = 0;
-        comboText.text = comboMissText;
     }
 
     /// <summary>
-    /// コンボを表示するTextをセットする
+    /// コンボ関連のオブジェクトをセットする
     /// </summary>
-    /// <param name="text">表示するText</param>
+    /// <param name="obj">示するオブジェクト</param>
     public static void SetComboObject(GameObject obj)
     {
-        comboUi = obj;
-        comboText = comboUi.GetComponent<TextMeshProUGUI>();
-        animator = comboUi.GetComponent<Animator>();
+        sccessObj = obj.transform.GetChild(sccessObjNum).gameObject;
+        missObj = obj.transform.GetChild(missObjNum).gameObject;
+        //よくアクセスするコンポーネントをキャッシュしておく
+        comboText = sccessObj.GetComponent<TextMeshProUGUI>();
+        addAnimator = sccessObj.GetComponent<Animator>();
+        missAnimator = missObj.GetComponent<Animator>();
+        decider = sccessObj.GetComponent<ComboMaterialDecider>();
     }
 
     /// <summary>

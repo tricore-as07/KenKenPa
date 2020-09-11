@@ -15,7 +15,7 @@ public class ShowComboBonusUI : MonoBehaviour
     [SerializeField] CanvasGroup canvas = default;                  //コンボボーナスのキャンバスグループ
     [SerializeField] float fadeOutTime = default;                   //フェードアウト
     string timeBack;                                                //時間の後ろの文字
-    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   ///入力間の受付可能になるまでの時間の設定のリスト
+    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   //コンボボーナスのオブジェクトを設定するリスト
         = new List<ComboBonusUiSetting>();           
         
     /// <summary>
