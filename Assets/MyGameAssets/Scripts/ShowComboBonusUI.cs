@@ -14,9 +14,10 @@ public class ShowComboBonusUI : MonoBehaviour
     [SerializeField] float showTime = default;                      //コンボボーナスを表示する時間
     [SerializeField] CanvasGroup canvas = default;                  //コンボボーナスのキャンバスグループ
     [SerializeField] float fadeOutTime = default;                   //フェードアウト
+    [SerializeField] Animator animator = default;                   //アニメーター
+    const string animationName = "ComboBonusAnimation";             //アニメーションの名前
     string timeBack;                                                //時間の後ろの文字
-    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   //コンボボーナスのオブジェクトを設定するリスト
-        = new List<ComboBonusUiSetting>();           
+    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings;  //コンボボーナスのオブジェクトを設定するリスト     
         
     /// <summary>
     /// ボーナスタイムをセット
@@ -33,6 +34,7 @@ public class ShowComboBonusUI : MonoBehaviour
     void OnEnable()
     {
         SelectPraiseComboBonusUI();
+        animator.Play(animationName,0,0f);
         //showTimeの時間後にコンボボーナスオブジェクトを非アクティブにする
         StartCoroutine(DelayMethod(showTime, () =>
         {
