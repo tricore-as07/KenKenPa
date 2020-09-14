@@ -1,8 +1,4 @@
-﻿using I2.Loc;
-using TMPro;
-using UnityEngine;
-
-/// <summary>
+﻿/// <summary>
 /// コンボをカウントするクラス
 /// </summary>
 public static class ComboCounter
