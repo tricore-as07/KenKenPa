@@ -4415,14 +4415,15 @@ MonoBehaviour:
   m_text: 321
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e43b019216afb40adb57854345c9ae37, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: a359d868485914879b1b78c7fa8f7725, type: 2}
+  m_sharedMaterial: {fileID: 1776308603825631949, guid: e43b019216afb40adb57854345c9ae37,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281897686
-  m_fontColor: {r: 0.8392157, g: 0.57254905, b: 0.21960784, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
