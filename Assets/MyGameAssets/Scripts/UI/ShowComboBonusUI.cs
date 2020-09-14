@@ -3,7 +3,6 @@ using I2.Loc;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
-using System;
 
 /// <summary>
 /// コンボボーナスのUIを表示する
@@ -17,8 +16,7 @@ public class ShowComboBonusUI : MonoBehaviour
     [SerializeField] Animator animator = default;                   //アニメーター
     const string animationName = "ComboBonusAnimation";             //アニメーションの名前
     string timeBack;                                                //時間の後ろの文字
-    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   //コンボボーナスのオブジェクトを設定するリスト
-        = new List<ComboBonusUiSetting>();           
+    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings;  //コンボボーナスのオブジェクトを設定するリスト
         
     /// <summary>
     /// ボーナスタイムをセット
@@ -64,17 +62,6 @@ public class ShowComboBonusUI : MonoBehaviour
     }
 
     /// <summary>
-    /// 渡された処理を指定時間後に実行する
-    /// </summary>
-    /// <param name="waitTime">遅延時間</param>
-    /// <param name="action">実行したい処理</param>
-    IEnumerator DelayMethod(float waitTime, Action action)
-    {
-        yield return new WaitForSeconds(waitTime);
-        action();
-    }
-
-    /// <summary>
     /// 指定された時間後にキャンバスをフェードアウトさせる
     /// </summary>
     /// <param name="waitTime">遅らせる時間</param>
@@ -89,6 +76,7 @@ public class ShowComboBonusUI : MonoBehaviour
             runTime -= Time.deltaTime;
             yield return null;
         }
+        //アルファが０になって表示する必要がなかったらオブジェクトを非アクティブにする
         gameObject.SetActive(false);
     }
 }
