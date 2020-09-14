@@ -524,6 +524,7 @@ GameObject:
   - component: {fileID: 40874696}
   - component: {fileID: 40874695}
   - component: {fileID: 40874698}
+  - component: {fileID: 40874699}
   m_Layer: 5
   m_Name: ComboMiss
   m_TagString: Untagged
@@ -726,6 +727,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &40874699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40874693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd20738364e34e17bba366140d1b89d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &40919614 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2931314705576267432, guid: 83d562ed2933c40e89a6cfcd40abbe73,

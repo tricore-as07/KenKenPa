@@ -7,17 +7,17 @@ using I2.Loc;
 /// </summary>
 public class ComboUI : MonoBehaviour
 {
-     TextMeshProUGUI comboText;                       //コンボを表示するText
-     string comboBackText;                            //コンボの後ろに表示する文字列
-     Animator addAnimator;                            //コンボのアニメーター
-     Animator missAnimator;                           //コンボのアニメーター
-    const string addStateName = "AddComboAnimation";  //コンボを追加した時のアニメーション
-    const string missStateName = "MissComboAnimation";//コンボをミスした時のアニメーション
-     int sccessObjNum = 0;                            //成功した時に表示するオブジェクトの要素数番号
-     int missObjNum = 1;                              //失敗した時に表示するオブジェクトの要素数番号
-     GameObject sccessObj;                            //成功した時に表示するオブジェクト
-     GameObject missObj;                              //失敗した時に表示するオブジェクト
-     ComboMaterialDecider decider;                    //コンボ数でマテリアルを変更するクラス
+    TextMeshProUGUI comboText;                          //コンボを表示するText
+    string comboBackText;                               //コンボの後ろに表示する文字列
+    Animator addAnimator;                               //コンボのアニメーター
+    Animator missAnimator;                              //コンボのアニメーター
+    const string addStateName = "AddComboAnimation";    //コンボを追加した時のアニメーション
+    const string missStateName = "MissComboAnimation";  //コンボをミスした時のアニメーション
+    int sccessObjNum = 0;                               //成功した時に表示するオブジェクトの要素数番号
+    int missObjNum = 1;                                 //失敗した時に表示するオブジェクトの要素数番号
+    GameObject sccessObj;                               //成功した時に表示するオブジェクト
+    GameObject missObj;                                 //失敗した時に表示するオブジェクト
+    ComboMaterialDecider decider;                       //コンボ数でマテリアルを変更するクラス
 
     /// <summary>
     /// オブジェクトがアクティブになった時に呼ばれる
@@ -53,7 +53,6 @@ public class ComboUI : MonoBehaviour
     void OnSuccessCombo()
     {
         sccessObj.SetActive(true);
-        missObj.SetActive(false);
         decider.OnAddCombo();
         //コンボ数を文字列にしてテキストを書き換える
         comboText.text = ComboCounter.ComboCount.ToString() + comboBackText;
