@@ -145,6 +145,22 @@ MonoBehaviour:
       - "+1\u79D2"
       Flags: 0000
       Languages_Touch: []
+    - Term: BonusTimeFlashy
+      TermType: 0
+      Description: 
+      Languages:
+      - Nice!
+      - "\u30CA\u30A4\u30B9!"
+      Flags: 0000
+      Languages_Touch: []
+    - Term: BonusTimeFlashy2
+      TermType: 0
+      Description: 
+      Languages:
+      - Great!
+      - "\u30B0\u30EC\u30FC\u30C8!"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: '-'

@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour
     [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
     [SerializeField] GameObject comboBonus = default;           //コンボボーナスのUIオブジェクト
     ShowComboBonusUI showComboBonusUI;                          //コンボボーナスのUIを表示するためのクラス
+    [SerializeField] int timeBonusComboNum = 20;                //タイムボーナスを追加するコンボ数
     float limitTime;                                            //カウントダウンする制限時間
     public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
     bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
@@ -42,6 +43,15 @@ public class Timer : MonoBehaviour
         EndCountDownObject.SetActive(false);
         isAddTimeBonus = false;
         showComboBonusUI = comboBonus.GetComponent<ShowComboBonusUI>();
+        ComboCounter.onSuccessComboEvent += OnSuccessCombo;
+    }
+
+    /// <summary>
+    /// オブジェクトがアクティブになった時によばれる
+    /// </summary>
+    void OnDisable()
+    {
+        ComboCounter.onSuccessComboEvent -= OnSuccessCombo;
     }
 
     /// <summary>
@@ -107,9 +117,21 @@ public class Timer : MonoBehaviour
     }
 
     /// <summary>
+    /// コンボを成功させた時に呼ぶ
+    /// </summary>
+    void OnSuccessCombo()
+    {
+        //タイムボーナスがもらえるコンボ数なら
+        if (ComboCounter.ComboCount % timeBonusComboNum == 0)
+        {
+            AddTimeBonusByCombo();
+        }
+    }
+
+    /// <summary>
     /// コンボによるタイムボーナスの追加
     /// </summary>
-    public void AddTimeBonusByCombo()
+    void AddTimeBonusByCombo()
     {
         limitTime += timeBonusByCombo;      //タイムの追加
         comboBonus.SetActive(true);         //タイムボーナスのUIをアクティブに

@@ -1,18 +1,14 @@
-﻿using I2.Loc;
-using TMPro;
-
-/// <summary>
+﻿/// <summary>
 /// コンボをカウントするクラス
 /// </summary>
 public static class ComboCounter
 {
-    public static int ComboCount { get; private set; }     //コンボをカウントする
-    public static int MaxComboCount { get; private set; }  //最大コンボのカウント
-    static TextMeshProUGUI comboText;                                 //コンボを表示するText
-    static string comboMissText;
-    static string comboBackText;
-    static Timer timer;
-    const int timeBonusComboNum = 20;
+    public static int ComboCount { get; private set; }              //コンボをカウントする
+    public static int MaxComboCount { get; private set; }           //最大コンボのカウント
+    public delegate void OnSuccessComboEvent();                     //コンボを成功させた時に呼ぶ関数のデリゲート
+    public static event OnSuccessComboEvent onSuccessComboEvent;    //コンボを成功させた時に呼ぶイベント
+    public delegate void OnMissComboEvent();                        //コンボを失敗させた時に呼ぶ関数のデリゲート
+    public static event OnMissComboEvent onMissComboEvent;          //コンボを失敗させた時に呼ぶイベント
 
     /// <summary>
     /// 初期化処理
@@ -21,9 +17,6 @@ public static class ComboCounter
     {
         ComboCount = 0;
         MaxComboCount = 0;
-        comboText.text = "";
-        comboMissText = LocalizationManager.GetTranslation("ComboMiss");
-        comboBackText = LocalizationManager.GetTranslation("Combo_Back");
     }
 
     /// <summary>
@@ -32,15 +25,12 @@ public static class ComboCounter
     public static void OnSuccessCombo()
     {
         ComboCount++;
-        comboText.text = ComboCount.ToString() + comboBackText;
-        if(MaxComboCount < ComboCount)
+        //コンボの最大数のカウント
+        if (MaxComboCount < ComboCount)
         {
             MaxComboCount = ComboCount;
         }
-        if(ComboCount % timeBonusComboNum == 0)
-        {
-            timer.AddTimeBonusByCombo();
-        }
+        onSuccessComboEvent?.Invoke();
     }
 
     /// <summary>
@@ -49,24 +39,6 @@ public static class ComboCounter
     public static void OnMissCombo()
     {
         ComboCount = 0;
-        comboText.text = comboMissText;
-    }
-
-    /// <summary>
-    /// コンボを表示するTextをセットする
-    /// </summary>
-    /// <param name="text">表示するText</param>
-    public static void SetComboText(TextMeshProUGUI text)
-    {
-        comboText = text;
-    }
-
-    /// <summary>
-    /// 制限時間管理するタイマークラスをセットする
-    /// </summary>
-    /// <param name="timer">制限時間のタイマー</param>
-    public static void SetTimer(Timer argTimer)
-    {
-        timer = argTimer;
+        onMissComboEvent?.Invoke();
     }
 }
