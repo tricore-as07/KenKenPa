@@ -17,7 +17,8 @@ public class ShowComboBonusUI : MonoBehaviour
     [SerializeField] Animator animator = default;                   //アニメーター
     const string animationName = "ComboBonusAnimation";             //アニメーションの名前
     string timeBack;                                                //時間の後ろの文字
-    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings;  //コンボボーナスのオブジェクトを設定するリスト     
+    [SerializeField] List<ComboBonusUiSetting> comboBonusSettings   //コンボボーナスのオブジェクトを設定するリスト
+        = new List<ComboBonusUiSetting>();           
         
     /// <summary>
     /// ボーナスタイムをセット
@@ -35,11 +36,6 @@ public class ShowComboBonusUI : MonoBehaviour
     {
         SelectPraiseComboBonusUI();
         animator.Play(animationName,0,0f);
-        //showTimeの時間後にコンボボーナスオブジェクトを非アクティブにする
-        StartCoroutine(DelayMethod(showTime, () =>
-        {
-            gameObject.SetActive(false);
-        }));
         timeBack = LocalizationManager.GetTranslation("Time_Back");
         canvas.alpha = 1;
         StartCoroutine(FadeOutCanvas(showTime - fadeOutTime, fadeOutTime, canvas));
@@ -93,6 +89,7 @@ public class ShowComboBonusUI : MonoBehaviour
             runTime -= Time.deltaTime;
             yield return null;
         }
+        gameObject.SetActive(false);
     }
 }
 
