@@ -7,7 +7,6 @@ using TMPro;
 public class InitializeMockScene : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI distText = default;            //進んだ距離を表示するText
-    [SerializeField] GameObject comboUi = default;           //コンボを表示するText
     [SerializeField] Timer timer = default;                         //タイマークラス
 
     /// <summary>
@@ -16,8 +15,6 @@ public class InitializeMockScene : MonoBehaviour
     void Awake()
     {
         ProgressDistanceCounter.SetDistText(distText);
-        ComboCounter.SetComboObject(comboUi);
-        ComboCounter.SetTimer(timer);
     }
 
     /// <summary>
