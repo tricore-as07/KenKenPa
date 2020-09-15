@@ -6,8 +6,10 @@ using UnityEngine.UI;
 /// </summary>
 public class VolumeAdjustment : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;       //ボリュームを変更するスライダー
-    [SerializeField] VolumeKey key;             //何のボリュームを設定するか
+    [SerializeField] Slider volumeSlider;                                   //ボリュームを変更するスライダー
+    [SerializeField] VolumeKey key;                                         //何のボリュームを設定するか
+    public delegate void OnChangeVolumeEvent();                             //ボリュームが変更された時に呼ぶ関数のデリゲート
+    public static event OnChangeVolumeEvent onChangeVolumeEvent;            //ボリュームが変更された時に呼ぶイベント
 
     /// <summary>
     /// スクリプトのインスタンスがロードされた時に呼ばれる
@@ -24,5 +26,6 @@ public class VolumeAdjustment : MonoBehaviour
     {
         var volume = volumeSlider.value;
         PlayerPrefs.SetFloat(key.ToString(), volume);
+        onChangeVolumeEvent?.Invoke();
     }
 }

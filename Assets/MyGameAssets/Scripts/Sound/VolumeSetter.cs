@@ -21,5 +21,22 @@ public class VolumeSetter : MonoBehaviour
     void OnEnable()
     {
         audioSource.volume = PlayerPrefs.GetFloat(key.ToString(), 1f);
+        VolumeAdjustment.onChangeVolumeEvent += OnChangeVolume;
+    }
+
+    /// <summary>
+    /// オブジェクトが非アクティブになった時に呼ばれる
+    /// </summary>
+    private void OnDisable()
+    {
+        VolumeAdjustment.onChangeVolumeEvent -= OnChangeVolume;
+    }
+
+    /// <summary>
+    /// ボリュームが変更された時に呼ばれる
+    /// </summary>
+    void OnChangeVolume()
+    {
+        audioSource.volume = PlayerPrefs.GetFloat(key.ToString(), 1f);
     }
 }
