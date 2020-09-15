@@ -21,16 +21,20 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - GameStart
-      - "\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8"
+      - 'Game
+
+        Start'
+      - "\u30B2\u30FC\u30E0\n\u30B9\u30BF\u30FC\u30C8"
       Flags: 0000
       Languages_Touch: []
     - Term: Ranking
       TermType: 0
       Description: 
       Languages:
-      - Ranking
-      - "\u30E9\u30F3\u30AD\u30F3\u30B0"
+      - 'World
+
+        Ranking'
+      - "\u4E16\u754C\n\u30E9\u30F3\u30AD\u30F3\u30B0"
       Flags: 0000
       Languages_Touch: []
     - Term: Sponsor
@@ -69,8 +73,10 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - Title
-      - "\u30BF\u30A4\u30C8\u30EB"
+      - 'Return
+
+        to Title'
+      - "\u30BF\u30A4\u30C8\u30EB\u3078\n\u623B\u308B"
       Flags: 0000
       Languages_Touch: []
     - Term: Language
