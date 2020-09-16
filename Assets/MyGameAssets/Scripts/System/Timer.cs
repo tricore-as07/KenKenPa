@@ -27,7 +27,7 @@ public class Timer : MonoBehaviour
     string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
     bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
     const float countDownAnimationTime = 11f;                   //アニメーションの時間
-    const float startEndCountDownTime = 10.5f;                  //終了のカウントダウンが始まる時間
+    const float startEndCountDownTime = 10f;                  //終了のカウントダウンが始まる時間
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
@@ -97,7 +97,7 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text = timeFrontText + limitTime.ToString("0") + timeBackText;
+            timeText.text = timeFrontText + Mathf.Ceil(limitTime).ToString("0") + timeBackText;
             //カウントダウンアニメーションが始まる時間より小さく、１ゲーム1回のタイムボーナスを追加していなかったら
             if(limitTime <= countDownAnimationTime && !isAddTimeBonus)
             {
