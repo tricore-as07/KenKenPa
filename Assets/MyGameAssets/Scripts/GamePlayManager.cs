@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using VMUnityLib;
+using System.Collections;
 
 /// <summary>
 /// ゲームプレイシーンの管理をするクラス
@@ -16,6 +17,7 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
     [SerializeField] PlayerInput playerInput;                   //プレイヤーの入力を管理するクラス
     bool gameEnd;                                               //ゲーム終了したかどうか
+    [SerializeField] float endInputInterval;                    //終了時の入力インターバル
 
     /// <summary>
     /// オブジェクトが非アクティブになった時によばれる
@@ -96,6 +98,15 @@ public class GamePlayManager : MonoBehaviour
     public void OnTimeLimit()
     {
         playerInput.enabled = false;
+        StartCoroutine(OnGameEnd());
+    }
+
+    /// <summary>
+    /// ゲーム終了時に呼ばれる
+    /// </summary>
+    IEnumerator OnGameEnd()
+    {
+        yield return new WaitForSeconds(endInputInterval);
         gameEnd = true;
     }
 

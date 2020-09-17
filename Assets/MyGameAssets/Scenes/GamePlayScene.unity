@@ -2443,6 +2443,7 @@ MonoBehaviour:
   fadeOutCanvas: {fileID: 422075522}
   changer: {fileID: 11549712}
   playerInput: {fileID: 16986430}
+  endInputInterval: 2
 --- !u!1 &556443545
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,7 +2588,7 @@ PrefabInstance:
     - target: {fileID: 2138367695324020344, guid: e4c40f480ed1c445c8b0c205a76a9f03,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2138367695324020344, guid: e4c40f480ed1c445c8b0c205a76a9f03,
         type: 3}
