@@ -75,13 +75,8 @@ public class Timer : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //カウントダウンをしていなかったら早期リターン
-        if(!isCountDown)
-        {
-            return;
-        }
-        //カウントダウンが終了していたら早期リターン
-        if (isCallTimeLimitEvent)
+        //カウントダウンをしていないかカウントダウンが終了していたら早期リターン
+        if (!isCountDown || isCallTimeLimitEvent)
         {
             return;
         }
