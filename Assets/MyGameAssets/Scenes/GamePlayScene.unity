@@ -2443,6 +2443,7 @@ MonoBehaviour:
   fadeOutCanvas: {fileID: 422075522}
   changer: {fileID: 11549712}
   playerInput: {fileID: 16986430}
+  endInputInterval: 2
 --- !u!1 &556443545
 GameObject:
   m_ObjectHideFlags: 0
