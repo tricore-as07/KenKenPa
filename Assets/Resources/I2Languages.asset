@@ -171,8 +171,8 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - SpecialComboBonus
-      - "\u30B9\u30DA\u30B7\u30E3\u30EB\u30B3\u30F3\u30DC\u30DC\u30FC\u30CA\u30B9"
+      - MaximumComboBonus
+      - "\u6700\u5927\u30B3\u30F3\u30DC\u30DC\u30FC\u30CA\u30B9"
       Flags: 0000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
