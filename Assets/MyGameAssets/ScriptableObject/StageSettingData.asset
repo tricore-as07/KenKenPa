@@ -14,13 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectDistance: 3
   generateObjectsGroupNum: 5
-  hitObjectPrefab: {fileID: 6628652606265852849, guid: 3d6712ae06c284ad393ad03708aa9e64,
-    type: 3}
-  notInputHitObjectPrefab: {fileID: 8396664721844488705, guid: e7ce2ce8480f04c75852f71abdb73eb8,
-    type: 3}
   outObjectPrefab: {fileID: 7520316894623290485, guid: ff64e18bcc6884ba2b178288e509722c,
     type: 3}
   startObjectsGroupDatas:
   - {fileID: 11400000, guid: 9c30f11f246ff4887b1006518ca6e2f8, type: 2}
   objectsGroupDatas:
   - {fileID: 11400000, guid: 625ea898acb5647b38c8797132932641, type: 2}
+  - {fileID: 11400000, guid: 49614cebd84f5464abc4a0916b122066, type: 2}
+  - {fileID: 11400000, guid: 55da51515d16847239976e11747cd87c, type: 2}

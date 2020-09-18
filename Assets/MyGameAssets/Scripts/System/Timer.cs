@@ -100,8 +100,8 @@ public class Timer : MonoBehaviour
                 //１ゲームで1回だけタイムボーナスを追加する
                 isAddTimeBonus = true;
                 var bonusTime = ComboCounter.MaxComboCount / timeBonusCoefficient;
-                specialComboBonus.GetComponent<ShowComboBonusUI>().SetBonusTime((int)bonusTime);
                 specialComboBonus.SetActive(true);
+                specialComboBonus.GetComponent<ShowComboBonusUI>().SetBonusTime((int)bonusTime);
                 limitTime += bonusTime;
             }
             //制限時間が１０秒以下になって、終了カウントダウンがアクティブになっていない時
