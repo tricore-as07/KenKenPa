@@ -8,7 +8,6 @@ public class FadeOutCanvas : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup = default;     //キャンバスグループのコンポーネント
     [SerializeField] float fadeOutTime = 1.0f;              //フェードアウトにかける時間
     public float FadeOutTime => fadeOutTime;                //外部に公開するためのプロパティ
-    [SerializeField] GamePlayManager gamePlayManager;       //ゲームプレイシーンを管理するクラス
     [SerializeField] GameObject countDown;                  //カウントダウンのオブジェクト
     bool isStartFadeOut;                                    //フェードアウトを開始したかどうか
     public bool IsStartFadeOut => isStartFadeOut;           //外部に公開するためのプロパティ

@@ -88,7 +88,7 @@ public class GamePlayManager : MonoBehaviour
     /// </summary>
     void StopGamePlay()
     {
-        gamePlayObject.SetActive(false);
+        gamePlayObject.SetActive(true);
         fakeLoadObject.SetActive(true);
     }
 
