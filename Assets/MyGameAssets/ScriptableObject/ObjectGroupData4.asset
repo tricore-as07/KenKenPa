@@ -10,19 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6961def60aa58484596ace2bdfbbfdf9, type: 3}
-  m_Name: ObjectGroupData3
+  m_Name: ObjectGroupData4
   m_EditorClassIdentifier: 
   weight: 100
   objectsDatas:
-  - rightObjectType: 1
-    centerObjectType: 0
-    leftObjectType: 1
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 0
-  - rightObjectType: 1
-    centerObjectType: 0
-    leftObjectType: 1
   - rightObjectType: 0
     centerObjectType: 1
     leftObjectType: 0
@@ -32,6 +23,12 @@ MonoBehaviour:
   - rightObjectType: 1
     centerObjectType: 0
     leftObjectType: 1
+  - rightObjectType: 0
+    centerObjectType: 1
+    leftObjectType: 0
+  - rightObjectType: 1
+    centerObjectType: 0
+    leftObjectType: 1
   - rightObjectType: 1
     centerObjectType: 0
     leftObjectType: 1
@@ -41,6 +38,9 @@ MonoBehaviour:
   - rightObjectType: 0
     centerObjectType: 1
     leftObjectType: 0
-  - rightObjectType: 0
-    centerObjectType: 1
-    leftObjectType: 0
+  - rightObjectType: 1
+    centerObjectType: 0
+    leftObjectType: 1
+  - rightObjectType: 1
+    centerObjectType: 0
+    leftObjectType: 1
