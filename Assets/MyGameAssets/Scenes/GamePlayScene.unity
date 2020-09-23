@@ -4746,8 +4746,8 @@ MonoBehaviour:
       apiKey: f5caaedf7567238cfcbf4417cc29d621a337ecd2
       spotID: 1012894
     iOS:
-      apiKey: f5caaedf7567238cfcbf4417cc29d621a337ecd2
-      spotID: 1012894
+      apiKey: 10d9088b5bd36cf43b295b0774e5dcf7d20a4071
+      spotID: 485500
   loadWhenActivated: 1
   enableAutoReload: 0
   reloadInterval: 0
