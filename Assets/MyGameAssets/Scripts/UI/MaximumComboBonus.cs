@@ -18,11 +18,13 @@ public class MaximumComboBonus : MonoBehaviour
     {
         foreach (var comboMaterialSetting in comboMaterialSettings)
         {
+            //最大コンボ数が設定にあるコンボ数より多ければマテリアルを変更
             if (comboMaterialSetting.ComboNum <= ComboCounter.MaxComboCount)
             {
                 text.fontMaterial = comboMaterialSetting.Mat;
                 timeText.fontMaterial = comboMaterialSetting.Mat;
             }
+            //最大コンボ数が設定にあるコンボ数より小さければ設定するマテリアルを探すのを終了
             else
             {
                 break;
