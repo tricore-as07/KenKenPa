@@ -3,6 +3,7 @@
 /// <summary>
 /// 動く背景UIを作成する
 /// </summary>
+/// /// TODO: orimoto 未実装
 public class CreateBackGroundUi : MonoBehaviour
 {
     [SerializeField] GameObject createUi = default;         //作成するUI
