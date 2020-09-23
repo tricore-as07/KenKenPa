@@ -167,6 +167,14 @@ MonoBehaviour:
       - "\u30B0\u30EC\u30FC\u30C8!"
       Flags: 0000
       Languages_Touch: []
+    - Term: SpecialComboBonus
+      TermType: 0
+      Description: 
+      Languages:
+      - MaximumComboBonus
+      - "\u6700\u5927\u30B3\u30F3\u30DC\u30DC\u30FC\u30CA\u30B9"
+      Flags: 0000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: '-'
