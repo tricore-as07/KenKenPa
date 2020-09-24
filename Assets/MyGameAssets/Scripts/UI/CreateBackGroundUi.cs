@@ -7,7 +7,25 @@
 public class CreateBackGroundUi : MonoBehaviour
 {
     [SerializeField] GameObject createUi = default;         //作成するUI
-    [SerializeField] float moveTime = default;              //移動にかける時間
     [SerializeField] float createInterval = default;        //生成する間隔
+    float time;
 
+    void OnEnable()
+    {
+        time = 0;
+        Instantiate(createUi, transform);
+    }
+
+    /// <summary>
+    /// 毎フレーム行う処理
+    /// </summary>
+    void Update()
+    {
+        time += Time.deltaTime;
+        if(createInterval <= time)
+        {
+            Instantiate(createUi,transform);
+            time = 0;
+        }
+    }
 }
