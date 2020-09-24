@@ -5581,7 +5581,7 @@ MonoBehaviour:
     type: 3}
   stagePrefab: {fileID: 1932526264424291511, guid: 07ac3989882644cde970b42a4065360e,
     type: 3}
-  backgroundGroupPrefab: {fileID: 6653044354721723866, guid: 7c573f1112438412fbe47f41e240ff31,
+  backgroundGroupPrefab: {fileID: 650440860159047040, guid: 746af300c9f7042168d1218828daa27f,
     type: 3}
   backgroundPrefabs:
   - {fileID: 871801256511083376, guid: 71fc51a1802d24417a3ae186a7a2a08e, type: 3}
