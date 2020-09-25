@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// UIを動かす
+/// 背景UIを動かす
 /// </summary>
-public class MoveUIObject : MonoBehaviour
+public class MoveBackGroundUI : MonoBehaviour
 {
     [SerializeField] float moveTime = default;      //画面の右端から左端まで動くのにかかる時間
-    
     float moveSpeed = default;                      //動くスピード
     float halfScreenWidth = default;                //画面の半分の大きさ
 
@@ -26,9 +25,9 @@ public class MoveUIObject : MonoBehaviour
     {
         //左に自分を動かす
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-        
+
         //画面左端から画面の半分以上左にあるなら
-        if(transform.position.x < -halfScreenWidth)
+        if (transform.position.x < -halfScreenWidth)
         {
             //画面右端から画面の半分右に動かす
             transform.position = Vector3.right * (Screen.width + halfScreenWidth);
