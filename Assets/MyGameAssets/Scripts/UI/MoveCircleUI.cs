@@ -5,13 +5,13 @@
 /// </summary>
 public class MoveCircleUI : MonoBehaviour
 {
-    [SerializeField] float oneTripTime = default;                   //1回の移動時間
-    [SerializeField] int oneTripDistanceNum = default;              //1回に移動する画面分割数
-    [SerializeField] float InterpolationNum = default;              //補間に使う値
-    float nextMoveTime;                                             //次に動くまでの時間
-    float halfScreenHeight = default;                               //画面の半分の大きさ
-    float oneTripDistance;                                          //1回に移動する距離
-    Vector3 targetPos;
+    [SerializeField] float oneTripTime = 0;                         //1回の移動時間
+    [SerializeField] int oneTripDistanceNum = 0;                    //1回に移動する画面分割数
+    [SerializeField] float InterpolationNum = 0;                    //補間に使う値
+    float nextMoveTime = 0;                                         //次に動くまでの時間
+    float halfScreenHeight = 0;                                     //画面の半分の大きさ
+    float oneTripDistance = 0;                                      //1回に移動する距離
+    Vector3 targetPos = default;                                    //次に移動する目標ポジション
 
     /// <summary>
     /// 最初に行う処理

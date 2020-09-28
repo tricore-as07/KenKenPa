@@ -8,7 +8,7 @@ public class CreateRectUI : MonoBehaviour
 {
     [SerializeField] List<GameObject> rectObject = default;           //長方形のオブジェクトのリスト
     [SerializeField] List<GameObject> rectObjectParent = default;     //長方形のオブジェクトの親に設定するオブジェクトのリスト
-    [SerializeField] int createRectNum = default;                     //作成する個数
+    [SerializeField] int createRectNum = 0;                           //作成する個数
 
     /// <summary>
     /// 最初に行う処理
