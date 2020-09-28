@@ -783,10 +783,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 71a7e89d-afef-413e-ab49-5f4cbd8183b0
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: "\u30B8\u30B4\u30AF\u30B1\u30F3\u30B1\u30F3\u30D1"
+  organizationId: tri07
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

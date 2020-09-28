@@ -86,4 +86,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26227a149796b414aaf86b623601eb2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTime: 10
+  oneTripTime: 2
+  oneTripDistanceNum: 10
+  InterpolationNum: 0.3
