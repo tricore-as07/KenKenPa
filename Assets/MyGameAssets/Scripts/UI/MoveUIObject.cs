@@ -6,7 +6,6 @@
 public class MoveUIObject : MonoBehaviour
 {
     [SerializeField] float moveTime = default;      //画面の右端から左端まで動くのにかかる時間
-    
     float moveSpeed = default;                      //動くスピード
     float halfScreenWidth = default;                //画面の半分の大きさ
 

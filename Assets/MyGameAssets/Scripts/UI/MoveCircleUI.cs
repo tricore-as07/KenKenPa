@@ -37,8 +37,6 @@ public class MoveCircleUI : MonoBehaviour
             targetPos = transform.position + new Vector3(0f, -oneTripDistance, 0f);
             nextMoveTime = 0;
         }
-
-
         //画面から画面の半分以上下にあるなら
         if (transform.position.y < -halfScreenHeight)
         {

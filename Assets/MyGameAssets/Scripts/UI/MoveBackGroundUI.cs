@@ -25,7 +25,6 @@ public class MoveBackGroundUI : MonoBehaviour
     {
         //左に自分を動かす
         transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-
         //画面左端から画面の半分以上左にあるなら
         if (transform.position.x < -halfScreenWidth)
         {
