@@ -22,7 +22,7 @@ public class CreateCircleUI : MonoBehaviour
     /// <summary>
     /// 最初に行う処理
     /// </summary>
-    private void Start()
+    void Start()
     {
         float halfScreenHeight = Screen.height / 2;
         //画面の上から画面の縦幅の半分上から生成を開始する
