@@ -7,7 +7,7 @@ public class FakeLoadManager : MonoBehaviour
 {
     [SerializeField] GameObject nativeAdObject = default;               //ネイティブ広告のオブジェクト
     [SerializeField] GameObject movieAdObject = default;                //動画広告のオブジェクト
-    [SerializeField] int movieAdPlayNum;                                //動画広告を表示するプレイ回数
+    [SerializeField] int movieAdPlayNum = default;                      //動画広告を表示するプレイ回数
     const string key = "PlayNum";                                       //ゲームのプレイ回数を保存するためのキー
     int playNum;                                                        //プレイ回数
 

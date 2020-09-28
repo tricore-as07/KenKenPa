@@ -7,7 +7,6 @@ using TMPro;
 public class InitializeMockScene : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI distText = default;            //進んだ距離を表示するText
-    [SerializeField] Timer timer = default;                         //タイマークラス
 
     /// <summary>
     /// スクリプトのインスタンスがロードされた時に呼ばれる

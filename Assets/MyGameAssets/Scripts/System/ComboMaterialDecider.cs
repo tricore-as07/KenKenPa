@@ -11,7 +11,7 @@ public class ComboMaterialDecider : MonoBehaviour
     bool isNeedChangeMaterial;                                              //マテリアルを変更したかどうが
     public bool IsNeedChangeMaterial => isNeedChangeMaterial;               //外部に公開するためのプロパティ
     Material nextMaterial;                                                  //変更するマテリアル
-    [SerializeField] TextMeshProUGUI text;                                  //コンボを表示するテキスト
+    [SerializeField] TextMeshProUGUI text = default;                        //コンボを表示するテキスト
     string comboBackText;                                                   //コンボの後ろに表示する文字列
     [SerializeField] List<ComboMaterialUiSetting> comboMaterialSettings     //コンボ数によってマテリアルを設定するリスト
         = new List<ComboMaterialUiSetting>();

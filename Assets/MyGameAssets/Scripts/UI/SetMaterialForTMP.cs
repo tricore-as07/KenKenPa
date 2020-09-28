@@ -6,8 +6,8 @@ using TMPro;
 /// </summary>
 public class SetMaterialForTMP : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI text;                                  //マテリアルをセットするテキスト
-    [SerializeField] Material material;                                     //セットするマテリアル
+    [SerializeField] TextMeshProUGUI text = default;                              //マテリアルをセットするテキスト
+    [SerializeField] Material material = default;                                 //セットするマテリアル
 
     /// <summary>
     /// オブジェクトがアクティブになった時に呼ばれる

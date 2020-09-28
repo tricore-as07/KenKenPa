@@ -7,8 +7,8 @@ using System.Collections.Generic;
 /// </summary>
 public class ScoreSetter : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI scoreText;                             //スコアのテキスト
-    [SerializeField] List<ScoreMaterialUiSetting> scoreMaterialUiSettings;  //スコアによってマテリアルを設定するリスト
+    [SerializeField] TextMeshProUGUI scoreText = default;                               //スコアのテキスト
+    [SerializeField] List<ScoreMaterialUiSetting> scoreMaterialUiSettings = default;    //スコアによってマテリアルを設定するリスト
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる

@@ -8,9 +8,9 @@ public class InputAction : MonoBehaviour
     [SerializeField] AudioSource audioSource = default;                 //オーディオソースコンポーネント
     [SerializeField] AudioClip correctSE = default;                     //正解時のSE
     [SerializeField] AudioClip incorrectSE = default;                   //不正解時のSE
-    [SerializeField] PlayerInput playerInput;                           //ゲーム中のプレイヤーの入力に関するクラス
-    [SerializeField] GameObject playerTarget;                           //プレイヤーの目標位置のためのオブジェクト
-    [SerializeField, Range(0f, 1f)] float InterpolationNum;             //補間に使う値 
+    [SerializeField] PlayerInput playerInput = default;                 //ゲーム中のプレイヤーの入力に関するクラス
+    [SerializeField] GameObject playerTarget = default;                 //プレイヤーの目標位置のためのオブジェクト
+    [SerializeField, Range(0f, 1f)] float InterpolationNum = default;   //補間に使う値 
     CorrectCheck correctCheck;                                          //入力された場所が当たりか外れかを判定するクラス
     GameObject stage;                                                   //ステージのオブジェクト
     InputIntervalManager inputIntervalManager;                          //入力から次の入力を受け付けるまでの時間を管理するクラス

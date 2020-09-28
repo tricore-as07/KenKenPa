@@ -14,10 +14,10 @@ public class GamePlayManager : MonoBehaviour
     [SerializeField] FadeOutCanvas fadeOutCanvas = default;     //フェードアウトをするキャンバス
     float fakeLoadTimeCount;                                    //フェイクロードを表示している時間をカウントする
     bool endFakeLoad = false;                                   //フェイクロードが終了したかどうか
-    [SerializeField] SceneChanger changer;                      //シーンを変更するためのクラス
-    [SerializeField] PlayerInput playerInput;                   //プレイヤーの入力を管理するクラス
+    [SerializeField] SceneChanger changer = default;            //シーンを変更するためのクラス
+    [SerializeField] PlayerInput playerInput = default;         //プレイヤーの入力を管理するクラス
     bool gameEnd;                                               //ゲーム終了したかどうか
-    [SerializeField] float endInputInterval;                    //終了時の入力インターバル
+    [SerializeField] float endInputInterval = default;          //終了時の入力インターバル
 
     /// <summary>
     /// オブジェクトが非アクティブになった時によばれる

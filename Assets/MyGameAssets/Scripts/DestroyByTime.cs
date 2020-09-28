@@ -5,7 +5,7 @@
 /// </summary>
 public class DestroyByTime : MonoBehaviour
 {
-    [SerializeField] float lifeTime;        //アタッチしているオブジェクトを消すまでの時間
+    [SerializeField] float lifeTime = default;        //アタッチしているオブジェクトを消すまでの時間
 
     /// <summary>
     /// 最初に行う処理

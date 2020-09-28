@@ -8,11 +8,11 @@ public class FadeOutCanvas : MonoBehaviour
     [SerializeField] CanvasGroup canvasGroup = default;     //キャンバスグループのコンポーネント
     [SerializeField] float fadeOutTime = 1.0f;              //フェードアウトにかける時間
     public float FadeOutTime => fadeOutTime;                //外部に公開するためのプロパティ
-    [SerializeField] GameObject countDown;                  //カウントダウンのオブジェクト
+    [SerializeField] GameObject countDown = default;        //カウントダウンのオブジェクト
     bool isStartFadeOut;                                    //フェードアウトを開始したかどうか
     public bool IsStartFadeOut => isStartFadeOut;           //外部に公開するためのプロパティ
-    [SerializeField] GameObject banner;                     //バナー広告のオブジェクト
-    [SerializeField] GameObject nendNative;                 //ネイティブ広告のオブジェクト
+    [SerializeField] GameObject banner = default;           //バナー広告のオブジェクト
+    [SerializeField] GameObject nendNative = default;       //ネイティブ広告のオブジェクト
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
