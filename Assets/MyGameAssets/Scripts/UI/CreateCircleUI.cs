@@ -15,7 +15,7 @@ public class CreateCircleUI : MonoBehaviour
     [SerializeField] GameObject[] circleObjects = new GameObject[(int)CircleType.Max];      //丸のオブジェクトの配列
     [SerializeField] int createCircleNum = default;                                         //作成する個数
     [SerializeField] int AllowContinuityNum = default;                                      //連続を許す数
-    GameObject tempCircle = default;                                                        //一時的に生成したオブジェクトを保存する                                                       
+    GameObject tempCircle;                                                                  //一時的に生成したオブジェクトを保存する                                                       
     CircleType createdType = CircleType.Max;                                                //生成したオブジェクトの種類
     int continuityCreateNum = 0;                                                            //連続作成した数
 
@@ -62,7 +62,7 @@ public class CreateCircleUI : MonoBehaviour
     /// <summary>
     /// 丸のオブジェクトを生成する
     /// </summary>
-    /// <param name="type"></param>
+    /// <param name="type">生成するオブジェクトの種類</param>
     void CreateCircleObject(CircleType type)
     {
         tempCircle = Instantiate(circleObjects[(int)type], transform);
