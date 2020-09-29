@@ -6,14 +6,16 @@ using UnityEngine.Advertisements;
 /// </summary>
 public class MovieAd : MonoBehaviour, IUnityAdsListener
 {
-    [SerializeField] string placementID　= default;              //動画広告のID
-    [SerializeField] GameObject countDown = default;             //カウントダウンのオブジェクト
+    [SerializeField] string placementID　= default;             //動画広告のID
+    [SerializeField] GameObject countDown = default;            //カウントダウンのオブジェクト
+    [SerializeField] GameObject bgmObject = default;            //BGMを再生するオブジェクト
 
     /// <summary>
     /// オブジェクトがアクティブになった時に呼ばれる
     /// </summary>
     void OnEnable()
     {
+        bgmObject.SetActive(false);
         Show();
     }
 
@@ -76,6 +78,9 @@ public class MovieAd : MonoBehaviour, IUnityAdsListener
             countDown.SetActive(true);
             //自分をリスナーから解除
             Advertisement.RemoveListener(this);
+            //自分を非アクティブに
+            gameObject.SetActive(false);
+            bgmObject.SetActive(true);
         }
     }
 }
