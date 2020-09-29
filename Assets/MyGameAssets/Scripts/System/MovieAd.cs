@@ -16,6 +16,7 @@ public class MovieAd : MonoBehaviour, IUnityAdsListener
     void OnEnable()
     {
         bgmObject.SetActive(false);
+        countDown.SetActive(false);
         Show();
     }
 

@@ -45,7 +45,7 @@ public class GamePlayManager : MonoBehaviour
     void Update()
     {
         //ゲーム終了フラグが立っていて、画面をタップされたら
-        if (gameEnd && Input.touchCount > 0)
+        if (gameEnd && (Input.touchCount > 0 || Input.anyKey))
         {
             OnTapAfterTimeLimit();
         }

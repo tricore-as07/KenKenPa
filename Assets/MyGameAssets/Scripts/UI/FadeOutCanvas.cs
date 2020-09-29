@@ -23,6 +23,7 @@ public class FadeOutCanvas : MonoBehaviour
         canvasGroup.alpha = 1;
         banner.SetActive(true);
         nendNative.SetActive(true);
+        countDown.SetActive(false);
     }
 
     /// <summary>
