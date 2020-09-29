@@ -9,7 +9,7 @@ using I2.Loc;
 public class Timer : MonoBehaviour
 {
     [SerializeField] float limitTimeSetting = 0f;               //制限時間の設定時間
-    [SerializeField] TextMeshProUGUI timeText;                  //タイマーを表示するテキスト
+    [SerializeField] TextMeshProUGUI timeText = default;        //タイマーを表示するテキスト
     [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
     [SerializeField] Animator animator = default;               //カウントダウンのアニメーター
     [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント

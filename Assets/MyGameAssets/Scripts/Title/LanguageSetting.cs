@@ -15,7 +15,7 @@ public enum LanguageType
 /// </summary>
 public class LanguageSetting : MonoBehaviour
 {
-    [SerializeField] TMP_Dropdown dropdown;
+    [SerializeField] TMP_Dropdown dropdown = default;
     public static readonly Dictionary<LanguageType, string> Language = new Dictionary<LanguageType, string>
     {
         { LanguageType.Japanese,"Japanese" },

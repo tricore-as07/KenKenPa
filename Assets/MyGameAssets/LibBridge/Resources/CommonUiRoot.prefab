@@ -1279,6 +1279,7 @@ GameObject:
   - component: {fileID: 224379809504043168}
   - component: {fileID: 114858080452234906}
   - component: {fileID: 2027158502891356148}
+  - component: {fileID: 4121976050035231256}
   m_Layer: 0
   m_Name: AdMobManager
   m_TagString: Untagged
@@ -1341,6 +1342,20 @@ MonoBehaviour:
   ios_Interstitial: ca-app-pub-3940256099942544/4411468910
   ios_NativeExpress: ca-app-pub-3940256099942544/3986624511
   myNendNative: {fileID: 114763152679354838}
+--- !u!114 &4121976050035231256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610163025218330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645a65ea50d9042968e9d2990dea407f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameId: 3837326
+  testMode: 1
 --- !u!1 &1640017550533942
 GameObject:
   m_ObjectHideFlags: 0

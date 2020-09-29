@@ -8,8 +8,8 @@ using TMPro;
 public class MaximumComboBonus : MonoBehaviour
 {
     [SerializeField] List<ComboMaterialUiSetting> comboMaterialSettings = default;          //コンボ数によってマテリアルを設定するリスト
-    [SerializeField ] TextMeshProUGUI text;                                                 //テキスト
-    [SerializeField ] TextMeshProUGUI timeText;                                             //追加する時間のテキスト
+    [SerializeField] TextMeshProUGUI text = default;                                        //テキスト
+    [SerializeField] TextMeshProUGUI timeText = default;                                    //追加する時間のテキスト
 
     /// <summary>
     /// オブジェクトがアクティブになった時に呼ばれる

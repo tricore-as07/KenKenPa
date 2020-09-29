@@ -12,8 +12,8 @@ public enum VolumeKey
 /// </summary>
 public class VolumeSetter : MonoBehaviour
 {
-    [SerializeField] AudioSource audioSource;   //設定するオーディオソース
-    [SerializeField] VolumeKey key;             //何のボリュームを設定するか
+    [SerializeField] AudioSource audioSource = default;   //設定するオーディオソース
+    [SerializeField] VolumeKey key = default;             //何のボリュームを設定するか
 
     /// <summary>
     /// オブジェクトがアクティブになった時に呼ばれる
