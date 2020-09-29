@@ -19,6 +19,7 @@ public class Timer : MonoBehaviour
     [SerializeField] ShowComboBonusUI showComboBonusUI;         //コンボボーナスのUIを表示するためのクラス
     [SerializeField] int timeBonusComboNum = 20;                //タイムボーナスを追加するコンボ数
     float limitTime;                                            //カウントダウンする制限時間
+    float showedLimitTime;                                      //表示した制限時間
     public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
     bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
     bool isCountDown;                                           //カウントダウンをするかどうか
@@ -92,9 +93,16 @@ public class Timer : MonoBehaviour
         else
         {
             limitTime -= Time.deltaTime;
-            timeText.text = timeFrontText + Mathf.Ceil(limitTime).ToString("0") + timeBackText;
+            //表示する制限時間（小数点切り上げ）を計算
+            var showLimitTime = Mathf.Ceil(limitTime);
+            //一つ前のフレームで表示した制限時間と今のフレームで表示する制限時間が違う時
+            if(showLimitTime != showedLimitTime)
+            {
+                showedLimitTime = showLimitTime;
+                timeText.text = timeFrontText + showLimitTime.ToString("0") + timeBackText;
+            }
             //カウントダウンアニメーションが始まる時間より小さく、１ゲーム1回のタイムボーナスを追加していなかったら
-            if(limitTime <= countDownAnimationTime && !isAddTimeBonus)
+            if (limitTime <= countDownAnimationTime && !isAddTimeBonus)
             {
                 //１ゲームで1回だけタイムボーナスを追加する
                 isAddTimeBonus = true;
