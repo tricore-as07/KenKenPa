@@ -7,12 +7,13 @@ using UnityEngine;
 public class UnityAdsInitizer : MonoBehaviour
 {
     [SerializeField] string gameId = default;         //UnityAdsのGameID
+    [SerializeField] bool testMode = default;         //テストモードを有効にするかどうか
 
     /// <summary>
     /// スクリプトのインスタンスがロードされたときに呼ばれる
     /// </summary>
     void Awake()
     {
-        Advertisement.Initialize(gameId);
+        Advertisement.Initialize(gameId, testMode);
     }
 }
