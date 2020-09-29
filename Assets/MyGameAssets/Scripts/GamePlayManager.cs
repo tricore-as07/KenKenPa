@@ -32,6 +32,14 @@ public class GamePlayManager : MonoBehaviour
     }
 
     /// <summary>
+    /// オブジェクトがアクティブになった時によばれる
+    /// </summary>
+    void OnEnable()
+    {
+        SetActiveGamePlayObject();
+    }
+
+    /// <summary>
     /// 毎フレーム行う処理
     /// </summary>
     void Update()
@@ -60,7 +68,6 @@ public class GamePlayManager : MonoBehaviour
             //フェイクロードの表示終了処理
             endFakeLoad = true;
             fadeOutCanvas.StartFadeOut();
-            SetActiveGamePlayObject();
         }
     }
 
