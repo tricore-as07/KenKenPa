@@ -6,7 +6,6 @@ using System;
 /// </summary>
 public class InputIntervalManager : MonoBehaviour
 {
-    [SerializeField] InputIntervalSettingData inputIntervalSettingData = default;   //入力間の受付時間をコンボ数で管理するための設定データ
     public bool isAbleInput { get; private set; }                                   //入力可能かどうか
     event Action onEnableIsAbleInputFunc;                                           //入力可能になった時に呼ばれる関数
     event Action onDisableIsAbleInputFunc;                                          //入力不可能になった時に呼ばれる関数

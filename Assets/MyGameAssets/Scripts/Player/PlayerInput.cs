@@ -9,7 +9,6 @@ public class PlayerInput : MonoBehaviour
     bool rightInput;                                        //右に対応する入力されたかどうか
     bool centerInput;                                       //中央に対応する入力されたかどうか
     bool leftInput;                                         //左に対応する入力されたかどうか
-    [SerializeField] new Camera camera = default;           //カメラ
     [SerializeField] float sideInputIntervalTime = default; //左右入力のズレの許容時間
     InputAction inputAction;                                //入力があった時に実際の処理をするクラス
     bool isSideInputInterval;                               //左右入力のズレの許容時間内かどうか

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 /// </summary>
 public class VolumeAdjustment : MonoBehaviour
 {
-    [SerializeField] Slider volumeSlider;                                   //ボリュームを変更するスライダー
-    [SerializeField] VolumeKey key;                                         //何のボリュームを設定するか
+    [SerializeField] Slider volumeSlider = default;                         //ボリュームを変更するスライダー
+    [SerializeField] VolumeKey key = default;                               //何のボリュームを設定するか
     public delegate void OnChangeVolumeEvent();                             //ボリュームが変更された時に呼ぶ関数のデリゲート
     public static event OnChangeVolumeEvent onChangeVolumeEvent;            //ボリュームが変更された時に呼ぶイベント
 

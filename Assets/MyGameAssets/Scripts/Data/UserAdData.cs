@@ -10,7 +10,7 @@ public sealed class UserAdData : SingletonMonoBehaviour<UserAdData>
     const string useAdMobBannerKey = "UseAdMobBanner";          //バナー広告にAdMobを使うかどうかを取得するためのキー
     int showdBannerCount;                                       //バナーを何回表示したかのカウント（切り替えに使うもの）
     const string showdBannerCountKey = "ShowdBannerCount";      //バナーを何回表示したかのカウントを取得するためのキー
-    [SerializeField] int switchingAdNum;                        //広告を切り替える回数
+    [SerializeField] int switchingAdNum = default;              //広告を切り替える回数
 
     /// <summary>
     /// スクリプトのインスタンスがロードされたときに呼ばれる
