@@ -99,6 +99,7 @@ public class PlayerInput : MonoBehaviour
                 if(sideInputCoroutine != null)
                 {
                     StopCoroutine(sideInputCoroutine);
+                    sideInputCoroutine = null;
                 }
             }
         }
