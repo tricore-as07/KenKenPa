@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: f98fc3083f92743ec9bafe97a00d4335,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -227,7 +227,7 @@ PrefabInstance:
     - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
         type: 3}
       propertyPath: limitTimeSetting
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4301559830203052234, guid: f053bea2dd63d44bba37cdb56133de26,
         type: 3}
@@ -2777,7 +2777,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -5754,7 +5754,7 @@ MonoBehaviour:
     type: 3}
   stagePrefab: {fileID: 1932526264424291511, guid: 07ac3989882644cde970b42a4065360e,
     type: 3}
-  backgroundGroupPrefab: {fileID: 6653044354721723866, guid: 7c573f1112438412fbe47f41e240ff31,
+  backgroundGroupPrefab: {fileID: 650440860159047040, guid: 746af300c9f7042168d1218828daa27f,
     type: 3}
   backgroundPrefabs:
   - {fileID: 871801256511083376, guid: 71fc51a1802d24417a3ae186a7a2a08e, type: 3}
