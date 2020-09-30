@@ -10,8 +10,8 @@ public class ComboUI : MonoBehaviour
     const string addStateName = "AddComboAnimation";            //コンボを追加した時のアニメーション
     const string changeStateName = "ChangeMaterialAnimation";   //マテリアルを変更する時のアニメーション
     const string missStateName = "MissComboAnimation";          //コンボをミスした時のアニメーション
-    [SerializeField] GameObject sccessObj;                      //成功した時に表示するオブジェクト
-    [SerializeField] GameObject missObj;                        //失敗した時に表示するオブジェクト
+    [SerializeField] GameObject sccessObj = default;            //成功した時に表示するオブジェクト
+    [SerializeField] GameObject missObj = default;              //失敗した時に表示するオブジェクト
     ComboMaterialDecider decider;                               //コンボ数でマテリアルを変更するクラス
 
     /// <summary>
