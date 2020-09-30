@@ -8,27 +8,27 @@ using I2.Loc;
 /// </summary>
 public class Timer : MonoBehaviour
 {
-    [SerializeField] float limitTimeSetting = 0f;               //制限時間の設定時間
-    [SerializeField] TextMeshProUGUI timeText = default;        //タイマーを表示するテキスト
-    [SerializeField] GameObject EndCountDownObject = default;   //ゲーム終了時のカウントダウンを表示するオブジェクト
-    [SerializeField] Animator animator = default;               //カウントダウンのアニメーター
-    [SerializeField] UnityEvent onTimeLimitEvent = default;     //制限時間がなくなった時に呼ばれるイベント
-    [SerializeField] int timeBonusCoefficient = default;        //タイムボーナスを追加する際のコンボ数にかかる係数
-    [SerializeField] float timeBonusByCombo = default;          //コンボによるタイムボーナス
-    [SerializeField] GameObject comboBonus = default;           //コンボボーナスのUIオブジェクト
-    [SerializeField] ShowComboBonusUI showComboBonusUI;         //コンボボーナスのUIを表示するためのクラス
-    [SerializeField] int timeBonusComboNum = 20;                //タイムボーナスを追加するコンボ数
-    float limitTime;                                            //カウントダウンする制限時間
-    float showedLimitTime;                                      //表示した制限時間
-    public float LimitTime => limitTime;                        //外部に公開するためのプロパティ
-    bool isCallTimeLimitEvent;                                  //制限時間がきてイベントが呼ばれたかどうか
-    bool isCountDown;                                           //カウントダウンをするかどうか
-    public bool IsCountDown => isCountDown;                     //外部に公開するためのプロパティ
-    string timeFrontText;                                       //制限時間の前に表示するテキストの文字列
-    string timeBackText;                                        //制限時間の後ろに表示するテキストの文字列
-    bool isAddTimeBonus;                                        //タイムボーナスを追加したかどうか
-    const float countDownAnimationTime = 11f;                   //アニメーションの時間
-    const float startEndCountDownTime = 10f;                  //終了のカウントダウンが始まる時間
+    [SerializeField] float limitTimeSetting = 0f;                   //制限時間の設定時間
+    [SerializeField] TextMeshProUGUI timeText = default;            //タイマーを表示するテキスト
+    [SerializeField] GameObject EndCountDownObject = default;       //ゲーム終了時のカウントダウンを表示するオブジェクト
+    [SerializeField] Animator animator = default;                   //カウントダウンのアニメーター
+    [SerializeField] UnityEvent onTimeLimitEvent = default;         //制限時間がなくなった時に呼ばれるイベント
+    [SerializeField] int timeBonusCoefficient = default;            //タイムボーナスを追加する際のコンボ数にかかる係数
+    [SerializeField] float timeBonusByCombo = default;              //コンボによるタイムボーナス
+    [SerializeField] GameObject comboBonus = default;               //コンボボーナスのUIオブジェクト
+    [SerializeField] ShowComboBonusUI showComboBonusUI = default;   //コンボボーナスのUIを表示するためのクラス
+    [SerializeField] int timeBonusComboNum = 20;                    //タイムボーナスを追加するコンボ数
+    float limitTime;                                                //カウントダウンする制限時間
+    float showedLimitTime;                                          //表示した制限時間
+    public float LimitTime => limitTime;                            //外部に公開するためのプロパティ
+    bool isCallTimeLimitEvent;                                      //制限時間がきてイベントが呼ばれたかどうか
+    bool isCountDown;                                               //カウントダウンをするかどうか
+    public bool IsCountDown => isCountDown;                         //外部に公開するためのプロパティ
+    string timeFrontText;                                           //制限時間の前に表示するテキストの文字列
+    string timeBackText;                                            //制限時間の後ろに表示するテキストの文字列
+    bool isAddTimeBonus;                                            //タイムボーナスを追加したかどうか
+    const float countDownAnimationTime = 11f;                       //アニメーションの時間
+    const float startEndCountDownTime = 10f;                        //終了のカウントダウンが始まる時間
 
     /// <summary>
     /// オブジェクトがアクティブになった時によばれる
