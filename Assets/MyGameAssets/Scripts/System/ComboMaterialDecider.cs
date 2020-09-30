@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using System.Collections;
 using I2.Loc;
 
 /// <summary>
@@ -13,6 +14,8 @@ public class ComboMaterialDecider : MonoBehaviour
     Material nextMaterial;                                                  //変更するマテリアル
     [SerializeField] TextMeshProUGUI text = default;                        //コンボを表示するテキスト
     string comboBackText;                                                   //コンボの後ろに表示する文字列
+    [SerializeField] AnimationClip changeMaterialAnim = default;            //マテリアルを変更する時に再生するアニメーション
+    float changeMaterialHalfLength;                                         //マテリアルを変更する時に再生するアニメーションの半分の時間
     [SerializeField] List<ComboMaterialUiSetting> comboMaterialSettings     //コンボ数によってマテリアルを設定するリスト
         = new List<ComboMaterialUiSetting>();
 
@@ -23,6 +26,7 @@ public class ComboMaterialDecider : MonoBehaviour
     {
         comboBackText = LocalizationManager.GetTranslation("Combo_Back");
         text.text = "";
+        changeMaterialHalfLength = changeMaterialAnim.length / 2;
     }
 
     /// <summary>
@@ -60,12 +64,13 @@ public class ComboMaterialDecider : MonoBehaviour
         text.text = "";
     }
 
-
     /// <summary>
     /// マテリアルを変更する
     /// </summary>
-    public void ChangeMaterial()
+    public IEnumerator ChangeMaterial()
     {
+        //マテリアルを変更するアニメーションが半分再生された時にマテリアルを変更する
+        yield return new WaitForSeconds(changeMaterialHalfLength);
         isNeedChangeMaterial = false;
         text.fontMaterial = nextMaterial;
         text.text = ComboCounter.ComboCount.ToString() + comboBackText;
