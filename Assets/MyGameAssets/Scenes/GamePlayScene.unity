@@ -2749,6 +2749,7 @@ MonoBehaviour:
   input: {fileID: 16986430}
   pauseImage: {fileID: 1090873758}
   timer: {fileID: 11549714}
+  animator: {fileID: 929160546}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
