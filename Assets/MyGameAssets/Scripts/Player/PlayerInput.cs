@@ -96,7 +96,10 @@ public class PlayerInput : MonoBehaviour
                 inputAction.OnRightInput();
                 isSideInputInterval = false;
                 hasReleasedAfterInput = false;
-                StopCoroutine(sideInputCoroutine);
+                if(sideInputCoroutine != null)
+                {
+                    StopCoroutine(sideInputCoroutine);
+                }
             }
         }
     }
