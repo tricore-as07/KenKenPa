@@ -85,39 +85,39 @@ public sealed class UITitle : CmnMonoBehaviour
         GameServiceUtil.ShowAchivementUI();
     }
 
-    ///// <summary>
-    ///// ツイッターでシェア.
-    ///// </summary>
-    //public void ShareOnTwitter()
-    //{
-    //    ShareHelper.Inst.CaptureScreenShot();
-    //    ShareHelper.Inst.ShareOnTwitter(LibBridgeInfo.SHARE_TEXT + LibBridgeInfo.TWITTER_TAG, LibBridgeInfo.APP_URL);
-    //}
+    /// <summary>
+    /// ツイッターでシェア.
+    /// </summary>
+    public void ShareOnTwitter()
+    {
+        ShareHelper.Inst.CaptureScreenShot();
+        ShareHelper.Inst.Share(LibBridgeInfo.SHARE_TEXT + LibBridgeInfo.TWITTER_TAG, LibBridgeInfo.APP_URL);
+    }
 
-    ///// <summary>
-    ///// フェイスブックでシェア.
-    ///// </summary>
-    //public void ShareOnFaceBook()
-    //{
-    //    ShareHelper.Inst.CaptureScreenShot();
-    //    ShareHelper.Inst.ShareOnFaceBook();
-    //}
+    /// <summary>
+    /// フェイスブックでシェア.
+    /// </summary>
+    public void ShareOnFaceBook()
+    {
+        ShareHelper.Inst.CaptureScreenShot();
+        ShareHelper.Inst.Share(LibBridgeInfo.SHARE_TEXT + LibBridgeInfo.TWITTER_TAG, LibBridgeInfo.APP_URL);
+    }
 
-    ///// <summary>
-    ///// LINEでシェア.
-    ///// </summary>
-    //public void ShareOnLine()
-    //{
-    //    ShareHelper.Inst.CaptureScreenShot();
-    //    ShareHelper.Inst.ShareOnLine(LibBridgeInfo.SHARE_TEXT + "\n" + LibBridgeInfo.APP_URL);
-    //}
+    /// <summary>
+    /// LINEでシェア.
+    /// </summary>
+    public void ShareOnLine()
+    {
+        ShareHelper.Inst.CaptureScreenShot();
+        ShareHelper.Inst.Share(LibBridgeInfo.SHARE_TEXT + LibBridgeInfo.TWITTER_TAG, LibBridgeInfo.APP_URL);
+    }
 
-    ///// <summary>
-    ///// インスタグラムでシェア.
-    ///// </summary>
-    //public void ShareOnInstagram()
-    //{
-    //    ShareHelper.Inst.CaptureScreenShot();
-    //    ShareHelper.Inst.ShareOnInstagram();
-    //}
+    /// <summary>
+    /// インスタグラムでシェア.
+    /// </summary>
+    public void ShareOnInstagram()
+    {
+        ShareHelper.Inst.CaptureScreenShot();
+        ShareHelper.Inst.Share(LibBridgeInfo.SHARE_TEXT + LibBridgeInfo.TWITTER_TAG, LibBridgeInfo.APP_URL);
+    }
 }
