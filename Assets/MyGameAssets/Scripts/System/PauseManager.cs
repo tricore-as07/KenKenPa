@@ -8,6 +8,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] PlayerInput input = default;           //プレイヤーのオブジェクト
     [SerializeField] GameObject pauseImage = default;       //ポーズする時に表示するオブジェクト
     [SerializeField] Timer timer = default;                 //タイマークラス
+    [SerializeField] Animator animator = default;           //カウントダウンのアニメーター
     bool isPause;                                           //ポーズしているかどうか
 
     /// <summary>
@@ -32,6 +33,7 @@ public class PauseManager : MonoBehaviour
                 timer.StopCountDown();
                 pauseImage.SetActive(true);
                 input.enabled = false;
+                animator.speed = 0;
             }
         }
     }
@@ -50,6 +52,7 @@ public class PauseManager : MonoBehaviour
                 timer.StartCountDown();
                 pauseImage.SetActive(false);
                 input.enabled = true;
+                animator.speed = 1;
             }
         }
     }

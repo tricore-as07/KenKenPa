@@ -2749,6 +2749,7 @@ MonoBehaviour:
   input: {fileID: 16986430}
   pauseImage: {fileID: 1090873758}
   timer: {fileID: 11549714}
+  animator: {fileID: 929160546}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -4305,7 +4306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1494372573
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4476,6 +4477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1494372574}
+  changeMaterialAnim: {fileID: 7400000, guid: 069494c6e3b7a446497b7b2778ae9366, type: 2}
   comboMaterialSettings:
   - comboNum: 1
     mat: {fileID: 1776308603825631949, guid: e43b019216afb40adb57854345c9ae37, type: 2}
